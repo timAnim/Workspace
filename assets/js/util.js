@@ -46,6 +46,13 @@
                 res += chars[id];
             }
             return res;
+        },
+        getStyle(dom, prop) {
+            if (window.getComputedStyle) {
+                return window.getComputedStyle(dom, null)[prop];
+            } else {
+                return dom.currentStyle[prop];
+            }
         }
     };
     window.util = util;
