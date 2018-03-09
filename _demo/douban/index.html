@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/index.css">
+</head>
+<body>
+    <div id="db-nav-music" class="nav">
+        <div class="nav-wrap">
+            <div class="nav-primary">
+                <div class="nav-logo">
+                    <a href="https://music.douban.com"></a>
+                </div>
+                <div class="nav-search">
+                    <form action="./page.html" method="get">
+                        <fieldset>
+                            <div class="inp"><input id="inp-query" name="text" size="22" maxlength="60" placeholder="唱片名、表演者、条码、ISRC" value="" autocomplete="off"></div>
+                            <div class="inp-btn"><input type="submit" value="搜索"></div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div id="search_suggest">
+                    <ul>
+                        <!-- <li>
+                            <a href="https://music.douban.com/subject/26899717/">
+                                <img src="https://img3.doubanio.com/view/subject/s/public/s29114672.jpg" width="40">
+                                <div>
+                                    <em>成都</em>
+                                    <p>表演者：赵雷</p>
+                                </div>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+          
+    </div>    
+
+    
+    <script src="./src/jquery-3.3.1.min.js"></script>
+    <script src="./src/index.js"></script>
+    <script>
+
+        // $.ajax({
+        //     type: 'GET',
+        //     url: 'https://api.douban.com/v2/music/search?q=dd',
+        //     dataType: 'jsonp',
+        //     success: function (data) {
+        //         console.log(data);
+        //         var str = '';
+        //         data.musics.forEach(function (ele, index) {
+        //             str += '<a href="https://music.douban.com/subject/26899717/"><li><img src="'+ele.image+'"></li></a>';
+        //         })
+        //         $('ul').html(str);
+        //     },
+        //     error: function (err) {
+        //         console.log(err);
+        //     }
+        // });
+    
+    
+    </script>
+</body>
+</html>
