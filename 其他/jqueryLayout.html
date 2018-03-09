@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="utf-8">
+    <title>jquery登录框</title>
+    <link rel="stylesheet" type="text/css" href="./font/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="./css/init.css">
+    <link rel="stylesheet" type="text/css" href="./css/layout/jqueryLayout.css">
+</head>
+
+<body>
+    <main id='frame' class="layout-v sd-cut cl-primary bg-dark">
+        <header class="ht-regular bg-black cl-secondary layout-h">
+            <span id='logo' class="ft-small">
+        <span class="wd-regular">
+          <i class="fa fa-flag"></i>
+        </span>
+            <span class="pd-half-h">状态栏</span>
+            </span>
+            <button id='notify-btn' class="ht-regular wd-regular">
+                <i class="fa fa-bell"></i>
+            </button>
+            <button id='setting-btn' class="ht-regular wd-regular">
+                <i class="fa fa-user-circle"></i>
+            </button>
+        </header>
+        <main class="content layout-h bg-normal">
+            <aside class="wd-panel ht-max bg-light sd-card" id='aside-panel'>
+                <ul class="wd-panel sd-list">
+                    <li class="ht-regular layout-h pointer">
+                        <label class="wd-regular"><i class="fa fa-user"></i></label>
+                        <span class="content">目录</span>
+                        <label class="wd-regular"><i class="fa fa-angle-down"></i></label>
+                    </li>
+                    <li class="ht-regular layout-h pointer">
+                        <label class="wd-regular"><i class="fa fa-user"></i></label>
+                        <span class="content">目录</span>
+                        <label class="wd-regular"><i class="fa fa-angle-down"></i></label>
+                    </li>
+                    <li class="ht-regular layout-h pointer">
+                        <label class="wd-regular"><i class="fa fa-user"></i></label>
+                        <span class="content">目录</span>
+                        <label class="wd-regular"><i class="fa fa-angle-down"></i></label>
+                    </li>
+                    <li class="ht-regular layout-h pointer">
+                        <label class="wd-regular"><i class="fa fa-user"></i></label>
+                        <span class="content">目录</span>
+                        <label class="wd-regular"><i class="fa fa-angle-down"></i></label>
+                    </li>
+                </ul>
+            </aside>
+            <article class="ht-max layout-v">
+                <header class="bg-light ht-regular cl-black sd-card">
+                    <button id='aside-btn' class="ht-regular wd-regular">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <span class="ft-big">标题栏</span>
+                </header>
+                <main class="content pd-normal">
+                    <ul class="sd-list bg-white sd-cut">
+                        <li class="ht-regular bg-white"></li>
+                        <li class="ht-regular bg-white"></li>
+                        <li class="ht-regular bg-white"></li>
+                    </ul>
+                    <h2 class="pd-half"></h2>
+                    <ul class="layout-h">
+                        <li class="sd-cut ht-double bg-white pd-normal"></li>
+                        <h2 class="wd-gap"></h2>
+                        <li class="sd-cut ht-double bg-white pd-normal"></li>
+                        <h2 class="wd-gap"></h2>
+                        <li class="sd-cut ht-double bg-white pd-normal"></li>
+                        <h2 class="wd-gap"></h2>
+                        <li class="sd-cut ht-double bg-white pd-normal"></li>
+                    </ul>
+                </main>
+            </article>
+        </main>
+        <footer id='docker-panel' class="float-se wd-panel bg-bright sd-list layout-v ht-low sd-card">
+            <header id='docker-btn' class="ht-low pointer">
+                <span class="pd-half-h">停靠坞</span>
+            </header>
+            <main class="content pd-half bg-white">
+                <div class="">ddf</div>
+            </main>
+            <footer class="ht-regular bg-white"></footer>
+        </footer>
+        <div id='main-bg' class="float-nw bg-normal"></div>
+        <div id='notify-panel' class='wd-panel float-se bg-bright sd-card'>
+            <div class="ht-compact pd-half-h">通知</div>
+            <ul class="sd-list">
+                <li class="pd-half bg-white">
+                    <p class="ht-single cl-primary">通知的标题</p>
+                    <p class="ht-single  cl-secondary ft-small">2017-12-25</p>
+                </li>
+                <li class="pd-half bg-white">
+                    <p class="ht-single cl-primary">通知的标题</p>
+                    <p class="ht-single  cl-secondary ft-small">2017-12-25</p>
+                </li>
+                <li class="pd-half bg-white">
+                    <p class="ht-single cl-primary">通知的标题</p>
+                    <p class="ht-single  cl-secondary ft-small">2017-12-25</p>
+                </li>
+            </ul>
+        </div>
+        <div id='setting-mask' class="mask float-ne">
+            <div id="setting-panel" class="float-ne wd-panel sd-card bg-white radius-m theme-dark">
+                <ul class="sd-list">
+                    <li class="ht-regular layout-h">
+                        <span class="wd-regular"><i class="fa fa-user"></i></span>
+                        <span>个人设置</span>
+                    </li>
+                    <li class="ht-regular layout-h">
+                        <span class="wd-regular"><i class="fa fa-user"></i></span>
+                        <span>组织设置</span>
+                    </li>
+                    <li class="ht-regular layout-h">
+                        <span class="wd-regular"><i class="fa fa-user"></i></span>
+                        <span>组织设置</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="search-mask" class="mask float-nw">
+            <input id='search-input' type="text" class="ft-small cl-white radius-l pd-half-h wd-broad ht-single float-nw" placeholder="搜索">
+            <div id='search-result' class="wd-max bg-black cl-white ht-max">
+                <section class="wd-page align-c cl-disable">
+                    <div class="cl-disable pd-normal">搜索结果</div>
+                    <ul class="pd-normal-h sd-list">
+                        <li class="ht-compact"><span class="theme-dark pd-half-h">关键字</span> 其他</li>
+                        <li class="ht-compact"><span class="theme-dark pd-half-h">关键字</span> 其他</li>
+                        <li class="ht-compact"><span class="theme-dark pd-half-h">关键字</span> 其他</li>
+                        <li class="ht-compact"><span class="theme-dark pd-half-h">关键字</span> 其他</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+    <section class="ht-regular">
+        <li class="ht-single pd-half">
+            <button id='show-overlay-btn' class="theme-mark wd-broad radius-l ht-compact">覆盖关系</button>
+        </li>
+    </section>
+    <script type="text/javascript" src='./js/jquery-3.3.1.js'></script>
+    <script type="text/javascript" src='./js/tool.js'></script>
+    <script type="text/javascript" src='./js/layout/stateCtrl.js'></script>
+    <script type="text/javascript" src='./js/layout/toggleNotify.js'></script>
+    <script type="text/javascript" src='./js/layout/toggleSetting.js'></script>
+    <script type="text/javascript" src='./js/layout/toggleOrth.js'></script>
+    <script type="text/javascript" src='./js/layout/toggleDocker.js'></script>
+    <script type="text/javascript">
+    var store = stateCtrl({
+        state: {
+            'notify-panel': false,
+            'setting-panel': false,
+            'docker-panel': false,
+            'orth-view': false,
+        },
+        actions: {
+            'notify-panel': toggleNotify,
+            'setting-panel': toggleSetting,
+            'docker-panel': toggleDocker,
+            'orth-view': toggleOrth,
+        }
+    });
+
+    $('body').on('click', e => {
+        e.stopPropagation();
+        switch (getTarget(e).id) {
+            case 'aside-btn':
+                $('aside').toggleClass('wd-regular');
+                break;
+            case 'docker-btn':
+                store.commit('docker-panel');
+                break;
+            case 'setting-btn':
+            case 'setting-mask':
+                store.commit('setting-panel');
+                break;
+            case 'notify-btn':
+                store.commit('notify-panel');
+                break;
+            case 'show-overlay-btn':
+                store.commit('orth-view');
+                break;
+            default:
+                break;
+        }
+    });
+    $('#search-input').on('focus', e => {
+        $('#search-mask').addClass('open');
+    });
+    $('#search-input').on('blur', e => {
+        $('#search-mask').removeClass('open');
+    });
+    </script>
+</body>
+
+</html>

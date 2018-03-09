@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>数组筛选作业</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./font/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./css/filter/arrayFilter2.css">
+</head>
+
+<body>
+  <div class="filter" state='open'>
+    <div class="radio">
+      <p>
+        <span class="radio-label">性别</span>
+        <span id='sex-a' class="radio-btn active" sex='a'>全部</span><span id='sex-m' class="radio-btn" sex='m'>男</span><span id='sex-f' class="radio-btn" sex='f'>女</span>
+      </p>
+      <p>
+        <span class="radio-label">年龄</span>
+        <span id='age-a' class="radio-btn active" age='a'>全部</span><span id='age-10' class="radio-btn" age='10'>10+</span><span id='age-20' class="radio-btn" age='20'>20+</span>
+      </p>
+    </div>
+    <div class="search">
+      <span class="search-label"><i class="fa fa-search"></i></span>
+      <input class="search-input" type="text" name="user-search" placeholder="用户搜索">
+      <span class="search-btn" state='input'>
+	    	<i class="fa fa-times-circle"></i>
+	    </span>
+      <ul class="search-result">
+        <li class="result-li">
+          <img class='li-avatar' src="./img/img01.jpg">
+          <span class='li-info'>
+	        	<p class="info-name">王要 男 24岁</p>
+	        	<p class="info-des">我是王要</p>
+	        </span>
+        </li>
+        <li class="result-li">
+          <img class='li-avatar' src="./img/img01.jpg">
+          <span class='li-info'>
+	        	<p class="info-name">王要 男 24岁</p>
+	        	<p class="info-des">我是王要</p>
+	        </span>
+        </li>
+      </ul>
+    </div>
+    <div class="toggle-btn">
+      <span class='close'>收缩筛选 <i class="fa fa-angle-up"></i></span>
+      <span class='open'>展开筛选 <i class="fa fa-angle-down"></i></span>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src='./js/filter/data.js'></script>
+<script type="text/javascript" src='./js/filter/statemanager.js'></script>
+<script type="text/javascript" src='./js/filter/filterText.js'></script>
+<script type="text/javascript" src='./js/filter/filterSex.js'></script>
+<script type="text/javascript" src='./js/filter/filterAge.js'></script>
+<script type="text/javascript" src='./js/filter/filter.js'></script>
+<script type="text/javascript" src='./js/filter/arrayFilter2.js'></script>
+
+</html>

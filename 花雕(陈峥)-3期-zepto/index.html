@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <title>旋转木马</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+    main {
+        overflow:hidden;
+    }
+
+    ul>li {
+        flex: 0 0 25%;
+        padding-top: 25%;
+        position: relative;
+        overflow: hidden;
+        border: 4px solid #eee;
+        box-sizing: border-box;
+    }
+
+    ul li img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 100%;
+    }
+
+    li:before {
+        content: attr(th);
+        position: absolute;
+        font-size: 10px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+        z-index: 2;
+        padding: 4px;
+        color: white;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    </style>
+    <script src='./js/util.js'></script>
+</head>
+
+<body>
+    <main class="ht-max bg-200">
+        <ul id="outer" class="lay-h"></ul>
+    </main>
+    <script src='./js/zepto.js'></script>
+    <script src='./js/zepto_fx.js'></script>
+    <script src='./js/touch.js'></script>
+    <script src='./js/ImgViewer.js'></script>
+    <script src='./js/Pincher.js'></script>
+    <script src='./js/emulator.js'></script>
+    <script>
+    TouchEmulator();
+
+    var imgs = [{
+        url: './img/img01.png',
+        title: '未来实际能力培养',
+        href: '#',
+    }, {
+        url: './img/img02.png',
+        title: '未来实际能力培养',
+        href: '#',
+    }, {
+        url: './img/img03.png',
+        title: '未来实际能力培养',
+        href: '#',
+    }, {
+        url: './img/img04.png',
+        title: '未来实际能力培养',
+        href: '#',
+    }, {
+        url: './img/img05.png',
+        title: '未来实际能力培养',
+        href: '#',
+    }]
+
+    var template = '<li id="$url$" th="$title$"><img src="$url$"></li>';
+    $('#outer')
+        .html(util.render(imgs, template))
+        .on('click', function(ev) {
+            var target = util.target(ev)
+            if (target.id !== 'outer') {
+                var viewer = new ImgViewer(target.id, imgs);
+            }
+        })
+    </script>
+</body>
+
+</html>

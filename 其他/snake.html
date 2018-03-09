@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>snake</title>
+    <style type="text/css">
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    html {
+        font-size: 62.5%;
+    }
+
+    body {
+        background-color: #eeeeee;
+    }
+
+    #container {
+        height: 300px;
+        width: 300px;
+        border: 1px solid #e0e0e0;
+        margin: 0.8rem;
+        background-color: white;
+        position: relative;
+    }
+
+    .food {
+        background-color: #e0e0e0;
+    }
+
+    #start-btn {
+        height: 3.2rem;
+        width: 12rem;
+        line-height: 3.2rem;
+        background-color: #8bc34a;
+        color: white;
+        text-align: center;
+        font-size: 1.25rem;
+        border-radius: 1.6rem;
+        cursor: pointer;
+        font-weight: bold;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -6rem;
+        margin-top: -1.6rem;
+    }
+
+    .row {
+        height: 20px;
+        margin-top: -1px;
+    }
+
+    .cell {
+        float: left;
+        border: 1px solid #e0e0e0;
+        width: 21px;
+        height: 21px;
+        margin: -1px 0 0 -1px;
+        box-sizing: border-box;
+    }
+
+    .cell[mark=mark] {
+        background-color: #e0e0e0;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div id='start-btn'>开始</div>
+    </div>
+    <script type="text/javascript">
+    (function(window) {
+        var con = document.getElementById('container'),
+            startBtn = document.getElementById('start-btn'),
+            step = 20,
+            speed = 200,
+            height = 300,
+            width = 300,
+            col = width / step,
+            row = height / step,
+            seed = 0,
+            food = [],
+            matrix = [],
+            direct = 4,
+            snake = [
+                [0, 0, 4] // 2 上 4 右 6 下 8 左
+            ];
+
+        function grow(end) {
+            document.getElementById(food[0] + '_' + food[1]).classList.remove('food');
+            snake.push(end);
+            bonus();
+        }
+
+        function move() {
+            seed = setInterval(() => {
+                var end = JSON.parse(JSON.stringify(snake[snake.length - 1])); //拷贝最后一个,备用
+
+                for (var i = snake.length - 1; i > 0; i--) {
+                    snake[i][0] = snake[i - 1][0];
+                    snake[i][1] = snake[i - 1][1];
+                }
+
+                switch (snake[0][2]) {
+                    case 2:
+                        snake[0][1]--;
+                        break;
+                    case 4:
+                        snake[0][0]++;
+                        break;
+                    case 6:
+                        snake[0][1]++;
+                        break;
+                    case 8:
+                        snake[0][0]--;
+                        break;
+                }
+                if (snake[0][0] === food[0] && snake[0][1] === food[1]) {
+                    grow(end); // 撞到食物把备份放到最后
+                }
+                if (snake[0][0] < 0 || snake[0][1] < 0 || snake[0][0] > col || snake[0][1] > row) {
+                    return gameOver() // 出边界就挂
+                }
+                if (isBody(snake[0][0], snake[0][1]) > 1) {
+                    return gameOver() // 撞到自己身上就挂
+                }
+                render();
+            }, speed);
+
+            function render() {
+                var mark;
+                for (var r = 0; r < row; r++) {
+                    for (var c = 0; c < col; c++) {
+                        mark = isBody(c, r) ? 'mark' : '';
+                        document.getElementById(c + '_' + r).setAttribute('mark', mark);
+                    }
+                }
+            }
+
+            function gameOver() {
+                clearInterval(seed);
+                startBtn.style.display = 'block';
+            }
+        }
+
+        function isBody(c, r) {
+            var flag = 0;
+            for (var i = snake.length - 1; i >= 0; i--) {
+                if (snake[i][0] === c && snake[i][1] === r) {
+                    flag++;
+                }
+            }
+            return flag;
+        }
+
+        function init() {
+            con.style.height = height + 'px';
+            con.style.width = width + 'px';
+
+            var frag = document.createDocumentFragment(),
+                div,
+                span;
+
+            for (var r = 0; r < row; r++) {
+                div = document.createElement('div');
+                div.className = 'row';
+                for (var c = 0; c < col; c++) {
+                    span = document.createElement('span');
+                    span.className = 'cell';
+                    span.id = c + '_' + r;
+                    div.appendChild(span);
+                    matrix[c] = [];
+                    matrix[c][r] = 0;
+                }
+                frag.appendChild(div);
+            }
+
+            con.appendChild(frag);
+
+            startBtn.onclick = function(e) {
+                startBtn.style.display = 'none';
+                move();
+                bonus();
+            }
+
+            document.onkeydown = function(event) {
+                var e = event || window.event;
+                if (e && e.keyCode == 37 && direct !== 4) { // left
+                    direct = 8;
+                } else if (e && e.keyCode == 38 && direct !== 6) { // up
+                    direct = 2;
+                } else if (e && e.keyCode == 39 && direct !== 8) { // right
+                    direct = 4;
+                } else if (e && e.keyCode == 40 && direct !== 2) { //down
+                    direct = 6;
+                }
+                snake[0][2] = direct;
+            };
+        }
+
+        function bonus() {
+            function getPos() {
+                var x = Math.floor(Math.random() * col);
+                var y = Math.floor(Math.random() * row);
+                if (isBody(x, y)) { // 可能产生的食物在蛇身上
+                    getPos()
+                }
+                return [x, y];
+            }
+            food = getPos();
+            document.getElementById(food[0] + '_' + food[1]).classList.add('food');
+        }
+
+        init();
+
+
+    }(window))
+    </script>
+</body>
+
+</html>

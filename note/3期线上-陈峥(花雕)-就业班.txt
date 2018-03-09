@@ -1,0 +1,69 @@
+姓名: 陈峥
+微信名: 花雕
+
+1.
+  行内元素: span, i, a, strong等
+  块级元素: p, div, section, head, foot等
+
+2.
+  外部应用: link标签的href属性
+  行内引用
+
+3.
+  原始值类型: number, boolean, string, undefined, 
+  引用值类型: object(要想继续判断还需要用Object.prototype.toString)
+
+4.
+  function unique() {
+    var arr = ['a', 'b', '234.23', 'a', 'b', 3, 1, 234],
+        obj = {},
+        ret = [];
+    for (var i = 0; i < arr.length; i++) {
+        obj[arr[i]] = arr[i];
+    }
+    for (var item in obj) {
+        ret.push(obj[item]);
+    }
+    return ret
+  }
+
+5.
+  test() ==> 0, 5, 0
+  new test() == > 0, undefined, 0
+
+6.
+  字高, px是绝对值, em是相对值(相对于font-size的倍数)
+
+7.
+  1. 扫描文档的写法错误
+  2. 在js文件执行前, 生成全局运行上下文GA对象, 将所有var和function的写到GA上.
+  3. 运行文件遇到函数则执行函数体,将GA压入函数的运行栈, 执行之前生成函数运行上下文OA, 压入栈
+  4. 将函数体内部的var 和 fucntion 写到OA上
+  5. 执行完毕如果没有将内部变量返回到函数体外部, 则销毁OA
+
+8.
+  document.getElementsByTagName() ==> 按照标签名字选择, 可用于html或者xml
+  document.getElementsByClassName()  ==> 按照类名选择,只有html能用. 对于低版本ie不可用
+  document.getElementById()  ==> 按照id选择, 可用于html
+  document.getElementsByName()  ==> 按照name属性选择,只用于html
+
+
+9.
+  var lis = document.getElementsByTagName('li');
+  
+  function addEvent() {
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].onclick = (function(j){
+	   alert(j);
+	}(i))
+    }
+  }
+  addEvent();
+
+10.
+  火狐 gecko, 谷歌 webkit, 苹果 webkit, 新版IE webkit, 旧版IE 老的内核, 国内浏览器有些混合使用的所谓的高速模式
+  浏览器有 ES部分, Bom部分, Dom部分
+  以chrome的内核webkit为例, 核心部分是v8引擎, 用于将js用机器语言执行
+
+  
+  

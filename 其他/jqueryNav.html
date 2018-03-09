@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset="utf-8">
+  <title>jQuery 导航栏</title>
+  <link rel="stylesheet" type="text/css" href="./css/jqueryNav.css">
+  <link rel="stylesheet" type="text/css" href="./font/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id='container' style="background-color: #ffc107">
+    <header>
+      <nav class="current" style="background-color: #ffc107">车辆</nav>
+      <nav style="background-color: #ffeb3b">组织</nav>
+      <nav style="background-color: #cddc39">线路</nav>
+      <nav style="background-color: #8bc34a">司机</nav>
+      <div id="indicator" style="left:0"></div>
+    </header>
+    <div id="content"></div>
+  </div>
+  <script type="text/javascript" src='./js/jquery-3.3.1.js'></script>
+  <script type="text/javascript">
+  $('nav').click(function(e) {
+
+    var direct = $(this).index() < $('.current').index() ? -1 : 1;
+    // from, to, direct, x, y
+    navAnim($('.current'), $(this), direct, e.pageX, e.pageY);
+
+    $('.current').removeClass('current');
+    $(this).addClass('current');
+  })
+
+  for (var i = 8; i > 0; i--) {
+    $('#content').append($("<span class='card'></span>"))
+  }
+
+  var cards = $('#container span');
+
+  function navAnim(from, to, direct, x, y) { // 回弹高亮的线，-1往左
+    var swing = -80 * direct,
+      damping = 0.5,
+      range = 0,
+      height = $('#container').height(),
+      width = $('#container').width(),
+      step = Math.sqrt(width * width + height * height) / 7,
+      seed,
+      colorCur = from.css('background-color'),
+      colorTarget = to.css('background-color');
+
+    var flip = to.index() < 1 ? 'alternate' : 'normal';
+
+    for (var i = cards.length - 1; i >= 0; i--) {
+      $(cards[i]).css('animation', 'flip 0.5s ease ' + 0.05 * i + 's ' + flip);
+    }
+
+    setTimeout(function() {
+      $('#container span').css('animation', 'none');
+    }, 800)
+
+    function frame() {
+      swing *= -1; // 每次回弹要先反向
+
+      $('#indicator').css('left', to.position().left + swing);
+
+      $('#container').css('background-image', 'radial-gradient(' + range + 'px at ' + x + 'px ' + y + 'px, ' + colorTarget + ' 50%, ' + colorCur + ' 55%)');
+
+      range += step;
+      swing *= damping;
+
+      //停止动画的条件
+      if (Math.abs(swing) < 1) {
+        $('#indicator').css('left', to.position().left);
+        $('#container').css({
+          'background-color': colorTarget,
+          'background-image': 'none'
+        })
+        clearInterval(seed)
+      }
+    }
+    seed = setInterval(frame, 60);
+  }
+  </script>
+</body>
+
+</html>
