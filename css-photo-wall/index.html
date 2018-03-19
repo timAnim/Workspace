@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>照片墙</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/photowall.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="content" preview='false'>
+            <li class="photo"></li>
+            <li class="photo"></li>
+            <li class="photo"></li>
+            <li class="photo"></li>
+            <li class="photo"></li>
+            <li class="photo"></li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+    var con = document.getElementsByClassName('content')[0],
+        photos = Array.prototype.slice.call(document.getElementsByClassName('photo')),
+        isPreview = false;
+
+    photos.forEach((p, i) => {
+        p.setAttribute('highlight', `image0${i + 1}`)
+        p.style.backgroundImage = `url(./img/${i + 1}.jpg)`
+        p.style.animationDelay = 0.2*(i+1)+'s'
+        p.innerHTML = `<div class="th">bird0${i + 1}</div><div class="close"></div>`
+    })
+
+    con.addEventListener('click', function(e) {
+        if (isPreview && e.target.classList.contains('close')) { //正在预览
+            e.target.parentNode.classList.remove('preview');
+            isPreview = !isPreview
+            con.setAttribute('preview', isPreview)
+        } else if (!isPreview && e.target.classList.contains('photo')) { // 没在预览
+            e.target.classList.add('preview')
+            isPreview = !isPreview
+            con.setAttribute('preview', isPreview)
+        }
+    }, false)
+    </script>
+</body>
+
+</html>
