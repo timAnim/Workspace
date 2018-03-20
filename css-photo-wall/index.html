@@ -10,37 +10,40 @@
 <body>
     <div class="wrapper">
         <ul class="content" preview='false'>
-            <li class="photo"></li>
-            <li class="photo"></li>
-            <li class="photo"></li>
-            <li class="photo"></li>
-            <li class="photo"></li>
-            <li class="photo"></li>
+            <li class="photo" highlight='image01'>
+            	<div class="th">bird01</div><div class="close"></div>
+            </li>
+            <li class="photo" highlight='image02'>
+            	<div class="th">bird02</div><div class="close"></div>
+            </li>
+            <li class="photo" highlight='image03'>
+            	<div class="th">bird03</div><div class="close"></div>
+            </li>
+            <li class="photo" highlight='image04'>
+            	<div class="th">bird04</div><div class="close"></div>
+            </li>
+            <li class="photo" highlight='image05'>
+            	<div class="th">bird05</div><div class="close"></div>
+            </li>
+            <li class="photo" highlight='image06'>
+            	<div class="th">bird06</div><div class="close"></div>
+            </li>
         </ul>
     </div>
     <script type="text/javascript">
-    var con = document.getElementsByClassName('content')[0],
-        photos = Array.prototype.slice.call(document.getElementsByClassName('photo')),
-        isPreview = false;
+    ((con) => {
+        con.addEventListener('click', e => {
+            var isPreview = con.getAttribute('preview') == 'true'
 
-    photos.forEach((p, i) => {
-        p.setAttribute('highlight', `image0${i + 1}`)
-        p.style.backgroundImage = `url(./img/${i + 1}.jpg)`
-        p.style.animationDelay = 0.2*(i+1)+'s'
-        p.innerHTML = `<div class="th">bird0${i + 1}</div><div class="close"></div>`
-    })
-
-    con.addEventListener('click', function(e) {
-        if (isPreview && e.target.classList.contains('close')) { //正在预览
-            e.target.parentNode.classList.remove('preview');
-            isPreview = !isPreview
-            con.setAttribute('preview', isPreview)
-        } else if (!isPreview && e.target.classList.contains('photo')) { // 没在预览
-            e.target.classList.add('preview')
-            isPreview = !isPreview
-            con.setAttribute('preview', isPreview)
-        }
-    }, false)
+            if (isPreview && e.target.classList.contains('close')) { //正在预览
+                e.target.parentNode.classList.remove('preview');
+                con.setAttribute('preview', !isPreview)
+            } else if (!isPreview && e.target.classList.contains('photo')) { // 没在预览
+                e.target.classList.add('preview')
+                con.setAttribute('preview', !isPreview)
+            }
+        }, false)
+    })(document.getElementsByClassName('content')[0])
     </script>
 </body>
 

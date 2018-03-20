@@ -1,3 +1,4 @@
+/*初始化*/
     * {
         margin: 0;
         padding: 0;
@@ -13,10 +14,12 @@
         height: 100%;
         font-family: 'Microsoft YaHei';
         font-size: 0.14rem;
-        background: #424242;
     }
+/*初始化*/
 
+/*静态的样式*/
     .wrapper {
+        background: #424242;
         height: 100%;
         width: 100%;
         display: flex;
@@ -46,6 +49,36 @@
         animation: 'moveup' 0.4s linear forwards;
     }
 
+    .wrapper .content .photo:nth-child(1) {
+        background-image: url(../img/1.jpg);
+        animation-delay: 0.2s;
+    }
+
+    .wrapper .content .photo:nth-child(2) {
+        background-image: url(../img/2.jpg);
+        animation-delay: 0.4s;
+    }
+
+    .wrapper .content .photo:nth-child(3) {
+        background-image: url(../img/3.jpg);
+        animation-delay: 0.6s;
+    }
+
+    .wrapper .content .photo:nth-child(4) {
+        background-image: url(../img/4.jpg);
+        animation-delay: 0.8s;
+    }
+
+    .wrapper .content .photo:nth-child(5) {
+        background-image: url(../img/5.jpg);
+        animation-delay: 1s;
+    }
+
+    .wrapper .content .photo:nth-child(6) {
+        background-image: url(../img/6.jpg);
+        animation-delay: 1.2s;
+    }
+
     .wrapper .content .photo::before {
         content: attr(highlight);
         position: absolute;
@@ -71,6 +104,8 @@
         opacity: 0;
         transition: opacity 0.2s ease;
     }
+
+    /*关闭按钮*/
 
     .wrapper .content .photo .close {
         height: 0.24rem;
@@ -105,11 +140,9 @@
     .wrapper .content .init {
         animation: 'blur' 0.4s linear forwards;
     }
-    /*
-        此处为打开预览图片
+/*静态的样式*/
 
-    */
-
+/*打开预览图片*/
     .wrapper .content .preview {
         transition: width 0.4s ease 0.6s;
     }
@@ -147,18 +180,15 @@
         opacity: 0;
         cursor: default;
     }
-    /*
-        此处为关闭预览图片
+/*打开预览图片*/
 
-    */
-
+/*关闭预览图片*/
     .content[preview='false'] .photo {
         /* 图片 */
         transform: rotate3d(1, 0, 0, 0);
         width: 16%;
         transition: width 0.4s linear, transform 0.2s linear 0.6s;
     }
-
 
     .content[preview='false'] .photo .th {
         /* 标题 */
@@ -177,6 +207,7 @@
         font-size: 0.2rem;
         opacity: 1;
     }
+/*关闭预览图片*/
 
     @keyframes moveup {
         0% {
