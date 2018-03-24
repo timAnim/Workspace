@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>dice</title>
+    <meta charset="utf-8">
+    <meta name='viewport' content="width=device-width, initial-scale=1.0">
+    <style type="text/css">
+    .stage {
+        transform-style: preserve-3d;
+        perspective: 2000px;
+        margin: -300px 200px;
+        height: 200px;
+    }
+
+    .dice {
+        transform-style: preserve-3d;
+        width: 200px;
+        position: relative;
+        animation: _rotate 4s linear infinite;
+    }
+
+    .dice:hover {
+        animation-play-state: paused;
+    }
+
+    .face {
+        height: 200px;
+        width: 200px;
+        line-height: 200px;
+        text-align: center;
+        font-size: 24px;
+        color: white;
+        opacity: 0.5;
+        position: absolute;
+        top: 0;
+        left: 0;
+        backface-visibility: visible;
+    }
+
+    .f1 {
+        background: red;
+        transform: rotate3d(1, 0, 0, 90deg) translate3d(0, 0, 100px);
+    }
+
+    .f2 {
+        background: orange;
+        transform: translate3d(0, 0, 100px);
+    }
+
+    .f3 {
+        background: yellow;
+        transform: rotate3d(1, 0, 0, 90deg) translate3d(0, 0, -100px);
+    }
+
+    .f4 {
+        background: green;
+        transform: translate3d(0, 0, -100px) rotate3d(0, 1, 0, 180deg);
+    }
+
+    .f5 {
+        background: blue;
+        transform: rotate3d(0, 1, 0, -90deg) translate3d(0, 0, 100px);
+    }
+
+    .f6 {
+        background: deeppink;
+        transform: rotate3d(0, 1, 0, 90deg) translate3d(0, 0, 100px);
+    }
+
+    @keyframes _rotate {
+        0% {
+            transform: rotate3d(0, 1, 0, 0deg) translate3d(0, 500px, 0);
+        }
+        100% {
+            transform: rotate3d(0, 1, 0, 360deg) translate3d(0, 500px, 0);
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="stage">
+        <div class="dice">
+            <div class="face f1">top1</div>
+            <div class="face f2">2</div>
+            <div class="face f3">3</div>
+            <div class="face f4">4</div>
+            <div class="face f5">5</div>
+            <div class="face f6">6</div>
+        </div>
+    </div>
+</body>
+
+</html>
