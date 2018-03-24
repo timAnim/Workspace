@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>echarts</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="./css/echarts.css">
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    html {
+        font-size: 625%;
+        height: 100%;
+    }
+
+    body {
+        overflow: hidden;
+        height: 100%;
+        font-family: 'Microsoft YaHei';
+        font-size: 0.14rem;
+    }
+
+    .wrapper {
+        margin: 0.16rem;
+    }
+
+    .wrapper .content {
+        width: 3.42rem;
+        height: 2.4rem;
+        /*        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        align-content: space-between;
+        flex-wrap: wrap;*/
+    }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content"></div>
+    </div>
+    <script type="text/javascript" src='./js/echarts.js'></script>
+    <script type="text/javascript">
+    var myChart = echarts.init(document.getElementsByClassName('content')[0]);
+
+    // 0时 到 24时
+    var hours = (function() {
+        var arr = {
+            category: [],
+            data: []
+        }
+
+        for (var i = 0; i <= 23; i++) {
+            arr.category.push(i + '时')
+            arr.data.push(Math.floor(Math.random() * 8))
+        }
+
+        return arr
+    }())
+
+    // 1日 30日
+    var dates = (function() {
+        var arr = {
+            category: [],
+            data: []
+        }
+
+        var total=100;
+
+        for (var i = 1; i <= 30; i++) {
+            arr.category.push(i + '日')
+            arr.data.push(Math.floor(Math.random() * 500))
+        }
+
+        return arr
+    }())
+    // 1月 到12 月
+    var months = (function() {
+        var arr = {
+            category: [],
+            data: []
+        }
+
+        for (var i = 1; i <= 12; i++) {
+            arr.category.push(i + '月')
+            arr.data.push(Math.floor(Math.random() * 500))
+        }
+        return arr
+    }())
+
+    // 1月 到6 月
+    var halfYear = (function() {
+        var arr = {
+            category: [],
+            data: []
+        }
+
+        for (var i = 1; i <= 6; i++) {
+            arr.category.push(i + '月')
+            arr.data.push(Math.floor(Math.random() * 5))
+        }
+        return arr
+    }())
+
+    // 周一到周日
+    var days = (function(){
+    	var arr={
+    		category: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+    		data:[]
+    	}
+    	for (var i = 1; i <= 7; i++) {
+            arr.data.push(Math.floor(Math.random() * 500))
+        }
+        return arr
+    }())
+
+    // 指定图表的配置项和数据
+    var option = {
+        color: ['#4795fa'],
+        series: [{
+            name: '消耗电量',
+            data: hours.data,
+            type: 'line',
+            smooth: true
+        }],
+        xAxis: {
+            type: 'category',
+            data: hours.category,
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#616161',
+                    fontSize: '12'
+                }
+            },
+            // // 控制网格线是否显示
+            splitLine: {
+                show: false,
+                //  改变轴线颜色
+                lineStyle: {
+                    // 使用深浅的间隔色
+                    color: '#eee',
+                }
+            },
+            // x轴的颜色和宽度
+            axisLine: {
+                lineStyle: {
+                    color: '#9e9e9e',
+                    width: 1, //这里是坐标轴的宽度,可以去掉
+                }
+            }
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                show: true,
+                textStyle: {
+                    color: '#616161',
+                    fontSize: '12'
+                }
+            },
+            // y轴的颜色和宽度
+            axisLine: {
+                lineStyle: {
+                    color: '#9e9e9e',
+                    width: 1, //这里是坐标轴的宽度,可以去掉
+                }
+            }
+        },
+        legend: {
+            orient: 'horizontal', // 布局方式，默认为水平布局，可选为：
+            // 'horizontal' ¦ 'vertical'
+            x: 'center', // 水平安放位置，默认为全图居中，可选为：
+            // 'center' ¦ 'left' ¦ 'right'
+            // ¦ {number}（x坐标，单位px）
+            y: 'bottom', // 垂直安放位置，默认为全图顶端，可选为：
+            // 'top' ¦ 'bottom' ¦ 'center'
+            // ¦ {number}（y坐标，单位px）
+            padding: 5, // 图例内边距，单位px，默认各方向内边距为5，
+            // 接受数组分别设定上右下左边距，同css
+            itemGap: 10, // 各个item之间的间隔，单位px，默认为10，
+            // 横向布局时为水平间隔，纵向布局时为纵向间隔
+            itemWidth: 20, // 图例图形宽度
+            itemHeight: 14, // 图例图形高度
+            textStyle: {
+                color: '#333' // 图例文字颜色
+            }
+        },
+        grid: {
+            left: '16px',
+            right: '16px',
+            top: '16px',
+            bottom: '40px',
+            containLabel: true
+        },
+    };
+
+    myChart.setOption(option);
+    </script>
+</body>
+
+</html>
