@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>svg</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../assets/font/font-awesome/css/font-awesome.min.css">
+    <style type="text/css">
+    .container {
+        display: inline-block;
+        flex: 1 1 100%;
+        border: 3px double #bdbdbd;
+    }
+
+    #outer {
+        overflow: hidden;
+    }
+
+    g {
+        cursor: pointer;
+    }
+
+    g[class=active] .label,
+    g[class=moving] .label {
+        display: block;
+    }
+
+    g:hover>* {
+        stroke: #bdbdbd;
+    }
+
+    .label {
+        stroke: white;
+        fill: black;
+        stroke-width: 2px;
+        display: none;
+        opacity: 0.8;
+    }
+
+    .label:hover {
+        display: block;
+        cursor: move;
+    }
+
+    aside>* {
+        cursor: pointer;
+    }
+
+    .brush {
+        position: absolute;
+        transform: translate(0, -100%);
+        display: inline-block;
+        box-shadow: none !important;
+    }
+
+    #outer[state=painting]::after {
+        content: '';
+        height: 100%;
+        width: 100%;
+        z-index: 10;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    menu {
+        width: 200px;
+        padding: 0 16px;
+        box-shadow: 0 1px 3px #bdbdbd !important;
+    }
+
+    menu nav {
+        cursor: pointer;
+    }
+
+    #outer>header {
+        flex: 0 0 0.32rem;
+    }
+
+    #outer>section {
+        flex: 0 0 0.48rem;
+        line-height: 0.48rem;
+    }
+
+    #outer>section>* {
+        cursor: pointer;
+    }
+
+    .sd-list>* {
+        border-bottom: 1px solid #212121;
+        box-shadow: 0 1px 1px #9e9e9e inset;
+    }
+
+    .bg-800 {
+        background: #424242;
+    }
+
+    .ht-xxs {
+        height: 0.16rem;
+        line-height: 0.16rem;
+    }
+
+    .wd-l {
+        width: 0.8rem
+    }
+
+    input {
+        background: #9e9e9e;
+        outline: none;
+        border: 1px solid #424242;
+        height: 0.24rem;
+        line-height: 0.24rem;
+        padding-left: 0.08rem;
+        width: 0.48rem;
+    }
+
+    input:focus {
+        border: 1px solid #bdbdbd;
+        background: white;
+    }
+
+    .layer {
+        width: 2rem;
+    }
+
+    .colors {
+        flex-wrap: wrap;
+    }
+
+    .colors>* {
+        flex: 0 1 calc(25% - 4px);
+        border: 2px solid #424242;
+    }
+    </style>
+</head>
+
+<body>
+    <main id='outer' class="lay-v ht-max wd-max sd-list" :state='state' @contextmenu.prevent='context' @mousedown='inActive'>
+        <header class="ht-s lay-h theme-dark align-c fs-s">
+            <span class="wd-l fs-l"><i class="fa fa-paint-brush"></i></span>
+            <span class="wd-m">文件</span>
+            <span class="wd-m">编辑</span>
+        </header>
+        <section class="lay-h theme-dark align-c">
+            <span class="wd-l cl-secondary fs-s">层级</span>
+            <span class="wd-m fs-l" @mousedown.stop='shiftUp'><i class="fa fa-arrow-up"></i></span>
+            <span class="wd-m fs-l" @mousedown.stop='shiftDown'><i class="fa fa-arrow-down"></i></span>
+            <span class="wd-m fs-l" @mousedown.stop='shiftTop'><i class="fa fa-angle-double-up"></i></span>
+            <span class="wd-m fs-l" @mousedown.stop='shiftBottom'><i class="fa fa-angle-double-down"></i></span>
+            <span v-if='curPath' @mousedown.stop>
+            		<label class="cl-secondary fs-s pd-s-h">x</label>
+	            	<input type="number" name="width" v-model='curPath.x'/>
+            		<label class="cl-secondary fs-s pd-s-h">y</label>
+            		<input type="number" name="width" v-model='curPath.y'/>
+
+
+            		<label class="cl-secondary fs-s pd-s-h" for='width' v-if='curPath.w'>宽度</label>
+            		<input type="number" name="width" v-model='curPath.w' v-if='curPath.w'/>
+            		<label class="cl-secondary fs-s pd-s-h" for="height" v-if='curPath.h'>高度</label>
+            		<input type="number" name="height" v-model='curPath.h' v-if='curPath.h'/>
+
+            		<label class="cl-secondary fs-s pd-s-h" for = 'radius' v-if = 'curPath.r'>半径</label>
+            		<input type="number" name="radius" v-if = 'curPath.r' v-model='curPath.r'/>
+            </span>
+        </section>
+        <article class="lay-h ht-max wd-max">
+            <aside class="sd-list theme-dark wd-m">
+                <span class="wd-m ht-xxs bg-800 align-c cl-black"><i class="fa fa-ellipsis-h"></i></span>
+                <span class="wd-m ht-m fs-l align-c" title='画笔' @click.stop='paint'><i class="fa fa-pencil"></i></span>
+                <span class="wd-m ht-m fs-l align-c" title='圆形' @click.stop='addCircle'><i class="fa fa-circle-thin"></i></span>
+                <span class="wd-m ht-m fs-l align-c" title='矩形' @click.stop='addRect'><i class="fa fa-square-o"></i></span>
+            </aside>
+            <div class="container">
+                <svg height='100%' width='100%'>
+                    <g v-for='item in paths' :transform="'translate(' + item.x + ' ' + item.y+ ')'">
+                        <path :d='item.directive' :stroke='item.stroke' :fill='item.fill' @mousedown='movePath($event, item)' :fill-opacity='item.opacity' :stroke-width = 'item.strokeWidth'/>
+                        <circle class='label' :cx='item.d.M[0]' :cy='item.d.M[1]' :r='pointR' @mousedown.stop='moveStartPoint($event, item)' />
+                        <circle class='label' v-for='(point,i) in item.d.L' :cx='point[0]' :cy=' point[1]' :r='pointR' @mousedown.stop='movePoint($event, item, i)' />
+                    </g>
+                    <g v-for='item in circles' :transform="'translate(' + item.x + ' ' + item.y+ ')'">
+                        <circle :cx='item.cx' :cy='item.cy' :stroke='item.stroke' :fill='item.fill' :r='item.r' @mousedown.stop='movePath($event, item)' :fill-opacity='item.opacity' :stroke-width = 'item.strokeWidth' />
+                        <circle :cx='item.cx' :cy='item.cy' :r='pointR' @mousedown='movePath($event, item)' class="label" />
+                        <circle :cx='parseInt(item.cx) + parseInt(item.r)' :cy='item.cy' :r='pointR' @mousedown.stop='resizeRadius($event, item)' class="label" />
+                    </g>
+                    <g v-for='item in rects' :transform="'translate(' + item.x + ' ' + item.y+ ')'">
+                        <rect :height='item.h' :width='item.w' x='0' y='0' :stroke='item.stroke' :fill='item.fill' :r='item.r' @mousedown.stop='movePath($event, item)' :fill-opacity='item.opacity' :stroke-width = 'item.strokeWidth' />
+                        <circle @mousedown.stop='resizeRect($event, item)' class='label' :cx='parseInt(item.w)' :cy='parseInt(item.h)' :r='pointR' />
+                    </g>
+                </svg>
+            </div>
+            <aside class="sd-list theme-dark layer" @mousedown.stop>
+                <div class="ht-xxs bg-800 align-c cl-black"><i class="fa fa-ellipsis-h"></i></div>
+                <div class="lay-h colors">
+                    <span class="ht-xs" v-for='cl in colors' :style="'background:'+cl" :active='curPath && curPath.color == cl' @mousedown='setColor(cl)'></span>
+                </div>
+                <div class="ht-l pd-s-h" v-if='curPath'>
+                    <label for='fill'>填充色</label>
+                    <input type="text" name="fill" class="wd-l" v-model='curPath.fill'>
+                </div>
+                <div class="ht-l pd-s-h" v-if='curPath'>
+                    <label for='fill'>边框色</label>
+                    <input type="text" name="fill" class="wd-l" v-model='curPath.stroke'>
+                </div>
+                <div class="ht-l pd-s-h" v-if='curPath'>
+                    <label for='swidth'>边宽度</label>
+                    <input type="text" name="swidth" class="wd-l" v-model='curPath.strokeWidth'>
+                </div>
+                <div class="ht-l pd-s-h" v-if='curPath'>
+                    <label for='swidth'>透明度</label>
+                    <input type="text" name="swidth" class="wd-l" v-model='curPath.opacity'>
+                </div>
+            </aside>
+        </article>
+        <footer class="ht-s theme-dark"></footer>
+        <em class="brush" :moving='brush[2]' :style="'left:'+brush[0]+'px; top:'+ brush[1] + 'px;'">
+            <i class="fa fa-pencil"></i>
+        </em>
+        <menu class="float-ne sd-card radius-m bg-white" v-show='menu'>
+            <nav class='ht-s' @mousedown.stop='shiftTop'>移至顶层</nav>
+            <nav class='ht-s' @mousedown.stop='shiftBottom'>移至底层</nav>
+            <nav class='ht-s' @mousedown.stop='shiftUp'>上移一层</nav>
+            <nav class='ht-s' @mousedown.stop='shiftDown'>下移一层</nav>
+        </menu>
+    </main>
+    <script type="text/javascript" src='../assets/js/vue.js'></script>
+    <script type="text/javascript" src='../assets/js/util.js'></script>
+    <script type="text/javascript">
+    var con = new Vue({
+        el: '#outer',
+        data() {
+            return {
+                pointR: 8,
+                pathData: [{
+                    d: {
+                        M: [0, 100],
+                        L: [
+                            [100, 100],
+                            [100, 200]
+                        ],
+                        z: 1
+                    },
+                    stroke: '#e0e0e0',
+                    strokeWidth: 2,
+                    fill: '#eeeeee',
+                    x: 0,
+                    y: 0,
+                    opacity: 1,
+                }, {
+                    d: {
+                        M: [0, 100],
+                        L: [
+                            [100, 100],
+                            [100, 200]
+                        ],
+                        z: 1
+                    },
+                    stroke: '#e0e0e0',
+                    fill: '#8bc34a',
+                    x: 100,
+                    y: 100,
+                    strokeWidth: 2,
+                    opacity: 1,
+                }, ],
+                circles: [{
+                    cx: 200,
+                    cy: 100,
+                    r: 100,
+                    stroke: '#e0e0e0',
+                    fill: '#eeeeee',
+                    x: 0,
+                    y: 0,
+                    strokeWidth: 2,
+                    opacity: 1,
+                }, ],
+                rects: [{
+                    h: 200,
+                    w: 100,
+                    stroke: '#e0e0e0',
+                    fill: '#eeeeee',
+                    x: 300,
+                    y: 300,
+                    strokeWidth: 2,
+                    opacity: 1,
+                }, ],
+                colors: ['#000', '#fff', '#eeece1', '#1e497b', '#4e81bb', '#e2534d', '#9aba60', '#8165a0', '#47acc5', '#f9974c', '#c21401', '#ff1e02', '#ffc12a', '#ffff3a', '#90cf5b', '#00af57', '#00afee', '#0071be', '#00215f', '#72349d'],
+                pX: 0,
+                pY: 0,
+                origin: [0, 0],
+                startPoint: [0, 0],
+                curPath: null,
+                curPoint: null,
+                brush: [0, 0, false],
+                state: false,
+                pointCount: 0,
+                menu: false,
+            }
+        },
+        methods: {
+            compose(p) {
+                p.directive = ''
+                p.directive += ' M ' + p.d.M.join(' ')
+                p.d.L.forEach(paras => {
+                    p.directive += ' L '
+                    p.directive += paras.join(' ')
+                })
+                p.directive += (p.d.z) ? ' Z' : ''
+                return p
+            },
+            // 整体移动第一个点
+            moveStartPoint(e, p) {
+                this.orign = [p.d.M[0], p.d.M[1]]
+                this.startPoint = [e.clientX, e.clientY]
+                this.curPath = p
+                document.body.addEventListener('mousemove', this.duringMoveStartPoint, false)
+                document.body.addEventListener('mouseup', this.endMoveStartPoint, false)
+                return false
+            },
+            duringMoveStartPoint(e) {
+                this.curPath.d.M = [
+                    this.orign[0] - (this.startPoint[0] - e.clientX),
+                    this.orign[1] - (this.startPoint[1] - e.clientY)
+                ]
+            },
+            endMoveStartPoint(e) {
+                document.body.removeEventListener('mousemove', this.duringMoveStartPoint, false)
+                document.body.removeEventListener('mouseup', this.endMoveStartPoint, false)
+                this.curPath = null
+            },
+
+            // 整体移动Path
+            movePath(e, p) {
+                if (e.which === 3) {
+                    // this.context(e)
+                } else if (e.which === 1) {
+                    this.curPath = p
+                    this.orign = [p.x, p.y]
+                    this.startPoint = [e.clientX, e.clientY]
+                    this.timeStamp = new Date().valueOf()
+                    document.body.addEventListener('mousemove', this.duringMovePath, false)
+                    document.body.addEventListener('mouseup', this.endMovePath, false)
+                    this.active(e.target.parentNode)
+                    e.stopPropagation()
+                }
+            },
+            duringMovePath(e) {
+                this.curPath.x = this.orign[0] - (this.startPoint[0] - e.clientX)
+                this.curPath.y = this.orign[1] - (this.startPoint[1] - e.clientY)
+            },
+            endMovePath(e) {
+                document.body.removeEventListener('mousemove', this.duringMovePath, false)
+                document.body.removeEventListener('mouseup', this.endMovePath, false)
+            },
+
+            // 移动一个点
+            movePoint(e, p, i) {
+                console.log(e)
+                this.orign = [p.d.L[i][0], p.d.L[i][1]]
+                this.startPoint = [e.clientX, e.clientY]
+                this.curPath = p
+                this.curPoint = i
+                this.curPath.state = 'moving'
+                document.body.addEventListener('mousemove', this.duringMovePoint, false)
+                document.body.addEventListener('mouseup', this.endMovePoint, false)
+            },
+            duringMovePoint(e) {
+                this.$set(this.curPath.d.L, this.curPoint, [
+                    this.orign[0] - (this.startPoint[0] - e.clientX),
+                    this.orign[1] - (this.startPoint[1] - e.clientY)
+                ])
+            },
+            endMovePoint(e) {
+                document.body.removeEventListener('mousemove', this.duringMovePoint, false)
+                document.body.removeEventListener('mouseup', this.endMovePoint, false)
+                this.curPath.state = false
+                this.curPoint = null
+            },
+            paint(e) {
+                this.state = 'painting'
+                this.brush = [e.clientX, e.clientY, 'painting']
+                this.$el.addEventListener('click', this.addPoint, false)
+                document.addEventListener('mousemove', this.moveBrush, false)
+            },
+            moveBrush(e) {
+                this.brush = [e.clientX, e.clientY, 'painting']
+            },
+            addPoint(e) {
+                if (!this.pointCount) {
+                    this.pointCount++
+                        this.pathData.push({
+                            d: {
+                                M: [e.clientX - this.pX, e.clientY - this.pY],
+                                L: [],
+                                z: 0
+                            },
+                            stroke: '#e0e0e0',
+                            fill: '#eeeeee',
+                            x: 0,
+                            y: 0,
+                            state: false,
+                        })
+                    this.startPoint = [e.clientX, e.clientY]
+                } else {
+                    if (this.getSquare(e) < 8) {
+                        this.endPainter()
+                    } else {
+                        this.pathData[this.pathData.length - 1].d.L.push([e.clientX - this.pX, e.clientY - this.pY])
+                    }
+                }
+            },
+            endPainter() {
+                document.removeEventListener('mousemove', this.moveBrush, false)
+                this.$el.removeEventListener('click', this.addPoint, false)
+                this.brush = [0, 0, false]
+                this.state = false
+                this.pathData[this.pathData.length - 1].d.z = 1
+                this.pointCount = 0;
+            },
+            getSquare(e) {
+                var x = e.clientX - this.startPoint[0],
+                    y = e.clientY - this.startPoint[1]
+                return Math.sqrt(x * x + y * y)
+            },
+            addCircle(e) {
+                console.log('circle')
+                this.pointCount = 0
+                this.state = 'painting'
+                this.brush = [e.clientX, e.clientY, 'painting']
+                this.$el.addEventListener('mousedown', this.setCenter, false)
+                document.addEventListener('mousemove', this.moveBrush, false)
+            },
+            setCenter(e) {
+                e.stopPropagation()
+                if (e.which === 3) return
+                if (!this.pointCount) {
+                    console.log('setCenter')
+                    this.pointCount++
+                        this.circles.push({
+                            cx: e.clientX - this.pX,
+                            cy: e.clientY - this.pY,
+                            r: 10,
+                            stroke: '#e0e0e0',
+                            fill: '#eeeeee',
+                            x: 0,
+                            y: 0,
+                        })
+                    this.orign = [0]
+                    this.startPoint = [e.clientX, e.clientY]
+                    this.curPath = this.circles[this.circles.length - 1]
+                    document.addEventListener('mousemove', this.setRadius, false)
+                } else {
+                    this.endCircle()
+                }
+            },
+            resizeRadius(e, c) {
+                console.log('resizeRadius')
+                this.curPath = c
+                this.state = 'painting'
+                this.startPoint = [e.clientX, e.clientY]
+                this.orign = [c.r]
+                document.addEventListener('mousemove', this.adjustRadius, false)
+                document.addEventListener('mouseup', this.radiusResized, false)
+            },
+            radiusResized(e) {
+                console.log('radiusResized')
+                this.curPath = null
+                this.state = false
+                document.removeEventListener('mousemove', this.adjustRadius, false)
+                document.removeEventListener('mouseup', this.radiusResized, false)
+            },
+            setRadius(e) {
+                this.curPath.r = this.getSquare(e) + this.orign[0]
+                console.log('setRadius')
+            },
+            adjustRadius(e) {
+                this.curPath.r = e.clientX - this.startPoint[0] + parseInt(this.orign[0])
+                console.log('adjustRadius')
+            },
+            endCircle() {
+                console.log('endCircle')
+                this.state = false
+                this.curPath = null
+                this.pointCount = 0;
+                this.brush = [0, 0, false]
+                this.$el.removeEventListener('mousedown', this.setCenter)
+                document.removeEventListener('mousemove', this.setRadius)
+                document.removeEventListener('mousemove', this.moveBrush)
+            },
+            addRect(e) {
+                this.state = 'painting'
+                this.brush = [e.clientX, e.clientY, 'painting']
+                this.$el.addEventListener('mousedown', this.setRect, false)
+                document.addEventListener('mousemove', this.moveBrush, false)
+            },
+            setRect(e) {
+                if (e.which === 3) return
+                if (!this.pointCount) {
+                    this.pointCount++
+                        this.rects.push({
+                            x: e.clientX - this.pX,
+                            y: e.clientY - this.pY,
+                            h: 10,
+                            w: 10,
+                            stroke: '#e0e0e0',
+                            fill: '#eeeeee',
+                        })
+                    this.startPoint = [e.clientX, e.clientY]
+                    document.addEventListener('mousemove', this.setSize, false)
+                } else {
+                    this.endRect()
+                }
+            },
+            endRect() {
+                this.state = false
+                this.curPath = null
+                this.pointCount = 0
+                this.brush = [0, 0, false]
+                this.$el.removeEventListener('mousedown', this.setRect)
+                document.removeEventListener('mousemove', this.setSize)
+                document.removeEventListener('mousemove', this.moveBrush)
+            },
+            resizeRect(e, rect) {
+                this.curPath = rect
+                this.startPoint = [e.clientX, e.clientY]
+                this.orign = [parseInt(this.curPath.w), parseInt(this.curPath.h)]
+                document.addEventListener('mousemove', this.rectResizing, false)
+                document.addEventListener('mouseup', this.rectResized, false)
+            },
+            rectResizing(e) {
+                this.curPath.w = e.clientX - this.startPoint[0] + this.orign[0]
+                this.curPath.h = e.clientY - this.startPoint[1] + this.orign[1]
+            },
+            rectResized(e) {
+                document.removeEventListener('mousemove', this.rectResizing)
+                document.removeEventListener('mouseup', this.rectResized)
+            },
+            setSize(e) {
+                var rect = this.rects[this.rects.length - 1]
+                rect.w = e.clientX - this.startPoint[0]
+                rect.h = e.clientY - this.startPoint[1]
+            },
+            active(ele) {
+                if (this.activeEle) {
+                    this.activeEle.setAttribute('class', '')
+                }
+                ele.setAttribute('class', 'active')
+                this.activeEle = ele
+            },
+            inActive() {
+                console.log('inActive')
+                this.menu = false
+                this.curPath = null
+                if (this.activeEle) {
+                    this.activeEle.setAttribute('class', '')
+                    this.activeEle = null
+                }
+            },
+            context(e) {
+                console.log('context')
+                if (this.state) {
+                    this.endPainter()
+                    this.endRect()
+                    this.endCircle()
+                    this.state = false
+                }
+                if (e.target.parentNode.tagName === 'g') {
+                    this.menu = true
+                    document.querySelector('menu').style.left = e.clientX + 'px'
+                    document.querySelector('menu').style.top = e.clientY + 'px'
+                    this.active(e.target.parentNode)
+                } else {
+                    this.inActive()
+                }
+            },
+            shiftUp(ele) {
+                if (!this.activeEle) return false
+                document.querySelector('svg').insertBefore(this.next(this.activeEle), this.activeEle)
+                this.menu = false
+            },
+            shiftDown(ele) {
+                if (!this.activeEle) return false
+                document.querySelector('svg').insertBefore(this.activeEle, this.previous(this.activeEle))
+                this.menu = false
+            },
+            shiftTop() {
+                if (!this.activeEle) return false
+                document.querySelector('svg').appendChild(this.activeEle)
+                this.menu = false
+            },
+            shiftBottom() {
+                if (!this.activeEle) return false
+                document.querySelector('svg').insertBefore(this.activeEle, document.querySelector('svg').firstChild)
+                this.menu = false
+            },
+            previous(ele) {
+                if (ele.previousSibling) {
+                    if (ele.previousSibling.nodeType == 1) {
+                        return ele.previousSibling
+                    } else {
+                        return this.previous(ele.previousSibling)
+                    }
+                } else {
+                    return null
+                }
+            },
+            next(ele) {
+                if (ele.nextSibling) {
+                    if (ele.nextSibling.nodeType == 1) {
+                        return ele.nextSibling
+                    } else {
+                        return this.next(ele.nextSibling)
+                    }
+                } else {
+                    return null
+                }
+            },
+            setColor(cl) {
+                console.log(cl)
+                if (!this.curPath) return
+                this.curPath.fill = cl
+            }
+        },
+        computed: {
+            paths() {
+                var d = []
+                this.pathData.forEach(p => {
+                    d.push(this.compose(p))
+                })
+                return d
+            }
+        },
+        mounted() {
+            this.pX = document.querySelector('.container').offsetLeft
+            this.pY = document.querySelector('.container').offsetTop
+        }
+    })
+    </script>
+</body>
+
+</html>
