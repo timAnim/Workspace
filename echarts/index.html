@@ -69,8 +69,6 @@
             data: []
         }
 
-        var total=100;
-
         for (var i = 1; i <= 30; i++) {
             arr.category.push(i + '日')
             arr.data.push(Math.floor(Math.random() * 500))
@@ -78,6 +76,7 @@
 
         return arr
     }())
+
     // 1月 到12 月
     var months = (function() {
         var arr = {
@@ -120,7 +119,7 @@
 
     // 指定图表的配置项和数据
     var option = {
-        color: ['#4795fa'],
+        color: ['#000000'],
         series: [{
             name: '消耗电量',
             data: hours.data,
