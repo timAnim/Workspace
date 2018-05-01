@@ -23,6 +23,10 @@
     "file-loader": "^1.1.11",
     "style-loader": "^0.20.3",
     "url-loader": "^1.0.1",
+    "webpack": "^3.5.5",
     "webpack-cli": "^2.0.14"
+  },
+  "dependencies": {
+    "paratag": "^1.0.3"
   }
 }

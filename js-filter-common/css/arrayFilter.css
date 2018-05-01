@@ -3,7 +3,7 @@
     padding: 0;
   }
 
-  html {
+/*  html {
     font-size: 62.5%;
     font-family: "Microsoft YaHei", sans-serif;
   }
@@ -13,7 +13,7 @@
     background-color: #eeeeee;
     font-size: 1.4rem;
     color: #616161;
-  }
+  }*/
 
   li {
     list-style: none;
@@ -21,12 +21,12 @@
 
   .filter {
     background-color: white;
-    padding: 0.8rem;
+    padding: 0.08rem;
     position: relative;
   }
 
   .filter>div {
-    margin: 0.8rem;
+    margin: 0.08rem;
   }
 
   .radio {
@@ -34,16 +34,16 @@
   }
 
   .radio>p {
-    height: 3.2rem;
-    line-height: 3.2rem;
+    height: 0.32rem;
+    line-height: 0.32rem;
   }
 
   .radio>p>*:nth-child(2) {
-    border-radius: 0.4rem 0 0 0.4rem;
+    border-radius: 0.04rem 0 0 0.04rem;
   }
 
   .radio>p>*:last-child {
-    border-radius: 0 0.4rem 0.4rem 0;
+    border-radius: 0 0.04rem 0.04rem 0;
   }
 
   .radio-btn {
@@ -51,14 +51,14 @@
     display: inline-block;
     border: 1px solid #e0e0e0;
     margin-left: -1px;
-    width: 4.4rem;
-    height: 2.4rem;
-    line-height: 2.4rem;
+    width: 0.44rem;
+    height: 0.24rem;
+    line-height: 0.24rem;
     cursor: pointer;
   }
 
   .radio-label {
-    padding: 0 0.8rem;
+    padding: 0 0.08rem;
   }
 
   .active {
@@ -67,20 +67,20 @@
   }
 
   .search {
-    min-width: 32rem;
-    max-width: 34.4rem;
+    min-width: 0.32rem;
+    max-width: 0.344rem;
     position: relative;
-    padding: 0 4.4rem;
+    padding: 0 0.044rem;
     box-sizing: border-box;
     border: 1px solid #e0e0e0;
-    border-radius: 1.6rem;
+    border-radius: 0.016rem;
     text-align: center;
   }
 
   .search>span,
   .search-input {
-    height: 3.2rem;
-    line-height: 3.2rem;
+    height: 0.32rem;
+    line-height: 0.32rem;
     background-color: white;
   }
 
@@ -88,8 +88,8 @@
     outline: none;
     width: 100%;
     border: none;
-    height: 3.2rem;
-    padding: 0 0.8rem;
+    height: 0.32rem;
+    padding: 0 0.08rem;
   }
 
   .search-input:focus~.search-result {
@@ -100,19 +100,19 @@
   .search-btn {
     position: absolute;
     top: 0;
-    width: 4.4rem;
-    font-size: 1.8rem;
+    width: 0.44rem;
+    font-size: 0.18rem;
     color: #9e9e9e;
   }
 
   .search-label {
-    border-radius: 1.6rem 0 0 1.6rem;
+    border-radius: 0.16rem 0 0 0.16rem;
     left: 0;
     border-right: 1px solid #e0e0e0;
   }
 
   .search-btn {
-    border-radius: 0 1.6rem 1.6rem 0;
+    border-radius: 0 0.16rem 0.16rem 0;
     right: 0;
     border-left: 1px solid #e0e0e0;
     cursor: pointer;
@@ -128,16 +128,16 @@
 
   .search-result {
     position: absolute;
-    left: 4.4rem;
+    left: 0.44rem;
     top: 100%;
     background-color: white;
-    margin: 0.4rem 0;
+    margin: 0.04rem 0;
     right: 0;
     box-shadow: 0 1px 3px #e0e0e0;
     display: none;
-    min-height: 4.4rem;
+    min-height: 0.044rem;
     animation: slide 0.2s ease;
-    max-height: 22.4rem;
+    max-height: 2.24rem;
     overflow-y: auto;
   }
 
@@ -154,7 +154,7 @@
     content: '\f1e5\ 没有搜索结果';
     font-family: 'FontAwesome';
     display: block;
-    line-height: 4.4rem;
+    line-height: 0.44rem;
     color: #bdbdbd;
     position: absolute;
     width: 100%;
@@ -164,8 +164,8 @@
 
   .result-li {
     border-bottom: 1px solid #e0e0e0;
-    height: 4rem;
-    padding: 0.8rem;
+    height: 0.4rem;
+    padding: 0.08rem;
     position: relative;
     z-index: 10;
     background-color: white;
@@ -176,29 +176,29 @@
   }
 
   .li-avatar {
-    width: 4rem;
+    width: 0.4rem;
     float: left;
-    margin-right: 1.6rem;
+    margin-right: 0.16rem;
   }
 
   .li-info {
     text-align: left;
-    line-height: 2rem;
+    line-height: 0.2rem;
   }
 
   .info-des {
     color: #bdbdbd;
-    font-size: 1.2rem;
+    font-size: 0.12rem;
   }
 
   .toggle-btn {
     position: absolute;
     cursor: pointer;
-    height: 3.2rem;
+    height: 0.32rem;
     display: inline-block;
-    line-height: 3.2rem;
-    bottom: 0.8rem;
-    right: 1.6rem;
+    line-height: 0.32rem;
+    bottom: 0.08rem;
+    right: 0.16rem;
     color: #8bc34a;
   }
 
