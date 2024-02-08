@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset="utf-8">
+  <title>jquery登录框</title>
+  <link rel="stylesheet" type="text/css" href="./font/font-awesome/css/fontawesome-all.min.css">
+  <link rel="stylesheet" type="text/css" href="../assets/css/init.css">
+  <style type="text/css">
+  body{
+    
+  }
+  #frame {
+    position: relative;
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  #frame.orth {
+        height: 600px;
+        width: 800px;
+        margin: 0.16rem;
+      }
+
+
+      #frame>* {
+        transition: transform 0.2s ease;
+      }
+
+      #frame.orth>header {
+        transform-origin: left 600px;
+        transform: rotate3d(1, 0.5, -0.255, 60deg) scale(0.8) translate3d(250px, 0, 150px);
+      }
+
+      #frame.orth>main {
+        transform-origin: left bottom;
+        transform: rotate3d(1, 0.5, -0.255, 60deg) scale(0.8) translate3d(250px, 0, 50px);
+      }
+
+      #frame.orth>footer {
+        transform-origin: -600px bottom;
+        transform: rotate3d(1, 0.5, -0.255, 60deg) scale(0.8) translate3d(250px, 0, 100px);
+      }
+
+      #frame.orth #main-bg {
+        transform-origin: left bottom;
+        transform: rotate3d(1, 0.5, -0.255, 60deg) scale(0.8) translate3d(250px, 0, 0);
+      }
+
+      #frame.orth #notify-panel {
+        transform-origin: -600px bottom;
+        transform: rotate3d(1, 0.5, -0.255, 60deg) scale(0.8) translate3d(250px, 0, 140px);
+      }
+
+      #frame.orth #setting-mask {
+        transform-origin: left bottom;
+        transform: rotate3d(1, 0.5, -0.255, 60deg) scale(0.8) translate3d(250px, 0, 200px);
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      #frame.orth #search-mask {
+        transform-origin: left 560px;
+        transform: rotate3d(1, 0.5, -0.255, 60deg) scale(0.8) translate3d(250px, 0, 150px);
+      }
+
+      #notify-panel,
+      #setting-panel {
+        top: 0.4rem;
+        z-index: 20;
+        display: none;
+      }
+
+      #aside-panel,
+      #docker-panel {
+        transition: all 0.2s ease;
+      }
+
+      #notify-btn.checked {
+        background: #616161;
+        color: white;
+      }
+
+      #main-bg {
+        height: 600px;
+        width: 800px;
+        z-index: -1;
+        background: #eee;
+      }
+
+      #search-mask {
+        top: 0.4rem;
+        display: block;
+        height: 0;
+        z-index: 90;
+        transition: height 0.4s ease;
+      }
+
+      #search-mask.open {
+        height: calc(100% - 0.4rem);
+      }
+
+      #search-input {
+        transition: width 0.2s ease;
+        background: #212121;
+        left: 2rem;
+        top: 0;
+        margin-top: -0.32rem;
+      }
+
+      #search-input:focus {
+        width: 2rem;
+        max-width: 2rem;
+      }
+
+      #search-result {
+        background: rgba(10, 10, 10, 0.9);
+        display: none;
+      }
+
+      #frame.orth #search-result {
+        background: rgba(10, 10, 10, 0.5);
+      }
+
+      #search-mask.open #search-result {
+        display: block;
+      }
+
+  #grid {
+    display: block;
+    white-space: normal;
+  }
+
+  #grid>li {
+    margin-right: 0.08rem;
+    width: calc( 25% - .06rem);
+    display: inline-block;
+    box-sizing: border-box;
+  }
+
+  #grid>li:nth-child(4n) {
+    margin-right: 0;
+  }
+
+  .label {
+    position: relative;
+    line-height: 0.56rem;
+  }
+
+  .label:hover::after,
+  .label:hover::before {
+    opacity: 1;
+  }
+
+  .label:before {
+    content: attr(height);
+    position: absolute;
+    left: 0.16rem;
+    top: 0;
+    width: 1px;
+    background: #e0e0e0;
+    height: 100%;
+    text-indent: -0.12rem;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+
+  .label:after {
+    content: attr(width);
+    position: absolute;
+    left: 0;
+    top: 1em;
+    height: 1px;
+    background: #e0e0e0;
+    text-align: center;
+    width: 100%;
+    line-height: 0;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+  }
+  </style>
+</head>
+
+<body>
+  <main id='frame' class="layout-v sd-cut cl-primary bg-dark">
+    <header class="ht-regular bg-black cl-secondary layout-h">
+      <span id='logo' class="ft-small">
+        <span class="wd-regular">
+          <i class="fa fa-flag"></i>
+        </span>
+      <span class="pd-half-h">状态栏</span>
+      </span>
+      <button id='notify-btn' class="ht-compact wd-regular">
+        <i class="fa fa-bell"></i>
+      </button>
+      <button id='setting-btn' class="ht-compact wd-regular">
+        <i class="fa fa-user-circle"></i>
+      </button>
+    </header>
+    <main class="content layout-h bg-normal">
+      <aside class="wd-panel ht-max bg-light sd-card label" id='aside-panel'>
+        <ul class="wd-panel sd-list">
+          <li class="ht-regular layout-h pointer">
+            <label class="wd-regular"><i class="fa fa-user"></i></label>
+            <span class="content">目录</span>
+            <label class="wd-regular"><i class="fa fa-angle-down"></i></label>
+          </li>
+          <li class="ht-regular layout-h pointer">
+            <label class="wd-regular"><i class="fa fa-user"></i></label>
+            <span class="content">目录</span>
+            <label class="wd-regular"><i class="fa fa-angle-down"></i></label>
+          </li>
+          <li class="ht-regular layout-h pointer">
+            <label class="wd-regular"><i class="fa fa-user"></i></label>
+            <span class="content">目录</span>
+            <label class="wd-regular"><i class="fa fa-angle-down"></i></label>
+          </li>
+          <li class="ht-regular layout-h pointer">
+            <label class="wd-regular"><i class="fa fa-user"></i></label>
+            <span class="content">目录</span>
+            <label class="wd-regular"><i class="fa fa-angle-down"></i></label>
+          </li>
+        </ul>
+      </aside>
+      <article class="ht-max layout-v">
+        <header class="bg-light ht-regular cl-black sd-card">
+          <button id='aside-btn' class="ht-regular wd-regular">
+            <i class="fa fa-bars"></i>
+          </button>
+          <span class="ft-big">标题栏</span>
+        </header>
+        <main class="content pd-normal">
+          <ul class="sd-list bg-white sd-cut">
+            <li class="ht-regular bg-white label"></li>
+            <li class="ht-regular bg-white label"></li>
+            <li class="ht-regular bg-white label"></li>
+          </ul>
+          <h2 class="pd-half"></h2>
+          <ul id='grid'></ul>
+        </main>
+      </article>
+    </main>
+    <footer id='docker-panel' class="float-se wd-panel bg-bright sd-list layout-v ht-low sd-card">
+      <header id='docker-btn' class="ht-low pointer label">
+        <span class="pd-half-h">停靠坞</span>
+      </header>
+      <main class="content pd-half bg-white label">
+        <div class=""></div>
+      </main>
+      <footer class="ht-regular label"></footer>
+    </footer>
+    <div id='main-bg' class="float-nw bg-normal"></div>
+    <div id='notify-panel' class='wd-panel float-se bg-bright sd-card'>
+      <div class="ht-compact pd-half-h">通知</div>
+      <ul class="sd-list">
+        <li class="pd-half bg-white">
+          <p class="ht-single cl-primary">通知的标题</p>
+          <p class="ht-single  cl-secondary ft-small">2017-12-25</p>
+        </li>
+        <li class="pd-half bg-white">
+          <p class="ht-single cl-primary">通知的标题</p>
+          <p class="ht-single  cl-secondary ft-small">2017-12-25</p>
+        </li>
+        <li class="pd-half bg-white">
+          <p class="ht-single cl-primary">通知的标题</p>
+          <p class="ht-single  cl-secondary ft-small">2017-12-25</p>
+        </li>
+      </ul>
+    </div>
+    <div id='setting-mask' class="mask float-ne">
+      <div id="setting-panel" class="float-ne wd-panel sd-card bg-white radius-m theme-dark">
+        <ul class="sd-list">
+          <li class="ht-regular layout-h">
+            <span class="wd-regular"><i class="fa fa-user"></i></span>
+            <span>个人设置</span>
+          </li>
+          <li class="ht-regular layout-h">
+            <span class="wd-regular"><i class="fa fa-user"></i></span>
+            <span>组织设置</span>
+          </li>
+          <li class="ht-regular layout-h">
+            <span class="wd-regular"><i class="fa fa-user"></i></span>
+            <span>组织设置</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="search-mask" class="mask float-nw">
+      <input id='search-input' type="text" class="ft-small cl-white radius-l pd-half-h wd-broad ht-single float-nw" placeholder="搜索">
+      <div id='search-result' class="wd-max bg-black cl-white ht-max">
+        <section class="wd-page align-c cl-disable">
+          <div class="cl-disable pd-normal">搜索结果</div>
+          <ul class="pd-normal-h sd-list">
+            <li class="ht-compact"><span class="theme-dark pd-half-h">关键字</span> 其他</li>
+            <li class="ht-compact"><span class="theme-dark pd-half-h">关键字</span> 其他</li>
+            <li class="ht-compact"><span class="theme-dark pd-half-h">关键字</span> 其他</li>
+            <li class="ht-compact"><span class="theme-dark pd-half-h">关键字</span> 其他</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+  <button id='show-overlay-btn' class="float-se ht-compact wd-broad theme-mark radius-m" style="bottom:1.2rem;right:0.16rem;z-index: 9999;">覆盖关系</button>
+  <button id='open-all' class="float-se ht-compact wd-broad theme-mark radius-m" style="bottom:0.8rem;right:0.16rem;z-index: 9999;">全部展开</button>
+  <button id='close-all' class="float-se ht-compact wd-broad theme-mark radius-m" style="bottom:0.4rem;right:0.16rem;z-index: 9999;">全部关闭</button>
+  <script type="text/javascript" src='../assets/js/jquery-3.3.1.js'></script>
+  <script type="text/javascript">
+  var store = {
+    'notify-panel': false,
+    'setting-panel': false,
+  };
+
+  $('body').on('click', tapHdl);
+  $('#search-input').on('focus', searchHdl);
+  $('#search-input').on('blur', endSearchHdl);
+  var str = '';
+  for (var i = 0; i < 10; i++) {
+    str += '<li class="sd-cut ht-double bg-white pd-half label"></li>'
+  }
+  $('#grid').append(str);
+  markLable()
+  $(window).resize(function() {
+    markLable()
+  });
+
+  function searchHdl(e) {
+    $('#search-mask').addClass('open');
+  }
+
+  function endSearchHdl() {
+    $('#search-mask').removeClass('open');
+  }
+
+  function tapHdl(e) {
+    e.stopPropagation();
+    var target = e.target;
+    while (!target.id && target.tagName !== 'BODY') {
+      target = target.parentNode;
+    }
+    // console.log(target.id)
+
+    switch (target.id) {
+      // 侧边栏的按钮
+      case 'aside-btn':
+        $('aside').toggleClass('wd-regular');
+        setTimeout(function() {
+          markLable()
+        }, 300)
+        break;
+        // 停靠坞的按钮
+      case 'docker-btn':
+        $('#docker-panel').toggleClass('ht-dialog');
+        setTimeout(function() {
+          markLable()
+        }, 300)
+        break;
+        // 设置面板按钮
+      case 'setting-btn':
+      case 'setting-mask':
+        if (!store['setting-panel']) {
+          $('#setting-mask').show();
+          $('#setting-panel').slideDown(200);
+          store['setting-panel'] = true;
+        } else {
+          $('#setting-panel').slideUp(200, function() {
+            $('#setting-mask').hide();
+          })
+          store['setting-panel'] = false;
+        }
+        break;
+        // 通知栏按钮
+      case 'notify-btn':
+        if (!store['notify-panel']) {
+          $('#notify-btn').addClass('checked')
+          $('#notify-panel').show().animate({
+            right: '0'
+          }, 200);
+          store['notify-panel'] = true;
+        } else {
+          $('#notify-btn').removeClass('checked')
+          $('#notify-panel').animate({
+            right: '-20rem'
+          }, 200, function() {
+            $(this).hide()
+          });
+          store['notify-panel'] = false;
+        }
+        break;
+        // 覆盖关系按钮
+      case 'show-overlay-btn':
+        $('#frame').toggleClass('orth')
+        break;
+      case 'open-all':
+        openAll();
+        break;
+      case 'close-all':
+        closeAll();
+        break;
+      default:
+        break;
+    }
+  }
+
+  function markLable() {
+    var pad, margin;
+    $('.label').each(function(i, item) {
+
+      pad = $(item).innerHeight() - $(item).height()
+      margin = $(item).outerWidth(true) - $(item).outerWidth()
+      $(item).attr({
+        pad: pad / 2,
+        margin: margin,
+        height: $(item).outerHeight(),
+        width: $(item).outerWidth()
+      })
+    })
+  }
+
+  function openAll() {
+    $('#docker-panel').toggleClass('ht-dialog', true);
+    $('#notify-btn').addClass('checked')
+    $('#notify-panel').show().animate({
+      right: '0'
+    }, 200);
+    $('#setting-mask').show();
+    $('#setting-panel').slideDown(200);
+    store['setting-panel'] = true;
+    store['notify-panel'] = true;
+    $('#search-input').focus();
+    $('aside').toggleClass('wd-regular', false);
+  }
+
+  function closeAll() {
+    $('#docker-panel').toggleClass('ht-dialog', false);
+    $('#notify-btn').removeClass('checked')
+    $('#notify-panel').animate({
+      right: '-20rem'
+    }, 200, function() {
+      $(this).hide()
+    });
+    store['notify-panel'] = false;
+
+    $('#setting-panel').slideUp(200, function() {
+      $('#setting-mask').hide();
+    })
+    store['setting-panel'] = false;
+
+    $('#search-input').blur();
+    $('aside').toggleClass('wd-regular', true);
+  }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body></body>
+  <script>
+    /*
+      入参：obj，point
+      
+    */ 
+    function simulateDC(obj, point) {
+      if (obj && point) return initSimuData(obj, point);
+      let outerDom = document.getElementsByClassName("simu-panel"),
+        inputDom,
+        outputDom;
+      if (outerDom && outerDom.length) return false;
+      initSimuData();
+      composeOuter();
+      outerDom = document.getElementsByClassName("simu-panel")[0];
+      inputDom = document.getElementsByClassName("simu-input")[0];
+      outputDom = document.getElementsByClassName("simu-output")[0];
+      composeTable();
+
+      function composeTable() {
+        composeTh("输入", inputDom);
+        composeTh("输出", outputDom);
+        composeInp(window.simuData["输入"], inputDom);
+        ["园区", "楼栋", "楼层", "房间", "资产", "市电", "供水"].forEach((_lv) => {
+          composeTh(_lv, outputDom);
+          composeTb(window.simuData[_lv], outputDom);
+        });
+      }
+
+      function composeOuter() {
+        let outer = document.createElement("div");
+        outer.style =
+          "position: absolute;z-index: 999;width: 368px;right: 8px;top: 8px;bottom: 8px;margin: 0;padding: 0;background: #212121;border: none; box-shadow: 1px 6px 12px #000000e0; color: white; font-size: 13px; padding: 8px;border-radius:16px;line-height: 18px;";
+        outer.className = "simu-panel";
+        // 标题栏
+        let header = document.createElement("div");
+        header.style =
+          "background-color:#000000;text-align:center;line-height:32px; cursor:pointer; border-radius:8px; margin-bottom:8px;";
+        header.innerText = "模拟器 (点击关闭)";
+        header.onclick = function () {
+          let pn = document.getElementsByClassName("simu-panel")[0];
+          pn.parentNode.removeChild(pn);
+        };
+        outer.appendChild(header);
+
+        // 左侧面板
+        let left = document.createElement("span");
+        left.style =
+          "display: inline-block;width: 180px;height: calc(100% - 40px);overflow-y: auto;";
+        let tbl = document.createElement("table");
+        tbl.style =
+          "border-collapse: collapse;border-spacing: 0;margin: 0;padding: 0;width: 100%;border-color: #424242";
+        tbl.border = "1px";
+        let tbodyl = document.createElement("tbody");
+        tbodyl.className = "simu-input";
+        tbl.appendChild(tbodyl);
+        left.appendChild(tbl);
+        outer.appendChild(left);
+
+        // 右侧面板
+        let right = document.createElement("span");
+        right.style =
+          "display: inline-block; width: 180px; height: calc(100% - 40px); overflow-y: auto; float: right;";
+        let tbr = document.createElement("table");
+        tbr.style =
+          "border-collapse: collapse;border-spacing: 0;margin: 0;padding: 0;width: 100%;border-color: #424242;";
+        tbr.border = "1px";
+        let tbodyr = document.createElement("tbody");
+        tbodyr.className = "simu-output";
+        tbr.appendChild(tbodyr);
+        right.appendChild(tbr);
+        outer.appendChild(right);
+
+        //添加标题
+        document.body.appendChild(outer);
+      }
+
+      function composeInp(dt, tbody) {
+        let step = 1,
+          tr,
+          td,
+          td2,
+          inp;
+        for (const key in dt) {
+          step = getStep(dt[key]);
+          tr = document.createElement("tr");
+          td = document.createElement("td");
+          td.innerHTML = key;
+          td.style = "width:88px; color:#bdbdbd;";
+          td2 = document.createElement("td");
+          inp = document.createElement("input");
+          inp.setAttribute("label", key);
+          inp.setAttribute("type", "number");
+          inp.setAttribute("step", step);
+          inp.value = dt[key];
+          inp.style = "width: 88px; background-color: #424242; color: white;";
+          inp.onchange = function (ev) {
+            let val = ev.target.value,
+              key = ev.target.getAttribute("label");
+            if (window.simuData["输入"]) window.simuData["输入"][key] = val;
+            inputDom.innerHTML = "";
+            outputDom.innerHTML = "";
+            initSimuData();
+            composeTable();
+          };
+          td2.appendChild(inp);
+          tr.appendChild(td);
+          tr.appendChild(td2);
+          tbody.appendChild(tr);
+        }
+
+        function getStep(num) {
+          let len = (num + "").split(".").length;
+          if (len == 1) return 1;
+          else return 0.01;
+        }
+      }
+
+      function composeTb(dt, tbody) {
+        let tr, td, td2;
+        for (const key in dt) {
+          tr = document.createElement("tr");
+          td = document.createElement("td");
+          td.innerHTML = key;
+          td.style = "width:88px; color:#bdbdbd;";
+          td2 = document.createElement("td");
+          td2.innerHTML = dt[key];
+
+          tr.appendChild(td);
+          tr.appendChild(td2);
+          tbody.appendChild(tr);
+        }
+      }
+
+      function composeTh(txt, tbody) {
+        let tr = document.createElement("tr"),
+          th = document.createElement("th");
+        th.setAttribute("colspan", 2);
+        th.innerText = txt;
+        th.style = "background-color: #424242;";
+        tr.appendChild(th);
+        tbody.appendChild(tr);
+      }
+
+      function initSimuData(obj, point) {
+        var inp = {
+          机柜功率: 5,
+          使用率: 0.63,
+          房间机柜数: 200,
+          单机柜面积: 5, //单个机柜占用面积，用于估算面积
+          楼层房间数: 2,
+          楼栋楼层数: 2,
+          园区楼栋数: 2,
+          pue: 1.35, // pue = plf + clf + olf + 1
+          wue: 0.39, // 用水  / it能耗
+          rer: 0.1, // 可再生能源利用率
+          平均电价: 0.8,
+        };
+
+        if (window.simuData) inp = window.simuData["输入"];
+
+        let plf = (inp.pue - 1) * 0.35, // 电力 / IT能耗
+          clf = (inp.pue - 1) * 0.6, // 暖通 / IT能耗
+          olf = (inp.pue - 1) * 0.05; // 其它 / IT能耗
+        var room = {
+          机柜数: inp.房间机柜数,
+          已用机柜: Math.floor(inp.房间机柜数 * inp.使用率),
+          可用机柜: Math.floor(inp.房间机柜数 * (1 - inp.使用率)),
+          IT功率: inp.房间机柜数 * inp.机柜功率 * inp.使用率,
+          总功率: inp.房间机柜数 * inp.机柜功率 * inp.使用率 * inp.pue,
+          IT能耗: inp.房间机柜数 * inp.机柜功率 * inp.使用率 * 24,
+          总能耗: inp.房间机柜数 * inp.机柜功率 * inp.使用率 * 24 * inp.pue,
+          制冷量: 0.8 * inp.单机柜面积 * inp.房间机柜数, //0.7为冷量估算指标
+        };
+        var floorRack = inp.房间机柜数 * inp.楼层房间数;
+        var floor = {
+          机柜数: floorRack,
+          已用机柜: Math.floor(floorRack * inp.使用率),
+          可用机柜: Math.floor(floorRack * (1 - inp.使用率)),
+          IT功率: room["IT功率"] * inp.楼层房间数,
+          总功率: room["总功率"] * inp.楼层房间数,
+          IT能耗: room["IT能耗"] * inp.楼层房间数,
+          总能耗: room["总能耗"] * inp.楼层房间数,
+          制冷量: room["制冷量"] * inp.楼层房间数,
+        };
+        var bdRack = inp.房间机柜数 * inp.楼层房间数 * inp.楼栋楼层数;
+        var building = {
+          机柜数: bdRack,
+          已用机柜: Math.floor(bdRack * inp.使用率),
+          可用机柜: Math.floor(bdRack * (1 - inp.使用率)),
+          plf,
+          clf,
+          olf,
+          IT功率: floor["IT功率"] * inp.楼栋楼层数,
+          总功率: floor["总功率"] * inp.楼栋楼层数,
+          IT能耗: floor["IT能耗"] * inp.楼栋楼层数,
+          总能耗: floor["总能耗"] * inp.楼栋楼层数,
+          制冷量: floor["制冷量"] * inp.楼栋楼层数,
+          UPS数: bdRack / 10,
+        };
+
+        let buildingEnergy = building["总能耗"] * inp.园区楼栋数,
+          parkRack = bdRack * inp.园区楼栋数;
+        var park = {
+          机柜数: parkRack,
+          已用机柜: Math.floor(parkRack * inp.使用率),
+          可用机柜: Math.floor(parkRack * (1 - inp.使用率)),
+          plf,
+          clf,
+          olf,
+          pue: inp.pue,
+          wue: inp.wue,
+          cue:
+            (((buildingEnergy * (1 - inp.rer) * 0.123) / 1000) * 2.7725) /
+            (building.IT功率 * inp.园区楼栋数),
+          耗电: building["总能耗"] * inp.园区楼栋数,
+          耗水: (buildingEnergy * inp.wue) / 1000,
+          耗标煤: (buildingEnergy * (1 - inp.rer) * 0.123) / 1000,
+          碳排: ((buildingEnergy * (1 - inp.rer) * 0.123) / 1000) * 2.7725,
+          房间数: inp.楼层房间数 * inp.楼栋楼层数 * inp.园区楼栋数,
+          楼层数: inp.楼栋楼层数 * inp.园区楼栋数,
+          楼栋数: inp.园区楼栋数,
+          IT功率: building.IT功率 * inp.园区楼栋数,
+          总功率: building["总功率"] * inp.园区楼栋数,
+          IT能耗: building["IT能耗"] * inp.园区楼栋数,
+          总能耗: building["总能耗"] * inp.园区楼栋数,
+          总电费: building["总能耗"] * inp.园区楼栋数 * inp.平均电价 / 1000, //万元
+          制冷能耗: building["IT能耗"] * inp.园区楼栋数 * clf, //IT能耗*clf
+          制冷量: building["制冷量"] * inp.园区楼栋数,
+          SCOP:
+            (building["制冷量"] * inp.园区楼栋数) /
+            (building["IT能耗"] * inp.园区楼栋数 * clf), //制冷量/制冷能耗
+          燃油储备:
+            ((building["总功率"] * inp.园区楼栋数)* 0.21 * 12) / 84, //立方米
+          UPS数: parkRack / 10,
+          单UPS容量: Math.floor(((inp["机柜功率"] * 10) / 0.8) * 1.3),
+          电池总容量: parkRack * inp["机柜功率"] * 0.25,
+        };
+        var rack = {
+          网口数量: Math.floor(parkRack * 21 * 2 * 1.2),
+          已用网口: Math.floor(parkRack * 21 * 2 * inp["使用率"] * 1.2),
+        };
+        var elec = {
+          装机: (park.总功率 / inp.使用率) * 1.25,
+          已用: park.总功率 / inp.变电站数,
+        };
+        var water = {
+          设计流量: ((park.耗水 / inp.使用率) * 1.25) / 24,
+          实际流量: park.耗水 / 24,
+          设定压力值: ((inp.楼栋楼层数 + 3 + 2) * 5) / 10,
+        };
+        var data = {  
+          输入: inp,
+          房间: room,
+          楼层: floor,
+          楼栋: building,
+          园区: park,
+          资产: rack,
+          市电: elec,
+          供水: water,
+        };
+        for (const key in data) {
+          for (const m in data[key]) {
+            data[key][m] = fix(data[key][m]);
+          }
+        }
+
+        function fix(num) {
+          let len = (num + "").split(".").length;
+          if (len == 1) return parseInt(num);
+          return parseFloat(parseFloat(num).toFixed(2));
+        }
+        window.simuData = data;
+
+        if (data[obj] && data[obj][point]) return data[obj][point];
+      }
+    }
+    simulateDC();
+    setInterval(simulateDC, 5000);
+  </script>
+</html>

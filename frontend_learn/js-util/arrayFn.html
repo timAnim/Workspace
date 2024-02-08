@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: #8bc34a;
+        position: relative;
+    }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <ul>
+        <li>邮箱 home work mail sichao.ma@duyi-inc.com</li>
+        <li>邮箱 home work mail sichao.ma@duyi-inc.com</li>
+        <li>邮箱 home work mail sichao.ma@duyi-inc.com</li>
+        <li>邮箱 home work mail sichao.ma@duyi-inc.com</li>
+        <li>邮箱 home work mail sichao.ma@duyi-inc.com</li>
+        <li>邮箱 home work mail sichao.ma@duyi-inc.com</li>
+        <li>邮箱 home work mail sichao.ma@duyi-inc.com</li>
+    </ul>
+    <script type="text/javascript">
+    // 1. 作业
+    //     邮箱 home work mail sichao.ma@duyi-inc.com
+    //     格式 name-class-projectName
+    // 2. 数组复习
+    //     sort push splice slice join /str.
+
+    var personArr = [{
+        name: '张胜男',
+        age: '24',
+        num: '17878787878',
+    }, {
+        name: '李四',
+        age: '25',
+        num: '17878787878',
+    }, {
+        name: '王五',
+        age: '26',
+        num: '17878787878',
+    }, {
+        name: '赵六',
+        age: '24',
+        num: '17878787878',
+    }];
+    var fakeArr = document.getElementsByTagName('li');
+
+    // Topic-->forEach
+    var arr = [1, 2, 3, 4, 5, 6];
+    arr.forEach(function(ele, index) {
+        console.log(ele, index);
+    })
+
+    Array.prototype.forEach.call(fakeArr, function(ele){
+      console.log(ele);
+    });
+
+    var ret = Array.prototype.slice.call(fakeArr, 0);
+
+    ret.forEach(function(ele, index) {
+        // console.log(ele,index);
+    })
+
+    // Topic -->装数据
+
+    var str = '';
+    personArr.forEach(function(ele, index) {
+        str += '<li>' + ele.name + '</li>';
+    });
+
+    document.body.innerHTML = str;
+
+    // Topic --> 找到某一个, 查找一个时候不用forEach
+
+    // foreach 不能用break(不在循环里), 如果使用return 还是会循环5次, 回调被执行5次
+    personArr.forEach(function(ele, index) {
+        if (ele.name === '姓名') {
+            console.log(true);
+            return
+        }
+        console.log(index);
+    });
+
+
+    // Topic --> forEach 源码
+
+    Array.prototype.myForEach = function(fn) {
+        for (var i = this.length - 1; i >= 0; i--) {
+            fn(this[i], i);
+        }
+    }
+
+    personArr.myForEach(function(ele, index) {
+        console.log(ele.name);
+    })
+
+    // Topic --> filter 返回一个新数组
+    // 1. 如果return 转化为true
+    // 2. 就把当前循环的 元素 加入到结果数组
+
+    var filtedArr = personArr.filter(function(ele, index){
+      return ele.age === '24';
+    })
+
+    console.log(filtedArr);
+
+
+    // Topic filter 的源码
+    Array.prototype.myFilter = function(fn) {
+        var ret = [];
+        for (var i = this.length - 1; i >= 0; i--) {
+            if (fn(this[i], i)) {
+                ret.push(this[i]);
+            }
+        }
+        return ret;
+    }
+
+    var filtedArr = personArr.myFilter((ele, index) => ele.age === '24');
+
+    console.log(filtedArr);
+
+    // Topic 浅拷贝 深拷贝 的区别
+    var obj1 = {
+        name: 'name1',
+        people: {},
+    }
+    var obj2 = {
+        age: '10',
+        people: {
+            teacher1: 'cg1',
+            teacher2: 'cg2',
+            teacher3: 'cg3',
+        }
+    }
+
+    function deepClone(target, source) {
+        if (!source) return;
+        var copy, src;
+        for (var prop in source) {
+            src = target[prop]; //备份目标属性 防止 重名
+            copy = source[prop]; // 源对象的一个属性值
+            if (copy && typeof copy === 'object') { // 如果是引值需要递归
+                if (Object.prototype.toString(copy) === '[object Array]') {
+                    src = src ? src : [];
+                } else {
+                    src = src ? src : {};
+                }
+                deepClone(src, copy);
+            } else { // 如果是原始值 就直接赋值
+                target[prop] = copy;
+            }
+        }
+    }
+
+    window.deepClone = deepClone;
+    deepClone(obj1, obj2)
+    console.log(obj1);
+
+    Array.prototype.myFilter = function(fn) {
+        var ret = [];
+        for (var i = this.length - 1; i >= 0; i--) {
+            if (fn(this[i], i)) {
+                if (this[i] && Object.prototype.toString(this[i]) === '[object Object]') {
+                    var newObj = {};
+                    deepClone(newObj, this[i]);
+                    ret.push(newObj)
+                } else if (this[i] && Object.prototype.toString(this[i]) === '[object Array]') {
+                    var newArr = [];
+                    deepClone(newArr, this[i]);
+                    ret.push(newArr)
+                } else {
+                    ret.push(this[i]);
+                }
+            }
+        }
+        return ret;
+    }
+
+    var filtedArr = personArr.myFilter((ele, index) => ele.age === '24');
+
+    console.log(filtedArr);
+
+    // Topic map
+    var mapArr = personArr.map((ele, index) => {
+        return ele.name
+    })
+    console.log(mapArr);
+
+    // Topic --> map 源码
+    Array.prototype.myMap = function(fn) {
+        var len = this.length;
+        var arr = [];
+        for (var i = this.length - 1; i >= 0; i--) {
+            arr.push(fn(this[i], i))
+        }
+        return arr
+    }
+    var mapArr = personArr.myMap((ele, index) => {
+        return ele.name
+    })
+    console.log(mapArr);
+    
+    </script>
+</body>
+
+</html>

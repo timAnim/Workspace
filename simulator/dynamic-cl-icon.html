@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .outer {
+        /* background-image: url(./1.png); */
+        /* background-size: contain; */
+        /* filter: sepia(100%) hue-rotate(90deg); */
+      }
+      body,
+      html {
+        background-color: rgb(2, 16, 39);
+      }
+      img {
+        filter: brightness(1.1) contrast(1.5) url(#filter3) saturate(2);
+        width: 80px;
+        height: 120px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outer">
+      <img src="./1.png" alt="" srcset="" />
+    </div>
+    <svg
+      style="opacity: 0;position: absolute;"
+      width="80"
+      height="120"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+    >
+      <defs>
+        <!-- <filter id="filter" x="0" y="0" width="100%" height="100%"> -->
+          <!-- <feFlood
+            result="floodFill"
+            x="0"
+            y="0"
+            width="100%"
+            height="100%"
+            flood-color="#007aff"
+            flood-opacity="1"
+          />
+          <feBlend in="floodFill" in2="SourceGraphic" mode="darken" />
+        </filter>
+        <filter id="filter2" x="0" y="0" width="100%" height="100%">
+          <feComponentTransfer>
+            <feFuncR type="linear" slope="1" intercept="0"></feFuncR>
+            <feFuncG type="linear" slope="1" intercept="0.2"></feFuncG>
+            <feFuncB type="linear" slope="1" intercept="1"></feFuncB>
+          </feComponentTransfer>
+        </filter> -->
+        <filter id="filter3" x="0" y="0" width="100%" height="100%">
+          <feComponentTransfer>
+            <feFuncR type="linear" slope="1" intercept="0"></feFuncR>
+            <feFuncG type="linear" slope="1" intercept="0.1804"></feFuncG>
+            <feFuncB type="linear" slope="1" intercept="0.4039"></feFuncB>
+          </feComponentTransfer>
+          <!-- <feDiffuseLighting
+            in="SourceGraphic"
+            surfaceScale="0"
+            specularConstant=".55"
+            specularExponent="80"
+            lighting-color="white"
+            result="specOut"
+          >
+            <fePointLight x="40" y="60" z="40" />
+          </feDiffuseLighting>
+
+          <feComposite
+            in="hueChange"
+            in2="specOut"
+            operator="arithmetic"
+            k1="0"
+            k2="1"
+            k3="1"
+            k4="0"
+          /> -->
+        </filter>
+      </defs>
+    </svg>
+  </body>
+</html>

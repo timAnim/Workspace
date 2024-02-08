@@ -1,0 +1,6 @@
+{
+    "port": 8080,
+    "watch": false,
+    "host":"0.0.0.0",
+    "delay":"10"
+}

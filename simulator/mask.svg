@@ -1,0 +1,12 @@
+<svg
+width='200'
+height='200'
+xmlns='http://www.w3.org/2000/svg'
+xmlns:xlink='http://www.w3.org/1999/xlink'>
+<rect width='200' height='200' style='fill:red;' filter='#filter'/>
+<defs>
+    <filter id="filter" x="0" y="0" width="100%" height="100%">
+        <feBlend in="SourceGraphic" in2="blurOut" mode="multiply" />
+    </filter>
+</defs>
+</svg>

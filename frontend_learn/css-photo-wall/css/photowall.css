@@ -1,0 +1,219 @@
+/*初始化*/
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html {
+        font-size: 625%;
+        height: 100%;
+    }
+
+    body {
+        overflow: hidden;
+        height: 100%;
+        font-family: 'Microsoft YaHei';
+        font-size: 0.14rem;
+    }
+/*初始化*/
+
+/*静态的样式*/
+    .wrapper {
+        background: #424242;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wrapper .content {
+        display: flex;
+        justify-content: space-between;
+        max-width: 9.6rem;
+        min-width: 7.67rem;
+        width: 100%;
+        height: 4.8rem;
+    }
+
+    .wrapper .content .photo {
+        width: 16%;
+        list-style: none;
+        overflow: hidden;
+        border-radius: 0.08rem;
+        position: relative;
+        transition: all 0.2s ease;
+        background-position: 50% 50%;
+        background-size: cover;
+        margin-top: 100%;
+        animation: 'moveup' 0.4s linear forwards;
+    }
+
+    .wrapper .content .photo:nth-child(1) {
+        background-image: url(../img/1.jpg);
+        animation-delay: 0.2s;
+    }
+
+    .wrapper .content .photo:nth-child(2) {
+        background-image: url(../img/2.jpg);
+        animation-delay: 0.4s;
+    }
+
+    .wrapper .content .photo:nth-child(3) {
+        background-image: url(../img/3.jpg);
+        animation-delay: 0.6s;
+    }
+
+    .wrapper .content .photo:nth-child(4) {
+        background-image: url(../img/4.jpg);
+        animation-delay: 0.8s;
+    }
+
+    .wrapper .content .photo:nth-child(5) {
+        background-image: url(../img/5.jpg);
+        animation-delay: 1s;
+    }
+
+    .wrapper .content .photo:nth-child(6) {
+        background-image: url(../img/6.jpg);
+        animation-delay: 1.2s;
+    }
+
+    .wrapper .content .photo::before {
+        content: attr(highlight);
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        display: block;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+        line-height: 4.8rem;
+        color: white;
+        text-align: center;
+        transition: all 0.4s linear;
+        cursor: pointer;
+    }
+
+    .wrapper .content .photo .th {
+        color: white;
+        padding: 0 0.16rem;
+        line-height: 0.4rem;
+        line-height: 0.4rem;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    /*关闭按钮*/
+
+    .wrapper .content .photo .close {
+        height: 0.24rem;
+        width: 0.24rem;
+        position: absolute;
+        right: 0.16rem;
+        top: 0.16rem;
+        transform: rotate3d(0, 0, 1, 45deg);
+        z-index: 10;
+    }
+
+    .wrapper .content .photo .close::after,
+    .wrapper .content .photo .close::before {
+        content: '';
+        position: absolute;
+        display: block;
+        height: 0.24rem;
+        width: 0.24rem;
+        background: white;
+    }
+
+    .wrapper .content .photo .close::before {
+        height: 0.02rem;
+        transform: translate3d(0, 0.11rem, 0);
+    }
+
+    .wrapper .content .photo .close::after {
+        width: 0.02rem;
+        transform: translate3d(0.11rem, 0, 0);
+    }
+
+    .wrapper .content .init {
+        animation: 'blur' 0.4s linear forwards;
+    }
+/*静态的样式*/
+
+/*打开预览图片*/
+    .wrapper .content .preview {
+        transition: width 0.4s ease 0.6s;
+    }
+
+    .content[preview='true'] .photo {
+        /* 覆盖动画样式 */
+        transition: transform 0.4s linear, width 0.2s linear 0.6s;
+    }
+
+    .content[preview='true'] .photo:not(.preview) {
+        /* 非目标图片 */
+        transform: rotate3d(1, 0, 0, 90deg);
+        width: 0;
+    }
+
+    .content[preview='true'] .preview {
+        /* 目标图片 */
+        width: 100%;
+    }
+
+    .content[preview='true'] .photo .close {
+        transition: opacity 0.2s linear 0.8s, transform 0.4s linear 1s;
+        opacity: 1;
+        transform: rotate3d(0, 0, 1, 405deg);
+        cursor: pointer;
+    }
+
+    .content[preview='true'] .photo .th {
+        /* 标题 */
+        opacity: 1;
+    }
+
+    .content[preview='true'] .photo::before {
+        /* 遮罩 */
+        opacity: 0;
+        cursor: default;
+    }
+/*打开预览图片*/
+
+/*关闭预览图片*/
+    .content[preview='false'] .photo {
+        /* 图片 */
+        transform: rotate3d(1, 0, 0, 0);
+        width: 16%;
+        transition: width 0.4s linear, transform 0.2s linear 0.6s;
+    }
+
+    .content[preview='false'] .photo .th {
+        /* 标题 */
+        opacity: 0;
+    }
+
+    .content[preview='false'] .photo .close {
+        transition: opacity 0.4s linear;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .content[preview='false'] .photo:hover::before {
+        /* 遮罩 */
+        background: transparent;
+        font-size: 0.2rem;
+        opacity: 1;
+    }
+/*关闭预览图片*/
+
+    @keyframes moveup {
+        0% {
+            margin-top: 100%;
+        }
+        100% {
+            margin-top: 0;
+        }
+    }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        line-height: 32px;
+        margin: 8px;
+      }
+      label {
+        display: inline-block;
+        width: 104px;
+        font-size: 14px;
+        padding: 0 8px;
+        text-align: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label for="row">厘米</label>
+      <input type="number" name="" id="inppx" />
+      <label>像素</label>
+      <input readonly disabled name="" id="outcm" />
+    </div>
+    <div>
+      <label for="row">行高(像素)</label>
+      <input type="number" name="" id="inpht" />
+      <label>行高(磅)</label>
+      <input readonly disabled name="" id="outht" />
+    </div>
+    <div>
+      <label for="row">列宽(像素)</label>
+      <input type="number" name="" id="inpwd" />
+      <label>列宽(1/10英寸)</label>
+      <input readonly disabled name="" id="outwd" />
+    </div>
+  </body>
+  <script>
+    inpht.addEventListener("input", function (e) {
+      // 像素 ＝ （dpi / 72）* 磅数
+      // 磅数 ＝ 像素 / dpi * 72
+      outht.value = (e.target.value / 144) * 72;
+    });
+
+    inpwd.addEventListener("input", function (e) {
+      // 像素数 = 英寸 x 分辨率
+      // 英寸 = 像素数 x 分辨率
+      outwd.value = ((e.target.value * 0.81) / 10).toFixed(2);
+    });
+
+    inppx.addEventListener("input", function (e) {
+      outcm.value = (e.target.value * 57).toFixed(0);
+    });
+  </script>
+</html>

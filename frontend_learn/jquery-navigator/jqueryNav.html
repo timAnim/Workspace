@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery 导航栏</title>
+    <link rel="stylesheet" type="text/css" href="./css/jqueryNav.css">
+    <link rel="stylesheet" type="text/css" href="./font/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <span id="logo" class="theme">
+    		<i class="fa fa-envira"></i>
+    		<span>TIMOTHY</span>
+        </span>
+    </header>
+    <div id='container' class="container" style="background-color:#2196F3">
+        <header>
+            <nav class="current" style="background-color:#2196F3"><i class="fa fa-bus"></i>车辆</nav>
+            <nav style="background-color: #00BCD4"><i class="fa fa-institution"></i>组织</nav>
+            <nav style="background-color:#009688"><i class="fa fa-map"></i>线路</nav>
+            <nav style="background-color: #4CAF50"><i class="fa fa-user"></i>司机</nav>
+            <div id="indicator" style="left:0"></div>
+        </header>
+        <div id="content"></div>
+    </div>
+    <script type="text/javascript" src='./js/jquery-3.3.1.js'></script>
+    <script type="text/javascript">
+    var cards;
+
+    init();
+
+    function init() {
+        for (var i = 8; i > 0; i--) {
+            $('#content').append($("<span class='card'><img src = './img/img01.jpg' width = '100%'></span>"))
+        }
+        cards = $('#container span');
+        var conLeft = $('#content').offset().left,
+            conTop = $('#content').offset().top;
+        $('nav').click(function(e) {
+            var direct = $(this).index() < $('.current').index() ? -1 : 1;
+            navAnim($('.current'), $(this), direct, e.pageX - conLeft, e.pageY - conTop);
+
+            $('.current').removeClass('current');
+            $(this).addClass('current');
+        })
+    }
+
+    function navAnim(from, to, direct, x, y) { // 回弹高亮的线，-1往左
+        var swing = -80 * direct,
+            damping = 0.5,
+            range = 0,
+            height = $('#container').height(),
+            width = $('#container').width(),
+            step = Math.sqrt(width * width + height * height) / 7,
+            seed,
+            colorCur = from.css('background-color'),
+            colorTarget = to.css('background-color');
+        $('.theme').css('color', colorTarget);
+
+
+        // 判断翻转的顺序
+        var flip = to.index() < 2 ? 'alternate' : 'normal';
+        if (flip === 'normal') {
+            for (var i = cards.length - 1; i >= 0; i--) {
+                $(cards[i]).css('animation', 'flip 0.5s ease ' + 0.05 * (cards.length - 1 - i) + 's ' + flip);
+            }
+        } else {
+            for (var i = cards.length - 1; i >= 0; i--) {
+                $(cards[i]).css('animation', 'flip 0.5s ease ' + 0.05 * i + 's ' + flip);
+            }
+        }
+
+        setTimeout(function() {
+            $('#container span').css('animation', 'none');
+        }, 800)
+
+        function frame() {
+            swing *= -1; // 每次回弹要先反向
+
+            $('#indicator').css('left', to.position().left + swing);
+            $('#container').css('background-image', 'radial-gradient(' + range + 'px at ' + x + 'px ' + y + 'px, ' + colorTarget + ' 50%, ' + colorCur + ' 52%)');
+
+            range += step;
+            swing *= damping;
+
+            if (Math.abs(swing) < 1) {
+                $('#indicator').css('left', to.position().left);
+                $('#container').css({
+                    'background-color': colorTarget,
+                    'background-image': 'none'
+                })
+                clearInterval(seed)
+            }
+        }
+        seed = setInterval(frame, 60);
+    }
+    </script>
+</body>
+
+</html>

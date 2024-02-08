@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>瀑布流</title>
+    <meta charset="utf-8">
+    <style type="text/css">
+    section {
+        justify-content: space-between;
+        margin: 8px auto;
+    }
+
+    section>ul {
+        flex-basis: 24%;
+    }
+
+    li {
+        list-style: none;
+        position: relative;
+    }
+
+    .img-th{
+        background: linear-gradient(transparent, white);
+    }
+    </style>
+</head>
+
+<body>
+    <section class="lay-h wd-page list-con">
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+        <ul></ul>
+    </section>
+    <textarea class="img-tmp" style="display: none;">
+        <li style="height:$ht$px">
+            <img class="wd-max" src="$preview$">
+            <div class="float-sw pd-s-h img-th wd-max ht-m" style="overflow: hidden;box-sizing: border-box;">$title$</div>
+        </li>
+    </textarea>
+    <!-- 测试数据 -->
+    <!-- <script type="text/javascript" src="./js/data.js"></script> -->
+    <script type="text/javascript" src="../assets/js/util.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+    var uls = $('.list-con > ul'), // 原始数组
+        wd = $(uls[0]).width(), // 每列的宽度
+        page = 1, // 当前页面
+        sorted; // 排序后的数组
+
+    function sortData() { //升序排列， 并且初始化高度
+        sorted = uls.sort((a, b) => {
+            a.ht = a.ht || 0
+            b.ht = b.ht || 0
+            return a.ht - b.ht
+        })
+    }
+
+    function getData() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3721/getPics.php',
+            data: {
+                cpage: page,
+            },
+            success: function(data) {
+                data = JSON.parse(data)
+                appendDom(data)
+            }
+        })
+    }
+
+    function appendDom(data) {
+        data.forEach(item => {
+            sortData() //每次处理数据前先排序
+            item.ht = wd * (parseInt(item.height) / parseInt(item.width))
+            sorted[0].ht += parseInt(item.ht)
+            $(sorted[0]).append($('.img-tmp').val().temp(item))
+        })
+    }
+
+    function initEvent() {
+        document.body.onscroll = scrollHdl
+    }
+
+    function scrollHdl(e) {
+        if ($(document).scrollTop() + $(window).height() > $(document).height() - 20) {
+            page++;
+            getData();
+        }
+    }
+    initEvent();
+    getData();
+    </script>
+</body>
+
+</html>

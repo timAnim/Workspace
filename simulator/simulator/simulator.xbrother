@@ -1,0 +1,3 @@
+  check process simulator with MATCHING "node.*simulator.js$"
+    start program = "/opt/data/simulator/node-v14.21.3-linux-x64/bin/node /opt/data/simulator/simulator.js &" with timeout 21 seconds
+    stop program = "pkill node"

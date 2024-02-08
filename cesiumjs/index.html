@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./js/Cesium.js"></script>
+    <link href="./js/Widgets/widgets.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="cesiumContainer"></div>
+    <script type="module">
+      // Your access token can be found at: https://ion.cesium.com/tokens.
+      // Replace `your_access_token` with your Cesium ion access token.
+
+      Cesium.Ion.defaultAccessToken =
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlMzNkZDU4Zi1mNDNmLTQ5ZjEtOGVkMy02N2E4OTkxZDQ2MTUiLCJpZCI6MTkxMzQwLCJpYXQiOjE3MDU5ODkyMTF9.TYgQ9FNo3bnmaxYPsqU5ay_1tbVIb3KPtPEGr7CplRc";
+
+      // Initialize the Cesium Viewer in the HTML element with the `cesiumContainer` ID.
+      const viewer = new Cesium.Viewer("cesiumContainer", {
+        terrain: Cesium.Terrain.fromWorldTerrain(),
+      });
+
+      // 将三维球定位到中国
+      viewer.camera.flyTo({
+        destination: Cesium.Cartesian3.fromDegrees(103.84, 31.15, 17850000),
+        orientation: {
+          heading: Cesium.Math.toRadians(348.4202942851978),
+          pitch: Cesium.Math.toRadians(-89.74026687972041),
+          roll: Cesium.Math.toRadians(0),
+        },
+        complete: function callback() {
+          // 定位完成之后的回调函数
+        },
+      });
+
+    </script>
+  </body>
+</html>

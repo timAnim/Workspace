@@ -1,0 +1,624 @@
+{
+  "type": "element",
+  "name": "Comms",
+  "elements": [
+    {
+      "type": "element",
+      "name": "Comm",
+      "elements": [
+        {
+          "type": "element",
+          "name": "Quantity",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Length"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "PreferredUnits",
+          "elements": [
+            {
+              "type": "text",
+              "text": "m"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "CalculateWithoutOffset",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "CalculateAutomatically",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "AutoCorrectUnits",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "FieldName",
+          "elements": [
+            {
+              "type": "text",
+              "text": "X"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsDatabaseField",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsIndexedField",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsPreviewableField",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsDefaultSet",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "ResetIfOutOfRange",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Value",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMin",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMax",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMinIsFixed",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMaxIsFixed",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Default",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "FullType",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Amm.Comm.Atoms.DoubleComm"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Name",
+          "elements": [
+            {
+              "type": "text",
+              "text": "X"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Type",
+          "elements": [
+            {
+              "type": "text",
+              "text": "DoubleComm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "Comm",
+      "elements": [
+        {
+          "type": "element",
+          "name": "Quantity",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Length"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "PreferredUnits",
+          "elements": [
+            {
+              "type": "text",
+              "text": "m"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "CalculateWithoutOffset",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "CalculateAutomatically",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "AutoCorrectUnits",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "FieldName",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Y"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsDatabaseField",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsIndexedField",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsPreviewableField",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsDefaultSet",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "ResetIfOutOfRange",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Value",
+          "elements": [
+            {
+              "type": "text",
+              "text": "1.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMin",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMax",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMinIsFixed",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMaxIsFixed",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Default",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "FullType",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Amm.Comm.Atoms.DoubleComm"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Name",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Y"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Type",
+          "elements": [
+            {
+              "type": "text",
+              "text": "DoubleComm"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "Comm",
+      "elements": [
+        {
+          "type": "element",
+          "name": "Quantity",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Length"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "PreferredUnits",
+          "elements": [
+            {
+              "type": "text",
+              "text": "m"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "CalculateWithoutOffset",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "CalculateAutomatically",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "AutoCorrectUnits",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "FieldName",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Z"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsDatabaseField",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsIndexedField",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsPreviewableField",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "IsDefaultSet",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "ResetIfOutOfRange",
+          "elements": [
+            {
+              "type": "text",
+              "text": "True"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Value",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMin",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMax",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMinIsFixed",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "RangeMaxIsFixed",
+          "elements": [
+            {
+              "type": "text",
+              "text": "False"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Default",
+          "elements": [
+            {
+              "type": "text",
+              "text": "0.000000E+000"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "FullType",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Amm.Comm.Atoms.DoubleComm"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Name",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Z"
+            }
+          ]
+        },
+        {
+          "type": "element",
+          "name": "Type",
+          "elements": [
+            {
+              "type": "text",
+              "text": "DoubleComm"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

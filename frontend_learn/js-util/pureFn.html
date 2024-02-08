@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>pure function</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    // 执行过程中不依赖外部的变量
+    // 一个pure 函数
+    var num = 18;
+
+    function compare(x, num) {
+        return x > num;
+    }
+
+    console.log(compare(20, num));
+
+    // 非纯函数
+    // var arr = [];
+
+    // function add(_arr) {
+    //     return x > num;
+    // }
+
+    // console.log(add(arr));
+
+    var obj = {
+    	name:{
+    		name:'d',
+    		js:'d',
+    	}
+    }
+
+    var objC = JSON.parse(JSON.stringify(obj));
+    objC.name.name = 'c';
+    console.log(obj);
+    </script>
+</body>
+
+</html>

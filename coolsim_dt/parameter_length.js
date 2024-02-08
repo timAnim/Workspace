@@ -1,0 +1,22 @@
+var a = {
+    Quantity:"Length",
+    PreferredUnits:"m",
+    CalculateWithoutOffset:"False",
+    CalculateAutomatically:"True",
+    AutoCorrectUnits:"True",
+    FieldName:"Y",
+    IsDatabaseField:"True",
+    IsIndexedField:"False",
+    IsPreviewableField:"False",
+    IsDefaultSet:"False",
+    ResetIfOutOfRange:"True",
+    Value:"2.133600E+000",
+    RangeMin:"0.000000E+000",
+    RangeMax:"0.000000E+000",
+    RangeMinIsFixed:"False",
+    RangeMaxIsFixed:"False",
+    Default:"0.000000E+000",
+    FullType:"Amm.Comm.Atoms.DoubleComm",
+    Name:"Y",
+    Type:"DoubleComm"
+}

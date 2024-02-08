@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="js/player/lottie.js" type="text/javascript"></script>
+    <style>
+      .con {
+        height: 400px;
+        display: inline-block;
+        width: 400px;
+      }
+      #con2{
+        background: linear-gradient(#e0e0e0,white);
+      }
+      div {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <span id="con1" class="con"></span>
+      <span id="con2" class="con"></span>
+    </div>
+    <div>
+      <a href="test/animations/monster.json">动画文件.json</a>
+      <a href="ext/bodymovin.zxp">插件文件bodymovin.zxp</a>
+    </div>
+    <div>
+      <button onclick="anim.pause()">pause</button>
+      <button onclick="anim.play()">play</button>
+    </div>
+    <script>
+      let anim = lottie.loadAnimation({
+        container: document.getElementById("con1"), 
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "test/animations/monster.json", 
+      });
+
+      lottie.loadAnimation({
+        container: document.getElementById("con2"), 
+        renderer: "svg",
+        loop: true,
+        autoplay: true,
+        path: "ext/test.json", 
+      });
+    </script>
+  </body>
+</html>

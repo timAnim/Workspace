@@ -1,0 +1,536 @@
+{
+  "type": "element",
+  "name": "Comm",
+  "elements": [
+    {
+      "type": "element",
+      "name": "ChildrenNamingExpression",
+      "elements": [
+        {
+          "type": "text",
+          "text": "^(.+)_(\\d+)$"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "ChildrenNamingStringFormat",
+      "elements": [
+        {
+          "type": "text",
+          "text": "{0}_{1}"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "UseChildrenNamingExpression",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "ChildrenNamingUppercase",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "ChildrenNamingStartAtZero",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "MinimumChildNameLength",
+      "elements": [
+        {
+          "type": "text",
+          "text": "5"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "MaximumChildNameLength",
+      "elements": [
+        {
+          "type": "text",
+          "text": "99"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "IgnoreNamesDuringMerge",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "RemoveUnmatchedDuringMerge",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "RemoveAllChildrenDuringMerge",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "IgnoreCaseForNamesDuringMerge",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "ChildrenNamingRemoveSpaces",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "HideFromBrowserTree",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "DocumentTypes",
+      "elements": [
+        {
+          "type": "text",
+          "text": "NewDuct"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "DocumentState",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Unknown"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "EditorHandlingHint",
+      "elements": [
+        {
+          "type": "text",
+          "text": "DefaultHandling"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "NamingStartAtZero",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "ListableFields",
+      "elements": [
+        {
+          "type": "text",
+          "text": "GUID,Name,Type,FullType,CreationDate,ModificationDate"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "CanBeSelectedIndividually",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "SelectChildrenOnSelect",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "FilterFields",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Type"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "WhereByFields",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Type"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "WhereByColumnFields",
+      "elements": [
+        {
+          "type": "text",
+          "text": "GUID,Name,Type,FullType,CreationDate,ModificationDate"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "EnableSaveIncrement",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "SaveIncrement",
+      "elements": [
+        {
+          "type": "text",
+          "text": "0"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "IsArchivalItem",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "AcceptAllPropertyChanges",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "IsReference",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "IsEditingReference",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "IsInheriting",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "IsEditing",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "AutoOverwrite",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "CanAddToLibrary",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "CacheFields",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Name,Type"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "SmallIconResource",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Ducts_Diffusers_Button_48x48.png"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "GUID",
+      "elements": [
+        {
+          "type": "text",
+          "text": "eec42258-b403-4d82-b94b-14fc48700704"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "Locked",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "TableName",
+      "elements": [
+        {
+          "type": "text",
+          "text": "DuctContainer"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "VersionedPropertyNames",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Name,ReferenceId,IsInheriting,IsReference,Description,SmallIconResource"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "CreationDate",
+      "elements": [
+        {
+          "type": "text",
+          "text": "-8585210302310765603"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "ModificationDate",
+      "elements": [
+        {
+          "type": "text",
+          "text": "-8585210302310765603"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "Major",
+      "elements": [
+        {
+          "type": "text",
+          "text": "5"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "Minor",
+      "elements": [
+        {
+          "type": "text",
+          "text": "0"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "SubMinor",
+      "elements": [
+        {
+          "type": "text",
+          "text": "1444"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "Build",
+      "elements": [
+        {
+          "type": "text",
+          "text": "358"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "IsAutomaticVersioningEnabled",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "DisableSearchingAnyContents",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "ContainerNotStoredInDB",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "CanCreateChildAutomatically",
+      "elements": [
+        {
+          "type": "text",
+          "text": "True"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "FullType",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Amm.CoolSim.Comms.DuctContainer"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "Name",
+      "elements": [
+        {
+          "type": "text",
+          "text": "Duct Container"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "Type",
+      "elements": [
+        {
+          "type": "text",
+          "text": "DuctContainer"
+        }
+      ]
+    },
+    {
+      "type": "element",
+      "name": "IsSelected",
+      "elements": [
+        {
+          "type": "text",
+          "text": "False"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+﻿分组,name,value,描述
+设备信息,company,共济,厂家
+,model,共济虚拟模拟器,设备型号
+,type,虚拟设备,分类(ups、空调、电量仪等）
+,board_type,2.4.17.638.1.15.3,设备7层结构
+,auth_code,0,授权码
+协议信息,procotol_filename,EXL-unity 卡 MODBUS协议l.doc,协议文档名称
+,procotol_caption,EXL-unity 卡 MODBUS协议l.doc,协议内容标题
+维护信息,author,timothey,创建人
+,create_time,2023/8/18,创建时间
+协议特性,procotol_type,modbus,协议类型（modbus\modbus_Tcp）
+,limit_interval,150,命令间隔（单位ms）
+,standard_model,0,标准化模板表
+,command_max_register,120,命令最大连续地址数
+,protocol,modbusRTU,协议类型
+模板信息,template_name,modbus,模板名称
+,version,2,模板版本号
+,group,基础设施/虚拟设备/共济虚拟模拟器/共济/通用/通用/通用,设备路径

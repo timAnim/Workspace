@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+    div {
+        width: 100px;
+        height: 100px;
+        background-color: #8bc34a;
+        position: relative;
+    }
+    div:after{
+    	content: '';
+    	height: 50px;
+    	width: 50px;
+    	background-color: #9e9e9e;
+    	position: absolute;
+    	top:100%;
+    }
+    </style>
+</head>
+
+<body>
+    <div></div>
+</body>
+<script type="text/javascript">
+// 一个字符串返回第一个没重的字符
+var str = 'urqwepurpoewuirowarqoiuprwqeiopbrweopruoi';
+// 1. 遍历一遍,放到obj里面, key=字符 value = count
+// 2. 遍历一遍属性,看count==1 的第一个
+// function firstUnique(str) {
+//     var arr = str.split(''),
+//         _obj = {},
+//         ret = '没有';
+//     for (var i = 0; i < arr.length; i++) {
+//         _obj[arr[i]]= _obj[arr[i]] === undefined ? 0 : ++_obj[arr[i]];
+//     }
+
+//     for (var item in _obj) {
+//         if (_obj[item] === 0) {
+// 	        return item;
+//         }
+//     }
+//     return ret;
+// }
+// console.log(firstUnique(str));
+// 字符串去重 
+// 1. 字符串变成数组
+// 2. 放到对象里面, key= 元素, value =元素
+// 数组join一起
+
+// 'use strict';
+function a() {
+
+}
+var a;
+
+function unique() {
+    var arr = ['a', 'b', '234.23', 'a', 'b', 3, 1, 234],
+        obj = {},
+        ret = [];
+    for (var i = 0; i < arr.length; i++) {
+        obj[arr[i]] = arr[i];
+    }
+    for (var item in obj) {
+        ret.push(obj[item]);
+    }
+    return ret
+}
+
+var div = document.getElementsByTagName('div')[0];
+console.log(div);
+
+function getStyle(dom, prop) {
+    if (window.getComputedStyle) {
+        return window.getComputedStyle(ele, null)[prop];
+    } else {
+        return dom.currentStyle[prop];
+    }
+}
+
+// home work mail sichao.ma@duyi-inc.com
+// name-class-projectName
+
+</script>
+
+</html>

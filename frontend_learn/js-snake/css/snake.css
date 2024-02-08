@@ -1,0 +1,61 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    background-color: #eeeeee;
+}
+
+#container {
+    height: 300px;
+    width: 300px;
+    border: 1px solid #e0e0e0;
+    margin: 0.8rem;
+    background-color: white;
+    position: relative;
+}
+
+.food {
+    background-color: #e0e0e0;
+}
+
+#start-btn {
+    height: 3.2rem;
+    width: 12rem;
+    line-height: 3.2rem;
+    background-color: #8bc34a;
+    color: white;
+    text-align: center;
+    font-size: 1.25rem;
+    border-radius: 1.6rem;
+    cursor: pointer;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -6rem;
+    margin-top: -1.6rem;
+}
+
+.row {
+    height: 20px;
+    margin-top: -1px;
+}
+
+.cell {
+    float: left;
+    border: 1px solid #e0e0e0;
+    width: 21px;
+    height: 21px;
+    margin: -1px 0 0 -1px;
+    box-sizing: border-box;
+}
+
+.cell[mark=mark] {
+    background-color: #e0e0e0;
+}

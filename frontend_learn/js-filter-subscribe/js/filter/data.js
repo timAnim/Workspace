@@ -1,0 +1,31 @@
+var data = [{
+  name: 'tom',
+  sex: 'm',
+  age: '24',
+  des: '这是tim的蝈蝈',
+  src: './img/img01.jpg',
+}, {
+  name: 'tim',
+  sex: 'm',
+  age: '16',
+  des: '这是弟弟',
+  src: './img/img01.jpg',
+}, {
+  name: 'jane',
+  sex: 'f',
+  age: '18',
+  des: '这是姐姐',
+  src: './img/img01.jpg',
+}, {
+  name: 'baby',
+  sex: 'f',
+  age: '4',
+  des: '这是贝贝',
+  src: './img/img01.jpg',
+}, {
+  name: 'jack',
+  sex: 'm',
+  age: '40',
+  des: '这是老杰克',
+  src: './img/img01.jpg',
+}];

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        color: white;
+        font-size: 13px;
+        background: black;
+      }
+      .simu-header {
+        background-color: #000000;
+        text-align: left;
+        border-radius: 8px;
+        margin-bottom: 8px;
+        padding: 8px;
+      }
+      .simu-header input {
+        line-height: 18px;
+      }
+      .simu-header .inp-label {
+        display: inline-block;
+        width: 72px;
+      }
+      .simu-header button {
+        background: #424242;
+        border: 1px dotted black;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .simu-page input {
+        max-width: 88px;
+        background-color: #424242;
+        color: white;
+        border-radius: 4px;
+      }
+      .header-inp {
+        background-color: white;
+        padding: 4px;
+      }
+      .header-btn {
+        float: right;
+      }
+      .simu-page {
+        position: relative;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: #212121;
+        box-shadow: 1px 6px 12px #000000e0;
+        color: white;
+        font-size: 13px;
+        padding: 8px;
+        border-radius: 16px;
+        line-height: 18px;
+        box-sizing: border-box;
+      }
+      .simu-body {
+        position: absolute;
+        z-index: 999;
+        left: 8px;
+        right: 8px;
+        top: 48px;
+        bottom: 8px;
+        margin: 0;
+        padding: 0;
+        background: #212121;
+      }
+      .simu-panel {
+        height: 100%;
+        overflow-y: auto;
+        display: inline-block;
+        width: 240px;
+        padding: 8px 16px;
+        box-sizing: border-box;
+      }
+      .simu-panel table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        border-color: #424242;
+      }
+
+      table td {
+        min-width: 88px;
+        color: #bdbdbd;
+      }
+      table th {
+        background: #424242;
+      }
+      .simu-panel[name="输入"]:nth-of-type(2) {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="simu-page">
+      <div class="simu-header">
+        <span class="inp-label">设备测点</span>
+        <input
+          type="text"
+          name=""
+          class="header-inp"
+          id="dev-id"
+          placeholder="连接视图"
+          value="0_20279"
+        />
+        <button class="header-btn" id="csv-download-btn">下载点表</button>
+      </div>
+      <div class="simu-body"></div>
+    </div>
+    <script>
+      var data;
+
+      simulateDC();
+
+      function initSimuData() {
+        var inp = {
+          机柜功率: 5,
+          使用率: 0.63,
+          房间机柜数: 200,
+          单机柜面积: 5, //单个机柜占用面积，用于估算面积
+          楼层房间数: 2,
+          楼栋楼层数: 2,
+          园区楼栋数: 2,
+          pue: 1.35, // pue = plf + clf + olf + 1
+          wue: 0.39, // 用水  / 日it能耗
+          rer: 0.1, // 可再生能源利用率
+          平均电价: 0.8,
+        };
+
+        if (window.simuData) inp = window.simuData["输入"];
+
+        let plf = (inp.pue - 1) * 0.35, // 电力 / 日IT能耗
+          clf = (inp.pue - 1) * 0.6, // 暖通 / 日IT能耗
+          olf = (inp.pue - 1) * 0.05; // 其它 / 日IT能耗
+        var room = {
+          机柜数: inp.房间机柜数,
+          已用机柜: Math.floor(inp.房间机柜数 * inp.使用率),
+          可用机柜: Math.floor(inp.房间机柜数 * (1 - inp.使用率)),
+          IT功率: inp.房间机柜数 * inp.机柜功率 * inp.使用率,
+          日总功率: inp.房间机柜数 * inp.机柜功率 * inp.使用率 * inp.pue,
+          日IT能耗: inp.房间机柜数 * inp.机柜功率 * inp.使用率 * 24,
+          日总能耗: inp.房间机柜数 * inp.机柜功率 * inp.使用率 * 24 * inp.pue,
+          制冷量: 0.8 * inp.单机柜面积 * inp.房间机柜数, //0.7为冷量估算指标
+        };
+        var floorRack = inp.房间机柜数 * inp.楼层房间数;
+        var floor = {
+          机柜数: floorRack,
+          已用机柜: Math.floor(floorRack * inp.使用率),
+          可用机柜: Math.floor(floorRack * (1 - inp.使用率)),
+          IT功率: room["IT功率"] * inp.楼层房间数,
+          日总功率: room["日总功率"] * inp.楼层房间数,
+          日IT能耗: room["日IT能耗"] * inp.楼层房间数,
+          日总能耗: room["日总能耗"] * inp.楼层房间数,
+          制冷量: room["制冷量"] * inp.楼层房间数,
+        };
+        var bdRack = inp.房间机柜数 * inp.楼层房间数 * inp.楼栋楼层数;
+        var building = {
+          机柜数: bdRack,
+          已用机柜: Math.floor(bdRack * inp.使用率),
+          可用机柜: Math.floor(bdRack * (1 - inp.使用率)),
+          plf,
+          clf,
+          olf,
+          IT功率: floor["IT功率"] * inp.楼栋楼层数,
+          日总功率: floor["日总功率"] * inp.楼栋楼层数,
+          日IT能耗: floor["日IT能耗"] * inp.楼栋楼层数,
+          日总能耗: floor["日总能耗"] * inp.楼栋楼层数,
+          制冷量: floor["制冷量"] * inp.楼栋楼层数,
+          UPS数: bdRack / 10,
+        };
+
+        let buildingEnergy = building["日总能耗"] * inp.园区楼栋数,
+          parkRack = bdRack * inp.园区楼栋数;
+        var park = {
+          机柜数: parkRack,
+          已用机柜: Math.floor(parkRack * inp.使用率),
+          可用机柜: Math.floor(parkRack * (1 - inp.使用率)),
+          plf,
+          clf,
+          olf,
+          pue: inp.pue,
+          wue: inp.wue,
+          cue:
+            (((buildingEnergy * (1 - inp.rer) * 0.123) / 1000) * 2.7725) /
+            (building.IT功率 * inp.园区楼栋数),
+          耗电: building["日总能耗"] * inp.园区楼栋数,
+          耗水: (buildingEnergy * inp.wue) / 1000,
+          耗标煤: (buildingEnergy * (1 - inp.rer) * 0.123) / 1000,
+          碳排: ((buildingEnergy * (1 - inp.rer) * 0.123) / 1000) * 2.7725,
+          房间数: inp.楼层房间数 * inp.楼栋楼层数 * inp.园区楼栋数,
+          楼层数: inp.楼栋楼层数 * inp.园区楼栋数,
+          楼栋数: inp.园区楼栋数,
+          IT功率: building.IT功率 * inp.园区楼栋数,
+          日总功率: building["日总功率"] * inp.园区楼栋数,
+          日IT能耗: building["日IT能耗"] * inp.园区楼栋数,
+          日总能耗: building["日总能耗"] * inp.园区楼栋数,
+          总电费: (building["日总能耗"] * inp.园区楼栋数 * inp.平均电价) / 1000, //万元
+          制冷能耗: building["日IT能耗"] * inp.园区楼栋数 * clf, //日IT能耗*clf
+          制冷量: building["制冷量"] * inp.园区楼栋数,
+          SCOP:
+            (building["制冷量"] * inp.园区楼栋数) /
+            (building["日IT能耗"] * inp.园区楼栋数 * clf), //制冷量/制冷能耗
+          燃油储备: (building["日总功率"] * inp.园区楼栋数 * 0.21 * 12) / 84, //立方米
+          UPS数: parkRack / 10,
+          单UPS容量: Math.floor(((inp["机柜功率"] * 10) / 0.8) * 1.3),
+          电池总容量: parkRack * inp["机柜功率"] * 0.25,
+        };
+        var rack = {
+          网口数量: Math.floor(parkRack * 21 * 2 * 1.2),
+          已用网口: Math.floor(parkRack * 21 * 2 * inp["使用率"] * 1.2),
+        };
+        var elec = {
+          装机: (park.日总功率 / inp.使用率) * 1.25,
+          // 已用: park.日总功率 / inp.变电站数,
+        };
+        var water = {
+          设计流量: ((park.耗水 / inp.使用率) * 1.25) / 24,
+          实际流量: park.耗水 / 24,
+          设定压力值: ((inp.楼栋楼层数 + 3 + 2) * 5) / 10,
+        };
+
+        var consum = {
+          月度耗电: park["日总能耗"] * 30,
+        };
+
+        data = {
+          输入: inp,
+          园区: park,
+          楼栋: building,
+          楼层: floor,
+          房间: room,
+          市电: elec,
+          供水: water,
+          能耗: consum,
+          资产: rack,
+        };
+        for (const key in data) {
+          for (const m in data[key]) {
+            data[key][m] = fix(data[key][m]);
+          }
+        }
+
+        function fix(num) {
+          let len = (num + "").split(".").length;
+          if (len == 1) return parseInt(num);
+          return parseFloat(parseFloat(num).toFixed(2));
+        }
+        window.simuData = data;
+      }
+
+      function simulateDC() {
+        let outer = document.getElementsByClassName("simu-body")[0];
+        let point = document.getElementById("dev-id");
+
+        refreshBody();
+        initEvent();
+
+        function refreshBody() {
+          outer.innerHTML = "";
+          initSimuData();
+          composePanel();
+        }
+
+        function composePanel() {
+          composeInp(window.simuData["输入"], composeTable("输入"));
+          for (const _lv in window.simuData) {
+            let table = composeTable(_lv);
+            composeTd(window.simuData[_lv], table);
+          }
+        }
+
+        function initEvent() {
+          let outer = document.getElementsByClassName("simu-body")[0];
+
+          outer.addEventListener("change", function (event) {
+            let resArr = getResArr(point.value);
+
+            let data = {
+              real_value: 1 + "",
+              resource_id: point.value,
+              values: resArr,
+            };
+
+            if (!point.value) return console.log("测点ID为空");
+
+            var httpRequest = new XMLHttpRequest();
+            httpRequest.open("POST", "/test", false);
+            httpRequest.send(
+              JSON.stringify({
+                method: "post",
+                url: "/test",
+                data,
+              })
+            );
+            console.log(httpRequest.response);
+          });
+          // 标题栏
+
+          let submitBtn = document.getElementById("csv-download-btn");
+          submitBtn.onclick = function () {
+            let resArr = getResArr(point.value);
+            let csv = genCSV(resArr);
+            window.open(csv);
+          };
+        }
+
+        function getResArr(point) {
+          let res = [];
+          let _id = 600;
+          for (const i in data) {
+            const lv = data[i];
+            for (const j in lv) {
+              const val = lv[j];
+              res.push({
+                value: val + "",
+                resource_id: `${point}_2_${_id}_0`,
+                status: 1,
+                timestamp: Math.floor(Date.now() / 1000),
+                point_name: i + "-" + j,
+              });
+              _id++;
+            }
+          }
+          return res;
+        }
+
+        function composeTable(name) {
+          let panel = document.createElement("span");
+          panel.classList.add("simu-panel");
+          panel.setAttribute("name", name);
+
+          let table = document.createElement("table");
+
+          // 初始化表头
+          let tr = document.createElement("tr"),
+            th = document.createElement("th");
+          th.setAttribute("colspan", 2);
+          th.innerText = name;
+          tr.appendChild(th);
+
+          // 组装表格
+          table.appendChild(tr);
+          panel.appendChild(table);
+          outer.appendChild(panel);
+          return table;
+        }
+
+        function composeInp(dt, tbody) {
+          let step = 1,
+            tr,
+            td,
+            td2,
+            inp;
+          for (const key in dt) {
+            step = getStep(dt[key]);
+            tr = document.createElement("tr");
+            td = document.createElement("td");
+            td.innerHTML = key;
+            td2 = document.createElement("td");
+            inp = document.createElement("input");
+            inp.setAttribute("label", key);
+            inp.setAttribute("type", "number");
+            inp.setAttribute("step", step);
+            inp.value = dt[key];
+
+            inp.onchange = function (ev) {
+              let val = ev.target.value,
+                key = ev.target.getAttribute("label");
+              if (window.simuData["输入"]) window.simuData["输入"][key] = val;
+              refreshBody();
+            };
+            td2.appendChild(inp);
+            tr.appendChild(td);
+            tr.appendChild(td2);
+            tbody.appendChild(tr);
+          }
+
+          function getStep(num) {
+            let len = (num + "").split(".").length;
+            if (len == 1) return 1;
+            else return 0.01;
+          }
+        }
+
+        function composeTd(dt, tbody) {
+          let tr, td, td2;
+          for (const key in dt) {
+            tr = document.createElement("tr");
+            td = document.createElement("td");
+            td.innerHTML = key;
+            td.style = "width:88px; color:#bdbdbd;";
+            td2 = document.createElement("td");
+            td2.innerHTML = dt[key];
+
+            tr.appendChild(td);
+            tr.appendChild(td2);
+            tbody.appendChild(tr);
+          }
+        }
+
+        function genCSV(arr) {
+          let resArr = [];
+          let th = [
+            "序号",
+            "协议测点名称",
+            "标准测点名称",
+            "变比(乘法）",
+            "解析函数",
+            "转换函数",
+            "状态映射",
+            "功能码",
+            "寄存器号",
+            "寄存器别名",
+            "bit位",
+            "标准化ID",
+            "单位",
+            "数据类型",
+            "是否展示",
+            "优先级",
+          ];
+          resArr.push(th);
+          arr.forEach((ele, i) => {
+            resArr.push([
+              i,
+              ele.point_name,
+              ele.point_name,
+              "",
+              "",
+              "",
+              "",
+              "02",
+              i + "",
+              i + "",
+              "",
+              "",
+              "",
+              "float",
+              "",
+              "",
+            ]);
+          });
+
+          let csvContent = "data:text/csv;charset=utf-8,";
+          resArr.forEach((row) => {
+            csvContent += row.join(",") + "\n";
+          });
+
+          return encodeURI(csvContent);
+        }
+      }
+    </script>
+  </body>
+</html>
