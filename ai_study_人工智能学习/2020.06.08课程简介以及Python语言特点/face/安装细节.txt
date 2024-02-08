@@ -1,0 +1,4 @@
+1. 安装Cmake, 并添加Path 路径
+
+2. pip install face-recognition(记得激活正确的环境）
+

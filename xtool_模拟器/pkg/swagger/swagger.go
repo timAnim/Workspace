@@ -1,0 +1,3 @@
+package swagger
+
+//go:generate go-bindata -o ui.go -prefix swagger-ui -pkg=swagger dist/...

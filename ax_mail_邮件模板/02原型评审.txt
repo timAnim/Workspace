@@ -1,0 +1,30 @@
+mailto:[[staff_ba]][[staff_qa]][[staff_pm]][[staff_leader]][[staff_dev]][[staff_ixd]] ?subject=《[[proj_name]]项目v[[version]]原型评审会邀请函》&cc= [[staff_cc]]&body=
+    敬启者：<br>
+    [[proj_name]]项目[[version]]交互设计阶段已经结束, 现邀请您参加《[[proj_name]]项目[[version]]原型评审会》<br>
+    <br>
+    主办单位：产品设计部<br>
+    会议形式：线下会议视频讨论<br>
+    参与对象：BA，PM，DEV，QA，IxD<br>
+    <br>
+    【时间、地点】 [[dt_proto]]，总部4楼大会议室<br>
+    【联系人】 [[author]]<br>
+    <br>
+    请提前阅读会议相关资料.<br>
+    <br>
+    -------------相关人员--------------<br>
+    <br>
+    【业务分析】 [[staff_ba]]</br>
+    【产品经理】 [[staff_pm]]</br>
+    【交互设计】 [[staff_ixd]]</br>
+    【开发】 [[staff_dev]]</br>
+    【测试】 [[staff_qa]]</br>
+    【抄送】 [[staff_cc]]</br>
+    <br>
+    -------------相关资料--------------<br>
+    <br>
+    原始需求:[[url_story]]</br>
+    原型地址: [[url_proto]]</br>
+    需求文档: [[url_prd]]</br>
+    SVN地址: [[url_svn]]</br>
+    禅道任务: [[url_task]]</br>
+    项目管理: [[url_project]]

@@ -1,0 +1,50 @@
+/*
+    初始化
+*/
+
+@import 'config.scss';
+@import 'init.scss';
+
+
+/*
+  参数封装
+*/
+
+*:lang(_pt) {
+  /*
+    动画
+  */
+  @import './anim/anim.scss';
+  /*
+    组件
+  */
+  @import './component/dialog.scss';
+  @import './component/toast.scss';
+  @import './component/aside.scss';
+  @import './component/section.scss';
+  @import './component/header.scss';
+  @import './component/nav.scss';
+  @import './component/content.scss';
+  /*
+    布局 
+  */
+  @import './layout/li.scss';
+  @import './layout/ol.scss';
+  @import './layout/ul.scss';
+  @import './layout/dl.scss';
+  @import './layout/main.scss';
+  @import './layout/article.scss';
+  /*
+    元素
+  */
+  @import './element/text.scss';
+  @import './element/label.scss';
+  @import './element/button.scss';
+  @import './element/img.scss';
+  @import './element/barget.scss';
+  @import './element/input.scss';
+}
+
+body:lang(_pt) {
+  @import 'paratag.core.scss';
+}

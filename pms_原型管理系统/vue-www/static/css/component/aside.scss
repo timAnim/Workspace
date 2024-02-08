@@ -1,0 +1,32 @@
+aside{
+  width: $wd-panel;
+  height: $ht-max;
+  background-color: $cl-700;
+  color: $cl-200;
+  fill: $cl-200;
+  flex: none;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  li {
+    width: $wd-panel;
+    cursor: pointer;
+    transition: background 0.1s ease;
+    &[checked] {
+      background-color: $cl-theme;
+      color: white;
+      fill: white;
+    }
+  }
+  div[opened]>li:first-child {
+    opacity: 0.7;
+  }
+
+  div[opened] .child {
+    display: flex;
+    background: $cl-800;
+    >li label:last-child {
+      transform: rotate(-90deg);
+      transition: transform 0.2s ease;
+    }
+  }
+}

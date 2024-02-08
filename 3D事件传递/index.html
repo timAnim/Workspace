@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .main {
+            display: inline-block;
+            height: 100%;
+            width: calc(100% - 320px);
+            float: left;
+        }
+        
+        .aside {
+            display: inline-block;
+            height: 100%;
+            width: 320px;
+            float: right;
+            overflow-y: auto;
+        }
+        
+        iframe {
+            height: 100%;
+            width: 100%;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        button {
+            width: 200px;
+            margin: 8px;
+        }
+        
+        .nav {
+            padding: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <iframe id="scene" src="" frameborder="0"></iframe>
+    </div>
+    <div class="aside">
+        <div class="nav">
+            <label for="tdvs">
+        <input type="radio" name="panel" id="tdvs" value="tdvs" onclick="checkHdl('tdvs')">
+        <span>TDVS</span>
+      </label>
+            <label for="tdft">
+        <input type="radio" name="panel" id="tdft" value="tdft" onclick="checkHdl('tdft')">
+        <span>TDFT</span>
+      </label>
+        </div>
+        <ul id="tdvs-panel">
+            <li>
+                <button onclick="msg('sceneChange')">城市切换</button>
+            </li>
+            <li>
+                <button onclick="msg('showMap')">切换到地图</button>
+            </li>
+            <li>
+                <button onclick="msg('changeRotateStatus')">旋转切换</button>
+            </li>
+            <li>
+                <button onclick="msg('showParentScene')">父场景事件</button>
+            </li>
+            <li>
+                <button onclick="msg('showScene')">回第一个场景事件</button>
+            </li>
+            <li>
+                <button onclick="msg('showRoom')">房间</button>
+            </li>
+            <li>
+                <button onclick="msg('showChildSystem')">切电力子系统</button>
+            </li>
+            <li>
+                <button onclick="msg('changeListStatus')">切换导航栏</button>
+            </li>
+            <li>
+                <button onclick="msg('changeControlStatus')">切换工具栏</button>
+            </li>
+            <li>
+                <button onclick="msg('changeStyle')">切换风格</button>
+            </li>
+        </ul>
+        <ul id="tdft-panel">
+            <li>
+                <button onclick="msg('ftShowRelation')">拓扑关系</button>
+            </li>
+            <li>
+                <button onclick="msg('ftGetContent')">筛选器筛选结果</button>
+            </li>
+            <li>
+                <button onclick="msg('ftSetCameraRotate')">旋转切换</button>
+            </li>
+            <li>
+                <button onclick="msg('ftShowTopNav')">切换导航栏</button>
+            </li>
+            <li>
+                <button onclick="msg('ftShowBottomNav')">切换工具栏</button>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="./jquery-3.6.1.min.js"></script>
+<!-- <script src="./jquery.cookie.min.js"></script> -->
+<script>
+    let rotateStatus = "0";
+    let navBarStatus = "1";
+    let ctrlBarStatus = "1";
+    let style = "1";
+    let checked = "tdft";
+    let frame = {
+        tdvs: "http://192.168.33.147/3d/#/runtime?pid=202207151400019561547823280755347457&scenelevel=level&uuid=9fe56dd5&list=1",
+        tdft: "http://192.168.33.147/3d/#/tdft/filter?uuid=fb2e2c3c"
+    }
+    getSceneList();
+    // checkHdl();
+    initHdl();
+
+    function getSceneList() {
+        $.ajax({
+            type: "GET",
+            url: "http://192.168.33.147/api/td/project/sceneList/202207151400019561547823280755347457",
+            crossDomain: true,
+            xhrFields: {
+                withCredentials: true, //默认情况下，标准的跨域请求是不会发送cookie的
+            },
+            success: function(res) {
+                console.log(res);
+            },
+        });
+    }
+
+    function msg(evt) {
+        switch (evt) {
+            case "sceneChange":
+                scene.contentWindow.postMessage({
+                        eventName: "sceneChange",
+                        eventValue: {
+                            name: "深圳",
+                            uuid: "e5524cc3",
+                        },
+                    },
+                    "*"
+                );
+                break;
+            case "showMap":
+                scene.contentWindow.postMessage({
+                        eventName: "showScene",
+                        eventValue: {
+                            uuid: "fb513818",
+                            sceneLevel: "cityMap",
+                            childSystem: "Default",
+                        },
+                    },
+                    "*"
+                );
+                break;
+            case "showRoom":
+                scene.contentWindow.postMessage({
+                        eventName: "showScene",
+                        eventValue: {
+                            uuid: "c8d7c5fb",
+                            sceneLevel: "level",
+                            childSystem: "Default",
+                        },
+                    },
+                    "*"
+                );
+                break;
+            case "changeRotateStatus":
+                rotateStatus = rotateStatus == "1" ? "0" : "1";
+                scene.contentWindow.postMessage({
+                        eventName: "changeRotateStatus",
+                        eventValue: rotateStatus,
+                    },
+                    "*"
+                );
+                break;
+            case "showParentScene":
+                scene.contentWindow.postMessage({
+                        eventName: "showParentScene",
+                    },
+                    "*"
+                );
+                break;
+            case "showScene":
+                scene.contentWindow.postMessage({
+                        eventName: "showScene",
+                        eventValue: {
+                            uuid: "9fe56dd5",
+                            sceneLevel: "level",
+                            childSystem: "Default",
+                        },
+                    },
+                    "*"
+                );
+                break;
+            case "showChildSystem":
+                scene.contentWindow.postMessage({
+                        eventName: "showChildSystem",
+                        eventValue: "Elec_Device",
+                    },
+                    "*"
+                );
+                break;
+            case "changeListStatus":
+                navBarStatus = navBarStatus == "1" ? "0" : "1";
+                scene.contentWindow.postMessage({
+                        eventName: "changeListStatus",
+                        eventValue: navBarStatus,
+                    },
+                    "*"
+                );
+                break;
+            case "changeControlStatus":
+                ctrlBarStatus = ctrlBarStatus == "1" ? "0" : "1";
+                scene.contentWindow.postMessage({
+                        eventName: "changeControlStatus",
+                        eventValue: ctrlBarStatus,
+                    },
+                    "*"
+                );
+                break;
+            case "changeStyle":
+                style = style == "1" ? "0" : "1";
+                scene.contentWindow.postMessage({
+                        eventName: "changeStyle",
+                        eventValue: style,
+                    },
+                    "*"
+                );
+                break;
+            case "ftShowTopNav":
+                navBarStatus = navBarStatus == "1" ? "0" : "1";
+                scene.contentWindow.postMessage({
+                        eventName: "ftShowTopNav",
+                        eventValue: navBarStatus,
+                    },
+                    "*"
+                );
+                break;
+            case "ftShowBottomNav":
+                ctrlBarStatus = ctrlBarStatus == "1" ? "0" : "1";
+                scene.contentWindow.postMessage({
+                        eventName: "ftShowBottomNav",
+                        eventValue: ctrlBarStatus,
+                    },
+                    "*"
+                );
+                break;
+            case "ftSetCameraRotate":
+                rotateStatus = rotateStatus == "1" ? "0" : "1";
+                scene.contentWindow.postMessage({
+                        eventName: "ftSetCameraRotate",
+                        eventValue: rotateStatus,
+                    },
+                    "*"
+                );
+                break;
+            case "ftShowRelation":
+                let list = [mockRid(),
+                    mockRid(), mockRid(), mockRid()
+                ];
+                console.log(list)
+                scene.contentWindow.postMessage({
+                        eventName: "ftShowRelation",
+                        eventValue: {
+                            list,
+                            "options": {
+                                "lineWidth": "2",
+                                "lineColor": "0x007acc",
+                                "lineStyle": "solid",
+                                lineType: "uptobaselevel"
+                            }
+                        }
+                    },
+                    "*"
+                );
+                break;
+            case "ftGetContent":
+                scene.contentWindow.postMessage({
+                        eventName: "ftGetContent",
+                    },
+                    "*"
+                );
+                break;
+        }
+    }
+
+
+    function checkHdl(fn) {
+        location.hash = fn
+        location.reload()
+    }
+
+    function initHdl() {
+        let fn = location.hash.replace("#", '')
+
+        $("input:radio").each(function(i, inp) {
+            $(inp).attr("checked", fn == $(inp).id)
+        });
+        $("#scene").attr("src", frame[fn])
+        $(".aside ul").each(function(i, el) {
+            $(el).hide()
+        })
+        $(`#${fn}-panel`).show()
+        window.addEventListener("message", function(ev) {
+            console.log(ev.data)
+        }, false)
+    }
+
+
+    function mockRid() {
+        let rel = {
+            from: {
+                type: "device",
+                uuid: "0_52" + ran()
+            },
+            to: {
+                type: "device",
+                uuid: "0_52" + ran()
+            },
+            name: ran()
+        }
+
+        function ran() {
+            return parseInt(Math.random() * 100) % 13 + 24;
+        }
+        return rel
+    }
+</script>
+
+</html>

@@ -1,0 +1,32 @@
+nav {
+    display: flex;
+    flex-flow: row nowrap;
+    &:empty {
+        display: none;
+    }
+    >* {
+        flex: auto;
+        text-align: center;
+        border: 0px solid var(--cl-theme);
+        transition: all 0.3s ease;
+        line-height: var(--ht-m);
+        box-sizing: border-box;
+        &:extend(.blink-wave all);
+        &[checked] {
+            color: var(--cl-theme) !important;
+            font-weight: 600;
+            border-bottom-width: 3px;
+        }
+    }
+    &[type="inner"] {
+        background-color: var(--cl-light);
+        >* {
+            border-bottom: none;
+            max-width: var(--wd-xl);
+        }
+        >*[checked] {
+            background-color: var(--cl-front);
+            border-top-width: 3px;
+        }
+    }
+}

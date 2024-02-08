@@ -1,0 +1,32 @@
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $wd-max;
+  height: $ht-max;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content:center;
+  align-items:center;
+  z-index: 100;
+  background: $cl-mask;
+  &[paused=true] {
+    display: none;
+  }
+}
+
+.dialog {
+  width: $wd-dialog;
+  max-height: 98%;
+  background-color: $cl-white;
+  border-radius: $radius-m;
+  box-shadow: $shadow-l;
+  overflow: hidden;
+  z-index: 100;
+  @include pad() {
+    width: 98%;
+  }
+  @include phone() {
+    width: 98%;
+  }
+}

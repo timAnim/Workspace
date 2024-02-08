@@ -1,0 +1,21 @@
+mailto:[[staff_ba]] [[staff_qa]] [[staff_pm]] [[staff_leader]]?subject=《[[proj_name]][[version]]项目原型预审》&cc= [[staff_cc]] [[author]] &body=
+     敬启者：</br>
+     [[proj_name]]项目v[[version]]已进入原型预审阶段, 请阅读产品原型及描述，并在线上提出修改建议</br>
+     参与对象：BA，PM，DEV，QA，IxD</br>
+     </br>
+     -------------相关人员--------------</br>
+     </br>
+    【业务分析】 [[staff_ba]]</br>
+    【产品经理】 [[staff_pm]]</br>
+    【交互设计】 [[staff_ixd]]</br>
+    【开发】 [[staff_dev]]</br>
+    【测试】 [[staff_qa]]</br>
+    【抄送】 [[staff_cc]]</br>
+     </br>
+      -------------相关地址--------------</br>
+     </br>
+    原始需求:[[url_story]]</br>
+    原型地址: [[url_proto]]</br>
+    需求文档: [[url_prd]]</br>
+    禅道任务: [[url_task]]</br>
+    项目管理: [[url_project]]

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title>三维组态编辑器</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="./reveal.js/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="./reveal.js/dist/theme/black.css" id="theme">
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">三维组态编辑器</h1>
+</section>
+
+<section id="目录" class="slide level1">
+<h1>目录</h1>
+<ul>
+<li>项目介绍</li>
+<li>工程化流程</li>
+<li>效果实现的流程</li>
+<li>下个阶段的工作</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<p>共济三维组态编辑器（xbro three dimension configuration editor）是一款基于webgl，由共济科技开发的一款针对数据中心监控行业的三维编辑器。</p>
+<p>目前，产品第一个版本开发完成度在80%左右。但是公司内部对产品本身的功能，使用方式，未来的规划尚未拉齐。所以，组织这次分享，群策群力。</p>
+</section>
+<section class="slide level1">
+
+<p><strong>功能框架</strong> <img data-src=".\uploads\功能框架.png" /></p>
+</section>
+<section class="slide level1">
+
+<p><strong>技术架构</strong> <img data-src=".\uploads\技术架构.png" /></p>
+</section>
+<section class="slide level1">
+
+<p><strong>项目进度</strong> <img data-src=".\uploads\项目计划.png" /></p>
+</section>
+<section id="主要用例" class="slide level1">
+<h1>主要用例</h1>
+<ul class="task-list">
+<li><input type="checkbox" disabled="" />
+新建房间</li>
+<li><input type="checkbox" disabled="" />
+新建楼层</li>
+<li><input type="checkbox" disabled="" />
+新建建筑</li>
+<li><input type="checkbox" disabled="" />
+新建园区</li>
+<li><input type="checkbox" disabled="" />
+编辑跳转</li>
+<li><input type="checkbox" disabled="" />
+组态集成</li>
+</ul>
+</section>
+<section id="工程化流程" class="slide level1">
+<h1>工程化流程</h1>
+</section>
+<section id="基本设定" class="slide level1">
+<h1>基本设定</h1>
+<p>无代码开发 园区建模外包（给建模和材质规范） 其它级别建模时间在半天以内</p>
+<ul>
+<li>获取平面图纸</li>
+<li>CAD转json（TODO）</li>
+<li>绘制房间和楼层</li>
+<li>编辑导航逻辑</li>
+<li>组态集成</li>
+</ul>
+</section>
+<section id="效果实现的流程" class="slide level1">
+<h1>效果实现的流程</h1>
+<ol type="1">
+<li>3D标准材质库</li>
+<li>3Dmaxs场景编辑</li>
+<li>gltf</li>
+<li>开发者版本对材质和场景微调</li>
+<li>json</li>
+<li>3D编辑器测点绑定</li>
+<li>运行态查看效果</li>
+</ol>
+</section>
+<section id="下阶段的工作" class="slide level1">
+<h1>下阶段的工作</h1>
+<p>AR功能与巡检相结合 VR功能与第一视角，培训功能寻找结合点 项目试点，改进工程化流程</p>
+</section>
+    </div>
+  </div>
+
+  <script src="./reveal.js/dist/reveal.js"></script>
+
+  // reveal.js plugins
+  <script src="./reveal.js/plugin/notes/notes.js"></script>
+  <script src="./reveal.js/plugin/search/search.js"></script>
+  <script src="./reveal.js/plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Push each slide change to the browser history
+        history: true,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+h1 {
+  font-size: $fs-l;
+}
+
+h2 {
+  height: $ht-m;
+  line-height: $ht-l;
+  color: $cl-700;
+  fill: $cl-700;
+  padding: 0 $pd-m;
+}
+
+h3 {
+  height: $ht-xs;
+
+  @include phone() {
+    display: none;
+  }
+}
+
+a,
+em,
+pre,
+h1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+pre {
+  color: $cl-500;
+  fill: $cl-500;
+  text-indent: $pd-s;
+  text-align: right;
+  flex: auto;
+}

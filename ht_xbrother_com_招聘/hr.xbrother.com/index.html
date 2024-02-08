@@ -1,0 +1,225 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="follow">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>共济科技 | XBrother</title>
+    <!-- og, twitter, share tags -->
+    <meta name="keywords" content="共济科技是全国领先的绿色智慧数据中心整体方案供应商，致力于让数据中心更加简单、安全、高效、节能，在模块化数据中心、监控管理、云运维服务等三大领域，为超过10000家数据中心客户提供了行业领先的解决方案及全国范围内专业的技术服务保障。" />
+    <meta property="og:type" content="website" />
+    <meta name="description" content="共济科技是全国领先的绿色智慧数据中心整体方案供应商，致力于让数据中心更加简单、安全、高效、节能，在模块化数据中心、监控管理、云运维服务等三大领域，为超过10000家数据中心客户提供了行业领先的解决方案及全国范围内专业的技术服务保障。">
+    <meta property="og:url" content="https://hr.xbrother.com:9000">
+    <meta property="og:title" content="共济科技 | XBrother">
+    <meta property="og:description" content="共济科技是全国领先的绿色智慧数据中心整体方案供应商，致力于让数据中心更加简单、安全、高效、节能，在模块化数据中心、监控管理、云运维服务等三大领域，为超过10000家数据中心客户提供了行业领先的解决方案及全国范围内专业的技术服务保障。">
+    <meta property="og:image" content="./assets/images/share_logo.png" />
+    <meta property="og:image:type" content="image/jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- end share tags -->
+
+    <!-- styles -->
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" href="./css/aos.css" />
+    <!-- end styles -->
+
+    <!-- favicons -->
+    <link rel="Shortcut Icon" type="image/ico" href="/assets/images/logo.svg">
+    <link rel="apple-touch-icon" href="./favicon.ico">
+    <!-- favicons -->
+
+    <!-- <script src="./libs/player.js"></script> -->
+
+    <!-- load libs -->
+    <script src="./libs/jquery.min.js"></script>
+    <script src="./libs/vanilla-tilt.min.js"></script>
+    <script src="./libs/three.min.js"></script>
+    <script src="./libs/stats.min.js"></script>
+    <!-- 动画特效 -->
+    <script src="./libs/aos.js"></script>
+
+    <script src="./libs/howler.min.js"></script>
+    <!-- 动画特效 -->
+    <script src="./libs/TweenMax.min.js"></script>
+
+    <!-- load core scripts -->
+    <script src="./js/main.js"></script>
+    <script src="./js/views.js"></script>
+    <script src="./js/webgl.js"></script>
+    <script src="./data/site.js"></script>
+    <script src="./libs/utils.js"></script>
+</head>
+
+<body>
+    <div class="background" id="background"></div>
+    <canvas id="webgl"></canvas>
+    <!-- home -->
+    <div class="home page">
+        <div class="titles">
+            <div class="page-logo"><img src="/assets/images/logo.svg" alt=""></div>
+            <div class="page-title"></div>
+            <div class="page-subtitle"></div>
+        </div>
+    </div>
+    <div class="footer-menu">
+        <ul class="menu-items">
+        </ul>
+    </div>
+    <!-- end home -->
+
+    <!-- work -->
+    <div class="work page">
+        <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+        <div class="page-content"></div>
+        <div class="list"></div>
+    </div>
+    <!-- end work -->
+
+    <!-- 数字化专家 --->
+    <div class="info page">
+        <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+        <div class="page-content"></div>
+        <div data-aos='zoom-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="feature">
+            <div class="feature-content"></div>
+        </div>
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="bio-title section-title"></div>
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="bio"></div>
+        <div class="awards-block info-block">
+            <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="awards-title section-title"></div>
+            <div class="awards-list"></div>
+        </div>
+        <div class="clients-block info-block">
+            <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="clients-title section-title"></div>
+            <div class="clients-list"></div>
+        </div>
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="instafeed-title section-title"></div>
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' id='instafeed'></div>
+        <!--
+        <div class="twitter-title section-title"></div>
+        
+        <a class="twitter-timeline" data-width="400" data-height="400" data-theme="dark" data-chrome='noheader, nofooter,  transparent, noscrollbar'  data-link-color="#2B7BB9" href="https://twitter.com/synergyseeker?ref_src=twsrc%5Etfw">Tweets by synergyseeker</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        -->
+        <div class="social-block info-block">
+            <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="social-title section-title"></div>
+            <div class="social-list"></div>
+        </div>
+
+    </div>
+    <!-- ends 数字化专家 --->
+
+    <!-- press -->
+    <div class="press page">
+        <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+        <div class="page-content"></div>
+        <div class="list"></div>
+    </div>
+    <!-- end press -->
+
+    <!-- about -->
+    <div class="info page">
+        <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+        <div class="page-content"></div>
+        <div data-aos='zoom-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="feature">
+            <div class="feature-content"></div>
+        </div>
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="bio-title section-title"></div>
+        <div data-aos='fade-in' data-aos-easing='ease-in-out' data-aos-offset='50' data-aos-duration='1000' data-aos-delay='50' class="bio"></div>
+
+    </div>
+    <!-- end about -->
+
+    <!-- contact-->
+    <div class="contact page">
+        <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+        <div class="page-content"></div>
+        <div class="list"></div>
+        <div class="locations-title"></div>
+        <div class="locations"></div>
+        <div class="links"></div>
+    </div>
+    <!-- end contact -->
+
+    <!--
+    <div class="work-detail page">
+        <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+        <div class="feature" data-aos='fade-in'>
+            <div class="feature-content"></div>
+        </div>
+        <div class="client" data-aos='fade-in'></div>
+        <div class="role" data-aos='fade-in'></div>
+        <div class="content-title section-title" data-aos='fade-in'></div>
+
+        <div class="content" data-aos='fade-in'></div>
+    </div>
+    -->
+
+    <!-- press detail -->
+    <div class="press-detail page">
+        <div class="page-title" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="200"></div>
+        <div class="page-subtitle" data-aos='zoom-in' data-aos-duration="1000" data-aos-delay="400"></div>
+        <div class="feature" data-aos='fade-in'>
+            <div class="feature-content"></div>
+        </div>
+        <!-- <div class="next-button" data-aos='fade-left'>
+            <img class="next-button-circle" src="./assets/images/circle.svg" />
+            <img class="next-button-arrow" src="./assets/images/arrow.svg" />
+        </div> -->
+        <div class="content-title section-title" data-aos='fade-in'></div>
+        <div class="content" data-aos='fade-in'></div>
+    </div>
+    <!-- end press detail -->
+
+    <!-- menu -->
+    <div class="menu">
+        <ul class="menu-items">
+        </ul>
+    </div>
+    <!-- end menu -->
+    <!-- header -->
+    <div class="header">
+        <div class="header-title"></div>
+        <img class="logo" src="./assets/images/logo.svg" />
+        <div class="header-menu">
+            <ul class="menu-items">
+            </ul>
+        </div>
+        <div class="menu-button">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <!-- end header -->
+
+    <!-- loader -->
+    <div class="loader"></div>
+    <!-- end loader -->
+
+    <!-- bars -->
+    <div class="top-bar"></div>
+    <div class="bottom-bar">
+        <p class="title"><a href="www.xbrother.com">www.xbrother.com</a></p>
+        <p class="subtitle">深圳市高新中三道2号深圳软件园7栋4层 | 粤ICP备05041467号-1</p>
+    </div>
+    <!-- bars -->
+    <!-- <div class="footer-sound">
+        <span id="bar-1" class="sbar"></span>
+        <span id="bar-2" class="sbar"></span>
+        <span id="bar-3" class="sbar"></span>
+        <span id="bar-4" class="sbar"></span>
+    </div> -->
+
+    <script>
+        APP.init();
+    </script>
+</body>
+
+</html>

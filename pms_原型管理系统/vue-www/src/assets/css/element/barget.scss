@@ -1,0 +1,12 @@
+*[badge]:after {
+  color: white;
+  fill: white;
+  width: $wd-s;
+  height: $ht-xs;
+  font-size: $fs-s;
+  content: attr(badge);
+  background-color: $cl-alert;
+  position: absolute;
+  right: $pd-xs;
+  top: $pd-xs;
+}

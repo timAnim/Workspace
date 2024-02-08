@@ -1,0 +1,124 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('filebridge:server');
+var http = require('http');
+var path = require('path')
+var fs = require('fs')
+var getSchedule = require('../axdoc/genSchedule')
+var args = process.argv.splice(2)
+
+
+const env = args[0] || 'dev'
+console.log('env is ' + env)
+    /**
+     * Get port from environment and store in Express.
+     */
+var port = normalizePort(process.env.PORT || '80');
+
+console.log('port is ' + port)
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    var bind = typeof port === 'string' ?
+        'Pipe ' + port :
+        'Port ' + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            //打印出错误
+    }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+    var addr = server.address();
+    var bind = typeof addr === 'string' ?
+        'pipe ' + addr :
+        'port ' + addr.port;
+    debug('Listening on ' + bind);
+}
+
+// var socket = server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+process.on('uncaughtException', function(err) {
+    // handle the error safely
+    console.log('uncaughtException' + err)
+    var now = new Date()
+    err.time = now.getHours() + ':' + now.getMinutes();
+
+    // 用当天的日期当做 log 的文件名
+    var filename = (now.getMonth() + 1) + '-' + now.getDate() + '.log'
+    filename = path.resolve('./log', filename)
+    var msg = `请求时间  ${err.time}\r\n请求的地址  ${err.req}\r\n错误的信息  ${err.message}\r\n访问的ip地址  ${err.ip}\r\n${err.stack.replace(/\s+/,'\r\n')}\r\n\r\n\r\n`
+
+    var exists = fs.existsSync(filename)
+    if (exists) {
+        fs.appendFileSync(filename, msg)
+    } else {
+        fs.writeFileSync(filename, msg);
+    }
+})
+try {
+    server.listen(port);
+} catch (err) {
+    console.log('uncaughtException' + err)
+}

@@ -1,0 +1,24 @@
+{
+
+    "page-title": "XBrother | 共济科技",
+    "description": "共济科技",
+    "url": "http://hr.xbrother.com:9000/press/net-330",
+    "shareImage": "assets/images/press/net-330/net-330-inside.jpg",
+    "twitterShare": "共济科技是全国领先的绿色智慧数据中心整体方案供应商，致力于让数据中心更加简单、安全、高效、节能，在模块化数据中心、监控管理、云运维服务等三大领域，为超过10000家数据中心客户提供了行业领先的解决方案及全国范围内专业的技术服务保障。",
+    "tags": "新基建,共济科技,数据中心,数据时代",
+    "link": "press/net-330",
+    "title": "共济科技",
+    "subtitle": "XBrother | 让数据中心更简单",
+    "content": "<p>共济科技是全国领先的绿色智慧数据中心整体方案供应商，致力于让数据中心更加简单、安全、高效、节能，在模块化数据中心、监控管理、云运维服务等三大领域，为超过10000家数据中心客户提供了行业领先的解决方案及全国范围内专业的技术服务保障。</p>",
+
+    "feature": {
+        "type": "image",
+        "id": "",
+        "source": "",
+        "title": "",
+        "images": [
+            { "file": "../assets/images/press/net-330.jpg" }
+        ],
+        "iframe": ""
+    }
+}

@@ -1,0 +1,40 @@
+  label{
+    flex: none;
+    width: $wd-m;
+    text-align: center;
+    &[switch] {
+      cursor: pointer;
+      height: $ht-s;
+      width: $wd-s;
+      border-radius: $radius-l;
+
+      svg {
+        @extend .in-pop;
+        &:last-child {
+          background-color: $cl-theme;
+          color: white;
+          fill: white;
+          display: none;
+        }
+        &:first-child {
+          display: inline-block;
+        }
+      }
+      &[checked] {
+        svg:first-child {
+          display: none;
+        }
+        svg:last-child {
+          display: inline-block;
+        }
+      }
+    }
+    &[on] {
+      color: $cl-theme;
+      fill: $cl-theme;
+    }
+    &[off] {
+      color: $cl-700;
+      fill: $cl-700;
+    }
+  }

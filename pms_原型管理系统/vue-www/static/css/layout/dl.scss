@@ -1,0 +1,16 @@
+dl {
+  box-shadow: $shadow-m;
+  border-radius: $radius-s;
+  overflow: hidden;
+  background-color: white;
+  &[type=compact] {
+    li {
+      height: $ht-s;
+    }
+  }
+  &[type=expand] {
+    li {
+      height: $ht-l;
+    }
+  }
+}

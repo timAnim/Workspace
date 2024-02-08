@@ -1,0 +1,16 @@
+article {
+    display: flex;
+    height: 100%;
+    flex-flow: column nowrap;
+    justify-content: center;
+    background-color: var(--cl-back);
+    box-shadow: var(--shadow-m);
+    >content {
+        flex: auto;
+        padding: var(--pd-s);
+        .phone( {
+            padding: 0;
+        }
+        );
+    }
+}

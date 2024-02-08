@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "node-json2html": "^2.2.2",
+    "node-schedule": "^2.1.0"
+  }
+}

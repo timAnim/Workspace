@@ -1,0 +1,25 @@
+{
+
+    "page-title": "Digital Age | 数字时代",
+    "description": "Net Magazine #329 - Feature: 3D Video Textures",
+    "url": "http://hr.xbrother.com:9000/press/net-329",
+    "shareImage": "assets/images/press/net-329/spalsh1.jpg",
+    "twitterShare": "共济科技是全国领先的绿色智慧数据中心整体方案供应商，致力于让数据中心更加简单、安全、高效、节能，在模块化数据中心、监控管理、云运维服务等三大领域，为超过10000家数据中心客户提供了行业领先的解决方案及全国范围内专业的技术服务保障。",
+    "hashtags": "新基建,共济科技,数据中心,数据时代",
+    "tags": "新基建,共济科技,数据中心,数据时代",
+    "link": "press/net-329",
+    "title": "数字时代",
+    "subtitle": "数据中心 | 新基建",
+    "content": "<p>2020年3月，中共中央政治局常务委员会提出，要加快新型基础设施建设（简称“新基建”）进度，数据中心作为新基建的七大领域之一，迎来的新的历史性的发展机遇。另一方面，随着5G、工业物联网等尖端科技的发展，众多新兴产业的应用将催生海量的数据，拉动数据中心这一基础设施的建设投入，持续推进未来国内数据中心的新建与改造进程。</p>",
+
+    "feature": {
+        "type": "image",
+        "id": "",
+        "source": "",
+        "title": "",
+        "images": [
+            { "file": "../assets/images/press/net-329.png" }
+        ],
+        "iframe": ""
+    }
+}

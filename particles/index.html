@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bgsp-m {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            background: url(./bg.png);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bgsp-m">
+        <canvas class="bgsp"></canvas>
+    </div>
+    <script src="./particles.min.js"></script>
+    <script>
+        window.onload = () => {
+            Particles.init({
+                selector: '.bgsp',
+                maxParticles: 64,       // 最大颗粒数量 100
+                sizeVariations: 16,       // 尺寸变化量 3
+                connectParticles: true,  // 是否显示连接线 false
+                speed: .8,               // 粒子运动速度 0.5
+                color: '#0c416f',        // 粒子和连接线颜色 000000
+                minDistance: 160,        // 连线的距离 120
+            })
+
+        }
+    </script>
+</body>
+
+</html>

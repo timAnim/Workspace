@@ -1,0 +1,28 @@
+main{
+  display: flex;
+  flex-flow: row nowrap;
+  height: $ht-max;
+  >aside {
+    flex:none;
+    width: $wd-panel;
+    &[df-state=off] {
+      width: $wd-m;
+    }
+    @include pad() {
+      width: 0;
+      &[df-state=off] {
+        width: $wd-panel;
+      }
+      &[df-state=off]+article {
+        width: $wd-max;
+      }
+    }
+  }
+  >article {
+    flex: 0 1 100%;
+    overflow: hidden;
+  }
+  &[paused] {
+    @extend .pause-blur;
+  }
+}

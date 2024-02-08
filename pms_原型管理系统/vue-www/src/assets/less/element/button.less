@@ -1,0 +1,25 @@
+button {
+    &:extend(.blink-wave all);
+    height: var(--ht-s);
+    padding: 0 var(--pd-s);
+    cursor: pointer;
+    border-radius: var(--radius-s);
+    transition: color 0.2s ease;
+    color: var(--cl-prim);
+    fill: var(--cl-prim);
+    &[float] {
+        text-align: center;
+        height: var(--ht-l);
+        width: var(--wd-l);
+        border-radius: var(--radius-l);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background-color: var(--cl-theme);
+        box-shadow: var(--shadow-l);
+        margin: var(--pd-m);
+        color: var(--cl-prim-i);
+        fill: var(--cl-prim-i);
+        z-index: 0;
+    }
+}

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <meta http-equiv="Cache" content="no-cache">
+  <title>word文档预览</title>
+  <style type="text/css">
+  *{
+    margin: 0; 
+    padding:0;
+  }
+  html,
+  body,
+  main {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .cover:nth-of-type(1){
+    text-align: center;
+    font-size: 32px;
+    margin-top: 128px;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 10px 76px 10px 96px;
+  }
+
+  aside {
+    height: 100%;
+    overflow-y: auto;
+    width: 320px;
+    box-sizing: border-box;
+    padding: 32px 0;
+    border: 1px solid #bdbdbd;
+    background-color: #e0e0e0;
+  }
+
+  .content {
+    background: #e0e0e0;
+    height: 100%;
+    flex: auto;
+    overflow-y: auto;
+  }
+
+  article {
+    width: 768px;
+    background: white;
+    padding: 56px 48px;
+    box-sizing: border-box;
+    margin: 8px auto;
+    border: 1px solid #bdbdbd;
+  }
+
+  img {
+    max-width: calc(100% - 48px);
+    display: inline-block;
+  }
+
+
+
+  table {
+    border-collapse: collapse;
+    margin: 16px 76px 0;
+    width: calc(100% - 152px);
+    border: 4px solid #9e9e9e;
+    border-style: double;
+  }
+
+  td,
+  th {
+    border: 1px solid #bdbdbd;
+    padding: 0 4px;
+    min-width: 3em;
+    height: 24px;
+  }
+  
+  th p,
+  td p {
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+
+  tr:first-child td {
+    background: #f5f5f5;
+  }
+
+  tr:first-child p {
+    font-weight: 800;
+    font-size: 14px;
+    color: #212121;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 200;
+    color: #2f7cbb;
+    cursor: pointer;
+    padding: 128px 76px 0 0;
+  }
+
+
+  h2 {
+    font-size: 20px;
+    color: #2f7cbb;
+    padding: 56px 76px 0 40px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  h3 {
+    font-size: 16px;
+    color: #2f7cbb;
+    padding: 32px 76px 0 64px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  h4 {
+    font-size: 16px;
+    color: black;
+    padding: 32px 76px 0 64px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  p {
+    font-size: 14px;
+    color: #616161;
+    padding: 10px 76px 0;
+    line-height: 1.5em;
+  }
+
+  br {
+    display: inline;
+    line-height: 2em;
+  }
+
+  li {
+    font-size: 14px;
+    font-weight: 200;
+    color: #616161;
+    line-height: 1.5em;
+    list-style-type: square;
+  }
+
+  strong {
+    font-weight: bold !important;
+  }
+
+  *[toggle=off]::before{
+    transform: rotate(45deg);
+    color: black;
+  }
+
+  h1:before,
+  h2:before,
+  h3:before,
+  h4:before {
+    text-align: center;
+    content: '◢';
+    color: #bdbdbd;
+    flex: fixed;
+    width: 1em;
+    display: inline-block;
+  }
+
+  *[end=end]:before{
+    color: transparent;
+  }
+  *[mark=mark]{
+    background-color: #daebf8!important;
+  }
+  *[mark=mark] > *{
+    color: #154b73!important;
+  }
+
+  article a,
+  article a:link,
+  article a:visited,
+  article a:active {
+    color: #154b73!important;
+  }
+
+  aside a,
+  aside a:link,
+  aside a:visited,
+  aside a:active {
+    color: black
+  }
+
+  aside a{
+    flex:auto;
+    text-decoration: none;
+    font-size: 12px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+  aside h1{
+    padding-left: 2em;
+  }
+  aside h2{
+    padding-left: 3em;
+  }
+  aside h3{
+    padding-left: 4em;
+  }
+  aside h4{
+    padding-left: 5em;
+  }
+  aside > *{
+    font-size: 12px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 28px;
+    height: 28px;
+    display: flex;
+    font-weight: normal;
+    transition: background 0.2s ease;
+  }
+
+  aside>*:hover{
+    background-color: #eeeeee;
+  }
+  aside>*:hover a{
+    color: black;
+  }
+
+  </style>
+</head>
+
+<body>
+  <aside></aside>
+  <div class="content">
+    <!-- <article></article> -->
+  </div>
+  <script>
+  var aside =document.querySelector('aside')
+  var article =document.querySelector('article')
+  var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  var endStack = {
+    length: 0,
+    pointer: ''
+  }
+
+  var curMarkId = ''
+  initClsName()
+  initEvnt()
+
+  function randId(n) {
+    var res = "";
+    for (var i = 0; i < n; i++) {
+      var id = Math.ceil(Math.random() * 35);
+      res += chars[id];
+    }
+    return res;
+  }
+
+  function addToAside(tag, id, clslist, text){
+    var a = document.createElement('a')
+    var outer = document.createElement(tag)
+    outer.setAttribute('class', clslist.join(' '))
+    outer.setAttribute('id', '_'+id)
+    a.setAttribute('href', '#' + id)
+    a.innerText = text
+    outer.appendChild(a)
+    aside.appendChild(outer)
+    movePointer(clslist, id)
+  }
+
+
+  function movePointer(clslist, id){
+    if(clslist.length <= endStack.length){
+      //说明上一个主题已经是最末的主题了
+      var _id = '_' + endStack.pointer
+      document.getElementById(_id).setAttribute('end','end')
+    }
+    endStack.length = clslist.length
+    endStack.pointer = id
+  }
+
+  function initClsName() {
+    var tags = document.querySelectorAll('article>*')
+    var clslist = []
+    tags.forEach(tag => {
+      var tagName = tag.tagName.toLowerCase()
+      var id = randId(4)
+      var text = tag.innerText
+      switch (tagName) {
+        case 'h1':
+          clslist = [id]
+          addToAside(tagName, id, clslist, text)
+          break;
+        case 'h2':
+          clslist = [clslist[0], id]
+          addToAside(tagName, id, clslist, text)
+          break;
+        case 'h3':
+          clslist[2] = [clslist[0], clslist[1], id]
+          addToAside(tagName, id, clslist, text)
+          break;
+        case 'h4':
+          clslist[3] = [clslist[0], clslist[1], clslist[2], id]
+          addToAside(tagName, id, clslist, text)
+          break;
+        default:
+          id = ''
+          break;
+      }
+      if(!clslist.length) clslist=['cover']
+      if (id) tag.setAttribute('id', id)
+      tag.setAttribute('class', clslist.join(' '))
+    })
+  }
+
+  function initEvnt() {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      if(target.getAttribute('end')=='end') return false
+      if (target.tagName == 'H1' || target.tagName == 'H2' || target.tagName == 'H3' || target.tagName == 'H4') {
+        var toggle = target.getAttribute('toggle') || "on"
+        var visible = toggle == "on" ? false : true
+        target.setAttribute('toggle', (toggle == "on" ? 'off' : 'on'))
+
+        var cls = target.classList
+        cls = cls[cls.length - 1]
+        var list = aside.getElementsByClassName(cls)
+        for (var i = 1; i < list.length; i++) {
+          if(visible) list[i].removeAttribute('style')
+          else list[i].style.display = 'none'
+        }
+
+        // 联动处理另一栏的状态
+        var flag = target.id.split('_')
+        var _id = flag.length == 2 ? flag[1] : ('_' + target.id)
+        var _dom = document.getElementById(_id)
+        _dom.setAttribute('toggle', (toggle == "on" ? 'off' : 'on'))
+        var _list = article.getElementsByClassName(cls)
+        for (var i = 1; i < _list.length; i++) {
+          if(visible) _list[i].removeAttribute('style')
+          else _list[i].style.display = 'none'
+        }
+      }
+    })
+
+    aside.addEventListener('click',function(e){
+      var target = e.target;
+      if(target.tagName == 'A'){
+        target = target.parentNode
+        // 把之前的标记清掉
+        var curMark = document.getElementById(curMarkId);
+        if(curMark) curMark.removeAttribute('mark')
+        curMarkId = target.id
+        target.setAttribute('mark','mark')
+      }
+    })
+
+    article.addEventListener('mouseover', function(e){
+      // 如果没有id 就往前找找
+      var target = e.target;
+      if(!target.id) target = getPrevNode(target)
+      // 如果之前没有有id的 就散了吧
+      if(!target) return false
+      // 把之前的标记清掉
+      var curMark = document.getElementById(curMarkId);
+      if(curMark) curMark.removeAttribute('mark')
+      // 即便是有id但是不一定是能标记的id
+      curMarkId = '_' + target.id
+      curMark = document.getElementById(curMarkId)
+      if(curMark) curMark.setAttribute('mark','mark')
+    })
+  }
+
+  function getPrevNode(dom){
+    var tagName = dom.tagName.toLowerCase()
+    if(tagName == 'li') dom = dom .parentNode
+    while(dom && !dom.id){
+      dom=dom.previousElementSibling
+    }
+    return dom
+  }
+  </script>
+</body>
+
+</html>

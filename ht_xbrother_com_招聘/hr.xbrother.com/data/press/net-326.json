@@ -1,0 +1,24 @@
+{
+    "page-title": "XBrother | 加入我们",
+    "description": "加入我们",
+    "url": "http://hr.xbrother.com:9000/press/net-326",
+    "shareImage": "assets/images/press/net-330/net-330-inside.jpg",
+    "twitterShare": "共济科技是全国领先的绿色智慧数据中心整体方案供应商，致力于让数据中心更加简单、安全、高效、节能，在模块化数据中心、监控管理、云运维服务等三大领域，为超过10000家数据中心客户提供了行业领先的解决方案及全国范围内专业的技术服务保障。",
+    "hashtags": "新基建,共济科技,数据中心,数据时代",
+    "tags": "新基建,共济科技,数据中心,数据时代",
+    "link": "press/net-330",
+    "title": "加入我们",
+    "subtitle": "Join us",
+    "content": "<p>新一轮科技革命和产业变革进程加快，数据中心、商业智能、物联网、智慧城市、5G等新技术和数字经济蓬勃发展，共济科技期待与您一起改变世界，拥抱未来！同学们，未来已来，将至已至，以梦为马、不负韶华。</p><p>邮件投递：<b>hr@xbrother.com</b></p><p>邮件主题：应聘岗位+姓名+学校+学历+专业+手机号码</p><p>总部地址：深圳市南山区高新中三道软件园七栋四层</p>",
+    "feature": {
+        "type": "image",
+        "id": "",
+        "source": "",
+        "title": "",
+        "images": [{
+            "file": "../assets/images/qr_code.png",
+            "name": "投递链接二维码"
+        }],
+        "iframe": ""
+    }
+}

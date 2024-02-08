@@ -1,0 +1,626 @@
+//进入的动画
+.in-rotate {
+  animation: inRotate 0.15s linear;
+}
+
+.slide-enter {
+  transform: translateY(100%);
+}
+
+.slide-enter-to {
+  transform: translateY(0);
+  transition: transform 0.2s ease;
+}
+
+.slide-leave {
+  transform: translateY(0);
+}
+
+.slide-leave-to {
+  transform: translateY(100%);
+  transition: transform 0.2s ease;
+}
+
+.opacity-enter {
+  opacity: 0;
+}
+
+.opacity-enter-to {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.opacity-leave {
+  opacity: 1;
+}
+
+.opacity-leave-to {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.drop-enter {
+  transform: translateY(-100%);
+}
+
+.drop-enter-to {
+  transform: translateY(0);
+  transition: transform 0.2s ease;
+}
+
+.drop-leave {
+  transform: translateY(0);
+}
+
+.drop-leave-to {
+  transform: translateY(-100%);
+  transition: transform 0.2s ease;
+}
+
+.expand-enter {
+  transform: scale(1, 0);
+  transform-origin: 50% 0;
+}
+
+.expand-enter-to {
+  transform: scale(1, 1);
+  transition: transform 0.1s ease-out;
+  transform-origin: 50% 0;
+}
+
+.expand-leave {
+  transform: scale(1, 1);
+  transform-origin: 50% 0;
+}
+
+.expand-leave-to {
+  transform: scale(1, 0);
+  transition: transform 0.1s ease-in;
+  transform-origin: 50% 0;
+}
+
+.circle-enter {
+  border-radius: 1000px;
+  transform: translate(0, 50%) scale(0.1);
+}
+
+.circle-enter-to {
+  transform: translate(0, 0) scale(1);
+  transition: all $vivo ease;
+  border-radius: 0px;
+}
+
+.circle-leave {
+  transform: translate(0, 0) scale(1);
+  border-radius: 0px;
+}
+
+.circle-leave-to {
+  border-radius: 1000px;
+  transform: translate(0, 50%) scale(0.1);
+  transition: $vivo all ease;
+}
+
+// 分割的动画
+.split-enter {
+  opacity: 0;
+
+  .split-up {
+    animation: inBottom $presto ease;
+  }
+
+  .split-down {
+    animation: inTop $presto ease;
+  }
+}
+
+.split-enter-to {
+  transition: opacity $vivo ease;
+  opacity: 1;
+}
+
+.split-leave {
+  opacity: 1;
+
+  .split-up {
+    animation: inBottom $presto ease;
+  }
+
+  .split-down {
+    animation: inTop $presto ease;
+  }
+}
+
+.split-leave-to {
+  transition: opacity $vivo ease;
+  opacity: 0;
+}
+
+.flow-up {
+  >* {
+    animation: flow-up 300ms ease;
+    transform-origin: 0px 200px;
+  }
+
+  @for $i from 1 through 10 {
+    >*:nth-child(#{$i}) {
+      animation-delay: 50ms*($i%10);
+    }
+  }
+}
+
+.flow-up {
+  >* {
+    animation: flow-up 300ms ease;
+    transform-origin: 0px 200px;
+  }
+
+  @for $i from 1 through 10 {
+    >*:nth-child(#{$i}) {
+      animation-delay: 50ms*($i%10);
+    }
+  }
+}
+
+.pop-list {
+  >* {
+    animation: inPop 200ms ease;
+    transform-origin: 50% 100%;
+  }
+
+  @for $i from 1 through 20 {
+    >*:nth-child(#{$i}) {
+      animation-delay: 50ms*($i%20);
+    }
+  }
+}
+
+@keyframes expand {
+  0% {
+    width: 200px;
+    border-radius: 0 1000px 0 0;
+  }
+
+  100% {
+    width: 100%;
+    border-radius: 0px;
+  }
+}
+
+@keyframes flow-up {
+  0% {
+    transform: translate(-50px, 200px) scale(0.1);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+}
+
+.exposure {
+  img {
+    animation: exposure 1500ms linear;
+  }
+
+  @for $i from 1 through 10 {
+    >*:nth-child(#{$i}) {
+      img {
+        animation-delay: 100ms*($i%6);
+      }
+    }
+  }
+}
+
+@keyframes exposure {
+  0% {
+    opacity: 0;
+    filter: grayscale(100%);
+  }
+
+  50% {
+    opacity: 1;
+    filter: grayscale(50%);
+  }
+
+  75% {
+    opacity: 1;
+    filter: grayscale(25%);
+  }
+
+  100% {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+}
+
+.in-left-enter-active {
+  animation: inLeft $presto ease;
+}
+
+.in-left-leave-active {
+  animation: outLeft $presto ease;
+  animation-fill-mode: forwards;
+}
+
+.in-bottom {
+  animation: inBottom $presto ease;
+}
+
+.in-pop {
+  animation: inPop $vivo ease;
+}
+
+.in-left {
+  animation: inLeft $presto ease-in;
+}
+
+.in-right {
+  animation: inRight $presto ease-in;
+}
+
+//退出的动画
+.out-left {
+  animation: outLeft $presto ease-in;
+}
+
+.out-right {
+  animation: outRight $presto ease-in;
+}
+
+.out-bottom {
+  animation: outBottom $presto ease-in;
+}
+
+.out-top {
+  animation: outTop $presto ease-in;
+}
+
+.in-opacity {
+  animation: inOpacity $vivo ease;
+}
+
+.out-opacity {
+  animation: outOpacity $vivo ease;
+}
+
+//悬停的动画
+.blink-theme {
+  &:hover {
+    cursor: pointer;
+    animation: blinkTheme $largo ease;
+  }
+}
+
+.blink-alert {
+  &:hover {
+    cursor: pointer;
+    animation: blinkAlert $largo*2 ease;
+  }
+}
+
+.blink-wave {
+  &:hover {
+    cursor: pointer;
+    animation: blinkWave $largo/2 linear;
+  }
+}
+
+.blink-reverse {
+  &:hover {
+    cursor: pointer;
+    animation: blinkReverse $largo*2 ease;
+  }
+}
+
+.blink-list {
+  >* {
+    cursor: pointer;
+    animation: inRotate 0.12s linear, inOpacity 0.12s linear;
+    animation-fill-mode: forwards;
+    opacity: 0;
+  }
+
+  @for $i from 1 through 10 {
+    >*:nth-child(#{$i}) {
+      animation-delay: 0.12s*$i;
+    }
+  }
+}
+
+.blink-list-right {
+  >* {
+    cursor: pointer;
+    animation: inRotate 0.12s linear, inRight 0.12s linear;
+    opacity: 0;
+    animation-fill-mode: forwards;
+  }
+
+  @for $i from 1 through 10 {
+    >*:nth-child(#{$i}) {
+      animation-delay: 0.12s*$i;
+    }
+  }
+}
+
+.blink-text {
+  >* {
+    animation-fill-mode: forwards !important;
+    opacity: 0;
+
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        animation: top-#{$i} $presto ease $largo*0.5*$i,
+        left-#{$i} $presto*2 linear $largo*4;
+      }
+    }
+  }
+}
+
+@for $i from 1 through 6 {
+  @keyframes top-#{$i} {
+    0% {
+      transform: translateX(12px*$i);
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+@for $i from 1 through 6 {
+  @keyframes left-#{$i} {
+    0% {
+      transform: translateX($i*12px-12px);
+    }
+
+    70% {
+      transform: translateX($i*12px+12px);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+}
+
+// 冻结的动画
+.pause-blur {
+  filter: blur(3px);
+  transition-delay: $presto;
+}
+
+//关键帧
+@keyframes blinkTheme {
+  0% {
+    background: $cl-white;
+  }
+
+  50% {
+    background: $cl-100;
+  }
+
+  100% {
+    background: $cl-white;
+  }
+}
+
+@keyframes blinkAlert {
+  0% {
+    color: $cl-700;
+    fill: $cl-700;
+    background-color: transparent;
+  }
+
+  50% {
+    color: $cl-white;
+    fill: $cl-white;
+    background: $cl-alert;
+  }
+
+  100% {
+    color: $cl-700;
+    fill: $cl-700;
+    background-color: transparent;
+  }
+}
+
+@keyframes blinkReverse {
+  0% {
+    color: $cl-theme;
+    fill: $cl-theme;
+    background-color: transparent;
+  }
+
+  50% {
+    color: $cl-white;
+    fill: $cl-white;
+    background-color: $cl-theme;
+  }
+
+  100% {
+    color: $cl-theme;
+    fill: $cl-theme;
+    background-color: transparent;
+  }
+}
+
+/*灰色按钮波纹动画*/
+@keyframes blinkWave {
+  0% {
+    background-image: radial-gradient(0 at center, rgba(0, 0, 0, 0.02) 50%, rgba(0, 0, 0, 0.05) 55%);
+  }
+
+  25% {
+    background-image: radial-gradient(32px at center, rgba(0, 0, 0, 0.02) 50%, rgba(0, 0, 0, 0.05) 55%);
+  }
+
+  50% {
+    background-image: radial-gradient(48px at center, rgba(0, 0, 0, 0.02) 50%, rgba(0, 0, 0, 0.05) 55%);
+  }
+
+  75% {
+    background-image: radial-gradient(80px at center, rgba(0, 0, 0, 0.02) 50%, rgba(0, 0, 0, 0.05) 55%);
+  }
+
+  100% {
+    background-image: radial-gradient(96px at center, rgba(0, 0, 0, 0.02) 50%, rgba(0, 0, 0, 0.05) 55%);
+  }
+}
+
+/*向上滑*/
+@keyframes inTop {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/*滑下*/
+@keyframes inBottom {
+  0% {
+    transform-origin: 50% 0%;
+    transform: scaleY(0);
+  }
+
+  100% {
+    transform-origin: 50% 0%;
+    transform: scaleY(1);
+  }
+}
+
+/*左滑入*/
+@keyframes inLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/*右滑入*/
+@keyframes inRight {
+  0% {
+    transform: translateX(50%);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/*左滑出*/
+@keyframes outLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/*左滑出*/
+@keyframes outRight {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/*下滑出*/
+@keyframes outBottom {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/*上滑出*/
+@keyframes outTop {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/*翻转*/
+@keyframes inRotate {
+  0% {
+    transform: rotateX(-180deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes outOpacity {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes inOpacity {
+  0% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: visible;
+  }
+}
+
+/*弹出*/
+@keyframes inPop {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.6);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.spinning {
+  animation: spinning 1.5s linear infinite;
+}
+
+@keyframes spinning {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

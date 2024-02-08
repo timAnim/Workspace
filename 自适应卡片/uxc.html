@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <link rel="stylesheet" href="./css/font-awesome.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        html,
+        body,
+        #app {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        #app {
+            display: flex;
+        }
+        
+        h2 {
+            font-weight: 500;
+            color: #424242;
+            line-height: 2em;
+            font-size: 24px;
+            padding: 0 16px;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 16px;
+            display: block;
+            width: 100%;
+        }
+        
+        h3 {
+            font-weight: 500;
+            color: #424242;
+            line-height: 32px;
+            font-size: 14px;
+            padding: 0 8px;
+            background: #eeeeee;
+            border-bottom: 1px solid #e0e0e0;
+            flex: none;
+        }
+        
+        .outer {
+            display: flex;
+            padding: 4px;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        
+        aside {
+            height: 100%;
+            flex: auto;
+            padding: 16px;
+        }
+        
+        aside:nth-of-type(1),
+        aside:nth-of-type(3) {
+            flex: none;
+            width: 240px;
+            padding: 0;
+        }
+        
+        aside:nth-of-type(1) {
+            border-right: 2px solid #e0e0e0;
+            display: flex;
+            flex-flow: column;
+        }
+        
+        aside:nth-of-type(3) {
+            border-left: 2px solid #e0e0e0;
+        }
+        
+        .indicator li,
+        .outer li {
+            list-style: none;
+            flex-basis: 33%;
+            animation: blink-list 200ms ease;
+            transition: flex-basis 200ms ease;
+            box-sizing: border-box;
+            border: 1px solid #f5f5f5;
+            padding: 16px;
+            transition: background 200ms ease;
+            margin-bottom: 16px;
+            cursor: move;
+            display: flex;
+            line-height: 32px;
+        }
+        
+        .indicator li>input,
+        .outer li>input {
+            border: 1px solid #00000022;
+            padding: 0 8px;
+            background: #ffffff99;
+            cursor: move;
+            flex-basis: 100%;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+        
+        .indicator li>label,
+        .outer li>label {
+            width: 5em;
+            flex: none;
+            cursor: move;
+            font-size: 14px;
+        }
+        
+        .outer li:hover {
+            border: 1px solid #007acc;
+        }
+        
+        @media(max-width: 767px) {
+            li {
+                flex-basis: 50%;
+            }
+        }
+        
+        @media(max-width: 440px) {
+            li {
+                flex-basis: 100%;
+            }
+        }
+        
+        .outer::after {
+            content: '';
+            height: 0;
+            flex: auto;
+            width: 100%;
+        }
+        
+        .indicator {
+            display: inline-block;
+            position: absolute;
+            min-height: 1em;
+            min-width: 2em;
+            z-index: 99;
+            pointer-events: none;
+            opacity: 0.8;
+            transform: rotate(6deg) translate(-30px, 0px);
+            background: #007acc;
+        }
+        
+        .indicator>li {
+            margin: 0;
+        }
+        
+        .placeholder {
+            transition: all 200ms ease;
+            background: transparent;
+            box-sizing: border-box;
+            background: #007acc33;
+        }
+        
+        .active {
+            background: #007acc33;
+        }
+        
+        .width-slct {
+            background: #eeeeee;
+            border: none;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        
+        .input-row {
+            line-height: 40px;
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .input-row>input {
+            line-height: 40px;
+            border: none;
+            border-left: 1px solid #e0e0e0;
+            padding: 0 8px;
+            border-radius: 0;
+        }
+        
+        .input-row>label {
+            width: 5em;
+            display: inline-block;
+            flex: none;
+            padding: 0 0 0 8px;
+            font-size: 14px;
+        }
+        
+        .input-row select {
+            display: block;
+            width: 100%;
+            background: white;
+            border-radius: 0;
+            border-left: 1px solid #e0e0e0;
+        }
+        
+        .pel-card-panel {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+            flex: auto;
+            align-content: flex-start;
+        }
+        
+        .pel-card {
+            background: #eff4f8;
+            flex-basis: calc(50% - 16px);
+            margin: 8px;
+            padding: 0 8px;
+            line-height: 32px;
+            color: #54a5fd;
+            font-size: 14px;
+            list-style: none;
+            box-sizing: border-box;
+            cursor: move;
+            max-height: 32px;
+        }
+        
+        .pel-label {
+            font-family: 'FontAwesome';
+            padding: 0 4px;
+        }
+        
+        .pel-name {
+            padding: 0 4px;
+        }
+        
+        .item-new {
+            opacity: 0;
+        }
+        
+        .indicator .item-new,
+        .item-new-show {
+            opacity: 1;
+        }
+        
+        @keyframes blink-list {
+            0% {
+                transform: translate(40px, 5px) scale(0.9);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" @mouseup="up" @mousemove="move">
+        <aside>
+            <h3>基础字段</h3>
+            <ul class="pel-card-panel">
+                <li class="pel-card" v-for="pel in pel_list" draggable="true" @mousedown.prevent="down($event, item_new)" @mouseover.stop>
+                    <label class="pel-label">{{pel.label}}</label><span class="pel-name">{{pel.name}}</span>
+                </li>
+            </ul>
+            <h3>布局控件</h3>
+            <h3>系统控件</h3>
+            <h3>高级控件</h3>
+        </aside>
+        <aside>
+            <ul class="outer" ref="outer" @mouseleave="cancel">
+                <h2>表单标题</h2>
+                <li v-for="(item,i) in list" :key="i" :style="{order: item.order, 'flex-basis':item.width || '33.3%'} " draggable="true" @mousedown.prevent="down($event,item) " @mouseenter="enter($event,item)" @mouseover.stop :class="{placeholder:!item.show, active:slct_item&&slct_item.id==item.id, 'item-new': item.id=='item_new', 'item-new-show':item.show_new}"
+                    class="grid">
+                    <label :for="item.id">{{item.label}}</label>
+                    <input :name="item.id" type="text" v-model="item.value">
+                </li>
+            </ul>
+        </aside>
+        <div class="indicator" ref="indicator" :style="{left:indicator.x+ 'px', top:indicator.y+ 'px', height: indicator.height+ 'px', width:indicator.width + 'px'} " v-show="indicator.show "></div>
+        <aside @mouseup.stop class="panel">
+            <div v-if="slct_item">
+                <h3>基本属性</h3>
+                <div class="input-row">
+                    <label>ID</label>
+                    <input type="text" v-model="slct_item.id">
+                </div>
+                <div class="input-row">
+                    <label>标签</label>
+                    <input type="text" v-model="slct_item.label">
+                </div>
+                <div class="input-row">
+                    <label>值</label>
+                    <input type="text" v-model="slct_item.value">
+                </div>
+                <div class="input-row">
+                    <label>宽度</label>
+                    <select class="width-slct" name="width" @mousedown.stop v-model="slct_item.width">
+                        <option value="25%">1/4</option>
+                        <option value="33.3%">1/3</option>
+                        <option value="50%">1/2</option>
+                        <option value="100%">整行</option>
+                    </select>
+                </div>
+            </div>
+            <div v-else>
+                <h3>表单属性</h3>
+                <div class="input-row">
+                    <label>ID</label>
+                    <input type="text" value="slct_item.id">
+                </div>
+                <div class="input-row">
+                    <label>表单名称</label>
+                    <input type="text" value="测试的表单">
+                </div>
+            </div>
+        </aside>
+    </div>
+    <script>
+        var vm = new Vue({
+                el: "#app ",
+                data: {
+                    list: [{
+                        id: "item_000 ",
+                        order: 1,
+                        width: "33.3%",
+                        show: true,
+                        label: "提交人",
+                        value: "唐德",
+                    }, {
+                        id: "item_001 ",
+                        order: 2,
+                        width: "33.3%",
+                        show: true,
+                        label: "提交时间",
+                        value: "20200907",
+                    }, {
+                        id: "item_002 ",
+                        order: 3,
+                        width: "33.3%",
+                        show: true,
+                        label: "流水号",
+                        value: "202009071818",
+                    }, {
+                        id: "item_003 ",
+                        order: 4,
+                        width: "33.3%",
+                        show: true,
+                        label: "事由",
+                        value: "请批准",
+                    }, {
+                        id: "item_004 ",
+                        width: "33.3%",
+                        order: 5,
+                        show: true,
+                        label: "备注",
+                        value: "无",
+                    }, {
+                        id: "item_new",
+                        width: "33.3%",
+                        order: 6,
+                        show: false,
+                        label: "文本框",
+                        value: "",
+                        show_new: false,
+                    }],
+                    slct_item: null,
+                    target_item: null,
+                    drag_flag: false,
+                    drag_seed: 0,
+                    start_stamp: 0,
+                    dragstart_delay: 500,
+                    enter_delay: 300,
+                    enter_stamp: 0,
+                    enter_seed: 0,
+                    leave_delay: 500,
+                    leave_seed: 0,
+                    indicator: {
+                        x: 0,
+                        y: 0,
+                        width: 0,
+                        height: 0,
+                        show: true,
+                        deltaX: 0,
+                        deltaY: 0,
+                    },
+                    src_is_new: false,
+                    record_order: [],
+                    pel_list: [{
+                        label: "",
+                        name: "文本框",
+                    }, {
+                        label: "",
+                        name: "多行文本",
+                    }, {
+                        label: "",
+                        name: "下拉框",
+                    }, {
+                        label: "",
+                        name: "树级联",
+                    }, {
+                        label: "",
+                        name: "层级选择",
+                    }, {
+                        label: "",
+                        name: "单选框",
+                    }, {
+                        label: "",
+                        name: "复选框",
+                    }, {
+                        label: "",
+                        name: "数字",
+                    }, {
+                        label: "",
+                        name: "密码",
+                    }, {
+                        label: "",
+                        name: "电话",
+                    }, {
+                        label: "",
+                        name: "邮箱",
+                    }, {
+                        label: "",
+                        name: "text文本",
+                    }, {
+                        label: "",
+                        name: "日期/时间",
+                    }, {
+                        label: "",
+                        name: "文件上传",
+                    }]
+                },
+                mounted() {
+                    // this.markRect()
+                },
+                computed: {
+                    item_new() {
+                        return this.list.filter(t => t.id == "item_new")[0]
+                    }
+                },
+                methods: {
+                    markRect() {
+                        let doms = document.querySelectorAll('li')
+                        let rect;
+                        doms.forEach(dom => {
+                            rect = dom.getBoundingClientRect()
+                            dom.style['--var-left'] = rect.width
+                            dom.innerText = rect.width.toFixed(1)
+                        })
+                    },
+                    down(e, item) {
+                        // 拖拽延时，在1000ms之后再触发拖拽
+                        console.log(e.type, item)
+                        this.slct_item = item
+                        this.start_stamp = new Date().valueOf()
+                        this.drag_seed = setTimeout(t => {
+                            this.start(e, item)
+                        }, this.dragstart_delay)
+                    },
+                    start(e, item) {
+                        let target = this.getTarget(e)
+                        console.log(item)
+                        let rect = target.getBoundingClientRect()
+                        this.indicator.deltaX = rect.x - e.pageX
+                        this.indicator.deltaY = rect.y - e.pageY
+                        this.slct_item = item
+                        this.indicator.height = target.clientHeight
+                        this.indicator.width = target.clientWidth
+
+                        this.indicator.x = e.pageX
+                        this.indicator.y = e.pageY
+                        this.$refs.indicator.appendChild(target.cloneNode(true))
+                        this.drag_flag = true
+                        this.indicator.show = true
+                        item.show = false
+                        this.record_order = []
+                        this.list.forEach(_item => {
+                            this.record_order.push(_item.order)
+                        })
+                        console.log('dragstart', this.slct_item.id)
+                    },
+                    move(e) {
+                        if (!this.drag_flag) return
+                        this.indicator.x = e.pageX
+                        this.indicator.y = e.pageY
+                    },
+                    enter(e, item) {
+                        if (!this.drag_flag || item.id == this.slct_item.id) return
+                        this.target_item = item
+                        let target_order = item.order
+                        clearTimeout(this.leave_seed)
+                        this.enter_stamp = new Date().valueOf()
+                        this.enter_seed = setTimeout(t => {
+                            console.log(e.type, item.order)
+                                // 往后换，例如将2换到4的位置
+                            if (item.order > this.slct_item.order) {
+                                // 在src和target之间的往前挪
+                                for (let i = 0; i < this.list.length; i++) {
+                                    if (this.list[i].order > this.slct_item.order && this.list[i].order <= item.order) {
+                                        this.list[i].order -= 1
+                                    }
+                                }
+                            } else {
+                                // 在src和target之间的往后挪
+                                for (let i = 0; i < this.list.length; i++) {
+                                    if (this.list[i].order < this.slct_item.order && this.list[i].order >= item.order) {
+                                        this.list[i].order += 1
+                                    }
+                                }
+                            }
+                            this.slct_item.order = target_order
+                        }, this.enter_delay)
+                    },
+                    leave(e, item) {
+                        if (!this.drag_flag || item.id == this.slct_item.id) return
+                        var delta = new Date().valueOf() - this.enter_stamp
+                        if (delta < this.enter_delay) {
+                            console.log('flyover')
+                            clearTimeout(this.enter_seed)
+                        } else {
+                            this.target_item = null
+                        }
+                    },
+                    cancel(e) {
+                        if (!this.drag_flag) return
+                        console.log(e.type, "cancel")
+                            // 离开1000ms之后触发取消的事件
+                        this.leave_seed = setTimeout(_t => {
+                            this.list.forEach((_item, i) => {
+                                _item.order = this.record_order[i]
+                            })
+                            this.target_item = null
+                        }, this.leave_delay)
+                    },
+                    up(e) {
+                        // 如果鼠标抬起的时间小于1000，说明是点击
+                        var delta = new Date().valueOf() - this.start_stamp
+                        if (delta < this.dragstart_delay) {
+                            console.log('click', this.slct_item)
+                            clearTimeout(this.drag_seed)
+                        } else {
+                            this.list.forEach(item => {
+                                item.show = true
+                            })
+                            this.slct_item = null
+                            console.log(e.type)
+                        }
+                        this.indicator.show = false
+                        this.drag_flag = false
+                        this.target_item = null
+                        this.$refs.indicator.innerHTML = ''
+                    },
+                    getTarget(e) {
+                        let target = e.target
+                        console.log(target)
+                        while (!target.classList.contains("grid") && !target.classList.contains("pel-card")) {
+                            target = target.parentNode
+                            if (target.tagName == "BODY") break;
+                        }
+                        if (target.classList.contains("grid")) return target
+                        if (target.classList.contains("pel-card")) {
+                            this.item_new.show_new = true
+                            return document.querySelector(".item-new")
+                        }
+                        return false
+                    }
+                }
+            })
+            // window.onresize = vm.markRect
+    </script>
+</body>
+
+</html>

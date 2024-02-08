@@ -1,0 +1,18 @@
+ol {
+  padding: $pd-s;
+  min-height: $ht-m;
+  background-color: $cl-white;
+  >*:not(:last-child) {
+    border-bottom: $border-light;
+  }
+  &[type=compact] {
+    li {
+      height: $ht-s;
+    }
+  }
+  &[type=expand] {
+    li {
+      height: $ht-l;
+    }
+  }
+}

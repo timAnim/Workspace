@@ -1,0 +1,29 @@
+main {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 100%;
+  > aside {
+    flex: none;
+    width: var(--wd-panel);
+    &[df-state="off"] {
+      width: var(--wd-m);
+    }
+    .pad(
+      {width: 0;
+        &[df-state=off]{
+          width: var(--wd-panel);
+        }
+        & + article{
+          min-width: 100%;
+        }
+      }
+    );
+  }
+  > article {
+    flex: 0 1 100%;
+    overflow: hidden;
+  }
+  &[paused] {
+    &:extend(.pause-blur all);
+  }
+}

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原型预览地址</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        html,
+        body,
+        #app {
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        body {
+            background: #e0e0e0;
+        }
+        
+        #app {
+            overflow: auto;
+        }
+        
+        .outer {
+            padding: 8px;
+        }
+        
+        .webview {
+            display: none;
+            height: 100%;
+        }
+        
+        .proj {
+            line-height: 1.2em;
+            height: 1.2em;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 8px 8px;
+            font-size: 14px;
+            background: white;
+            display: flex;
+        }
+        
+        .name[type=FOLDER] {
+            text-decoration: underline;
+        }
+        
+        .name {
+            display: inline-block;
+            min-width: 16em;
+            cursor: pointer;
+        }
+        
+        .icon {
+            margin: 0 8px;
+            color: #ff9800;
+        }
+        
+        .suport {
+            font-size: 12px;
+            color: #9e9e9e;
+            line-height: 2em;
+        }
+        
+        .href {
+            color: #007acc;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: auto;
+        }
+        
+        .des {
+            font-size: 12px;
+            height: 2em;
+            line-height: 2em;
+        }
+        
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .key {
+            display: inline-block;
+            width: 10em;
+            padding: 0 1em;
+        }
+        
+        .mask {
+            display: block;
+            background: rgba(0, 0, 0, 0.5);
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+        
+        .detail_panel {
+            height: calc(100% - 32px);
+            margin: 16px;
+            background: white;
+            box-shadow: 0 1px 6px #9e9e9e;
+            box-sizing: border-box;
+            font-size: 14px;
+            overflow: hidden;
+        }
+        
+        .scroller {
+            padding: 8px 16px;
+            overflow-y: auto;
+            height: calc(100% - 44px);
+        }
+        
+        .header {
+            display: flex;
+            background: #e0e0e0;
+            height: 44px;
+            line-height: 44px;
+        }
+        
+        .header>span:first-child {
+            display: inline-block;
+            flex: auto;
+            font-weight: 700;
+            font-size: 16px;
+            padding: 0 16px;
+        }
+        
+        .close_btn {
+            display: inline-block;
+            background: #424242;
+            color: white;
+            cursor: pointer;
+            padding: 0 16px;
+        }
+        
+        .download {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: #154b73;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            height: 48px;
+            line-height: 48px;
+            width: 48px;
+            border-radius: 48px;
+            box-shadow: 0 3px 6px #bdbdbd;
+            cursor: pointer;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" style="display: none;">
+        <div class="outer" v-if='!url'>
+            <div class="proj" v-if="ROOT!='\\\\192.168.1.203\\proto_shared'">
+                <span class="icon">
+                    <i class="fa fa-folder"></i>
+                </span>
+                <span class="name" @click='back()' type="FOLDER">..返回</span>
+            </div>
+            <div class="proj" v-for="proj in projs">
+                <span class="icon">
+                    <i v-if="proj.type=='FOLDER'" class="fa fa-folder"></i>
+                    <i v-else-if="proj.type=='AXURE'" style="color:#007acc" class="fa fa-xing"></i>
+                    <i v-else-if="proj.type=='PROJ'" style="color:#007acc" class="fa fa-external-link-square"></i>
+                    <i v-else style="color:#9e9e9e" class="fa fa-file"></i>
+                </span>
+                <span v-if="proj.type=='FOLDER' || proj.type=='FILE'" class="name" @click='href(proj)' :type="proj.type">{{proj.name}}</span>
+                <span v-else class="name">{{proj.name}}</span>
+                <span v-if="proj.type=='PROJ'" class="href" @click='href(proj)'>{{proj.href}}</span>
+                <span v-if="proj.type=='AXURE'">
+                    <span @click="openDetail(proj)" class="href">详情&nbsp;</span>
+                <span @click="openWord(proj)" class="href">需求文档&nbsp;</span>
+                <span @click="openProto(proj)" class="href">原型&nbsp;<span>{{proj.href}}</span></span>
+                </span>
+            </div>
+        </div>
+        <iframe v-if='url' class="iframe" :src="url" frameborder="0" height="100%" width="100%"></iframe>
+        <div v-if='show_detail' class="mask">
+            <div class="detail_panel">
+                <div class="header">
+                    <span>{{proj_detail.proj||"未设置详情"}}</span>
+                    <span class="close_btn" @click="show_detail=false">关闭</span>
+                </div>
+                <div class="scroller">
+                    <div v-for="(prop,key,index) in proj_detail" class="des">
+                        <span class="key">{{key}}</span>
+                        <span>{{prop}}</span>
+                    </div>
+                    <div class="des"></div>
+                </div>
+            </div>
+        </div>
+        <div class="download" v-if="show_download_btn" @click='downloadWord'>下载</div>
+    </div>
+    <script>
+        var ROOT = "\\\\192.168.1.203\\proto_shared"
+        const COVER_URL = "http://192.168.1.203/xbro_logo.png"
+        var {
+            ipcRenderer,
+            shell
+        } = require('electron')
+        var cur_proj;
+        const genDocxHtml = require('./js/genDocx')
+        const cheerio = require('cheerio')
+
+        const path = require('path')
+        const fs = require('fs')
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                projs: [],
+                url: '',
+                show_detail: false,
+                proj_detail: {},
+                ROOT,
+                show_download_btn: false,
+                proj: {},
+            },
+            methods: {
+                href(proj) {
+                    if (proj.type == "FOLDER") {
+                        this.openFolder(proj.href)
+                        ipcRenderer.send('setMenu', 'DEFAULT')
+                    } else {
+                        this.url = proj.href
+                        ipcRenderer.send('setMenu', 'AXURE')
+                    }
+                },
+                downloadWord() {
+                    ipcRenderer.send('downloadWord', this.proj)
+                        // outputDocx(this.proj)
+                },
+                openProto(proj) {
+                    ipcRenderer.send('setMenu', 'AXURE')
+                    this.url = proj.href
+                },
+                openWord(proj) {
+                    this.proj = proj
+                    ipcRenderer.send('setMenu', 'AXURE')
+                    this.show_download_btn = true
+                    genDocxHtml(proj)
+                        .then(url => {
+                            this.url = url
+                        })
+                },
+                openDetail(proj) {
+                    this.getProjDetail(proj)
+                    this.show_detail = true
+                },
+                back() {
+                    if (this.ROOT == ROOT) return false
+                    var dir = this.ROOT.split("\\")
+                    dir.pop()
+                    dir = dir.join("\\")
+                    this.openFolder(dir)
+                },
+                openFolder(DIR) {
+                    var list = fs.readdirSync(DIR)
+                    var full_path,
+                        abs_path,
+                        file_state,
+                        proj_list = []
+                    this.ROOT = DIR
+                    list.forEach(file => {
+                        full_path = abs_path = DIR + "\\" + file
+                        if (fs.statSync(full_path).isDirectory()) {
+                            var isProj = fs.existsSync(full_path + '\\index.html')
+                            var isAxure = fs.existsSync(full_path + '\\data\\document.js')
+
+                            if (isProj) {
+                                full_path = full_path.replace(/\\/g, "/")
+                                full_path = full_path.replace("/proto_shared", "")
+                                var type = isAxure ? "AXURE" : "PROJ"
+                                var prio = isAxure ? 1 : 2
+                                proj_list.push({
+                                    href: "http:" + full_path + "/index.html#g=1",
+                                    name: file,
+                                    abs_path: DIR + "\\" + file,
+                                    type,
+                                    prio,
+                                })
+                            } else {
+                                proj_list.push({
+                                    href: full_path,
+                                    name: file,
+                                    type: "FOLDER",
+                                    prio: 3,
+                                })
+                            }
+                        } else {
+                            proj_list.push({
+                                href: full_path,
+                                name: file,
+                                type: "FILE",
+                                prio: 4,
+                            })
+                        }
+                    })
+                    proj_list.sort((a, b) => {
+                        return a.prio - b.prio
+                    })
+                    this.projs = proj_list
+                },
+                getProjDetail(proj) {
+                    var doc_url = `${proj.abs_path}\\封面.html`
+                    var stat = fs.existsSync(doc_url)
+                    if (!stat) return ipcRenderer.send('setMenu', 'DEFAULT')
+                    var con = fs.readFileSync(doc_url, err => {
+                        err.req = '不包含详情'
+                        throw err
+                    })
+
+                    $ = cheerio.load(fs.readFileSync(doc_url), {
+                        decodeEntities: false
+                    });
+
+                    var proj_info = {}
+                    const url_arr = ["url_story", "url_task", "url_prd", "url_proto", "url_project", "url_qa", "proj_name", "author", "mobile"]
+                    const staff_arr = ["staff_ba", "staff_leader", "staff_pm", "staff_ixd", "staff_qa", "staff_cc"]
+                    const dt_arr = ["dt_pre", "dt_proto", "dt_dev", "dt_test", "dt_launch"]
+                    var nodes = []
+                    url_arr.forEach(prop => {
+                        nodes = $(`div[data-label=${prop}]`)
+                        if (nodes.length) {
+                            nodes.each(function(node) {
+                                var val = $(this).find('.text span').html();
+                                proj_info[prop] = val
+                            })
+                        }
+                    })
+
+                    staff_arr.forEach(prop => {
+                        nodes = $(`div[data-label=${prop}]`)
+                        if (nodes.length) {
+                            nodes.each(function(node) {
+                                var val = $(this).find('.text span').html();
+                                proj_info[prop] = val
+                            })
+                        }
+                    })
+
+                    dt_arr.forEach(prop => {
+                        nodes = $(`div[data-label=${prop}]`)
+                        if (nodes.length) {
+                            nodes.each(function(node) {
+                                var val = $(this).find('.text span').html();
+                                proj_info[prop] = val
+                            })
+                        }
+                    })
+                    this.proj_detail = proj_info
+                }
+            },
+            mounted() {
+                this.openFolder(this.ROOT)
+                document.getElementById("app").style = "block"
+            }
+        })
+
+        ipcRenderer.on('openFolder', ev => {
+            shell.openItem(app.ROOT)
+        })
+
+        ipcRenderer.on('back', ev => {
+            app.$set(app, 'url', '')
+            this.show_download_btn = false
+            ipcRenderer.send('setMenu', 'DEFAULT')
+        })
+    </script>
+</body>
+
+</html>

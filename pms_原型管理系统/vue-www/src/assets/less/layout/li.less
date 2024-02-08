@@ -1,0 +1,29 @@
+li {
+    height: var(--ht-m);
+    display: flex;
+    align-items: center;
+    flex-flow: row nowrap;
+    position: relative;
+    >button,
+    >span {
+        flex: none;
+    }
+    >h1,
+    >input,
+    >div {
+        flex: auto;
+    }
+}
+
+*[compact] {
+    li {
+        height: var(--ht-s);
+    }
+}
+
+*[expand] {
+    li {
+        height: var(--ht-l);
+        padding-bottom: var(--pd-s);
+    }
+}

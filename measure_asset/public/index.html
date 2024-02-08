@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./json2html.js"></script>
+    <title>Document</title>
+    <style>
+        section {
+            margin: 24px auto;
+            max-width: 1024px;
+        }
+        
+        table {
+            width: 100%;
+        }
+        
+        td {
+            padding: 4px 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <table border="1">
+            <tbody>
+
+            </tbody>
+        </table>
+    </section>
+</body>
+
+<script>
+    get_url("http://192.168.1.203:8080/measures", function(data) {
+        console.log(data)
+    })
+
+    json2html.component.add('link', {
+        "<>": "a",
+        "text": "${id}",
+        "href": "http://192.168.1.203:8080/measures/${id}"
+    })
+    let data = {
+        "info": {
+            "name": "度量库",
+            "version": "1.0.0",
+            "date": "20220818"
+        },
+        "measures": [{
+            "id": "ID",
+            "k": "英文名",
+            "n": "名称",
+            "v": "值",
+            "u": "单位",
+            "s": "范围",
+            "g": "分组"
+        }, {
+            "id": "CCFR",
+            "k": "Coverage of Competitor Functions Ratio",
+            "n": "竞品功能覆盖率",
+            "v": 95,
+            "u": "%",
+            "s": "",
+            "g": "需求"
+        }, {
+            "id": "RRNT",
+            "k": "Requirement Review Number of Times",
+            "n": "需求评审次数",
+            "v": 3,
+            "u": "次",
+            "s": "<3",
+            "g": "需求"
+        }, {
+            "id": "RDR",
+            "k": "Requirement Development Rate",
+            "n": "需求开发效率",
+            "v": 0.5,
+            "u": "页/人天",
+            "s": ">0.1 && <2",
+            "g": "需求"
+        }, {
+            "id": "RFPR",
+            "k": "Requirement/Function Point Ratio",
+            "n": "需求/功能点占比",
+            "v": 7,
+            "u": "%",
+            "s": ">5 && <10",
+            "g": "需求"
+        }, {
+            "id": "DPDR",
+            "k": "Dashboard Page Design Rate",
+            "n": "驾驶舱效果图设计效率",
+            "v": 2,
+            "u": "页/人天",
+            "s": ">1 && <3",
+            "g": "设计"
+        }, {
+            "id": "APDR",
+            "k": "Admin Page Design Rate",
+            "n": "管理页效果图设计效率",
+            "v": 1,
+            "u": "人天",
+            "s": ">0.5 && <1",
+            "g": "设计"
+        }, {
+            "id": "SIDR",
+            "k": "Single-color Icon Design Rate",
+            "n": "图标(单色)设计效率",
+            "v": 0.25,
+            "u": "页/人天",
+            "s": ">0.25 && <0.5",
+            "g": "设计"
+        }, {
+            "id": "DFPR",
+            "k": "Development/Function Point Ratio",
+            "n": "开发/功能点占比",
+            "v": 100,
+            "u": "%",
+            "s": ">80 && <120",
+            "g": "开发"
+        }, {
+            "id": "TFPR",
+            "k": "Testing/Function Point Ratio",
+            "n": "测试/功能点占比",
+            "v": 40,
+            "u": "%",
+            "s": ">30 && <50",
+            "g": "质量"
+        }, {
+            "id": "TNR",
+            "k": "Testing Number of Rounds",
+            "n": "测试轮数",
+            "v": 4,
+            "u": "%",
+            "s": ">3 && <5",
+            "g": "质量"
+        }, {
+            "id": "TCER",
+            "k": "Test Case Excution Rate",
+            "n": "用例执行效率",
+            "v": 15,
+            "u": "用例/人天",
+            "s": ">10 && <20",
+            "g": "质量"
+        }, {
+            "id": "DTCR",
+            "k": "Defects/Test Cases Ratio",
+            "n": "开发期间用例缺陷率",
+            "v": 10,
+            "u": "%",
+            "s": "<10",
+            "g": "质量"
+        }, {
+            "id": "HDCR",
+            "k": "High-level Defects Close Ratio",
+            "n": "严重缺陷关闭率",
+            "v": 100,
+            "u": "%",
+            "s": "100",
+            "g": "质量"
+        }, {
+            "id": "CDCR",
+            "k": "Common-level Defects Close Ratio",
+            "n": "一般缺陷关闭率",
+            "v": 90,
+            "u": "%",
+            "s": "",
+            "g": "质量"
+        }, {
+            "id": "DI",
+            "k": "Defect Index",
+            "n": "缺陷指数",
+            "v": 9,
+            "u": "%",
+            "s": "<9",
+            "g": "质量"
+        }, {
+            "id": "TCR",
+            "k": "Training Coverage Ratio",
+            "n": "培训覆盖率",
+            "v": 100,
+            "u": "%",
+            "s": "",
+            "g": "发布"
+        }, {
+            "id": "TD",
+            "k": "Training Duration",
+            "n": "培训时长",
+            "v": 1,
+            "u": "小时",
+            "s": ">1",
+            "g": "发布"
+        }, {
+            "id": "AER",
+            "k": "Atendence of Examination Ratio",
+            "n": "考试参与率",
+            "v": 90,
+            "u": "%",
+            "s": "",
+            "g": "发布"
+        }, {
+            "id": "AER",
+            "k": "Pass of Examination Ratio",
+            "n": "考试通过率",
+            "v": 90,
+            "u": "%",
+            "s": "",
+            "g": "发布"
+        }, {
+            "id": "DSD",
+            "k": "Deployment of Software Duration",
+            "n": "部署时长",
+            "v": 5,
+            "u": "min",
+            "s": "<5",
+            "g": "实施"
+        }, {
+            "id": "SCR",
+            "k": "Scene Configuration Rate",
+            "n": "场景组态效率",
+            "v": 0.5,
+            "u": "人天/百机柜",
+            "s": "<0.5",
+            "g": "实施"
+        }, {
+            "id": "PCR",
+            "k": "Pipe Configuration Rate",
+            "n": "管线组态效率",
+            "v": 1,
+            "u": "人天/公里",
+            "s": "<1",
+            "g": "实施"
+        }, {
+            "id": "PCCR",
+            "k": "Port and Cabling Configuration Rate",
+            "n": "端口配线效率",
+            "v": 0.5,
+            "u": "人天/百机柜",
+            "s": "<0.5",
+            "g": "实施"
+        }, {
+            "id": "DMCR",
+            "k": "Device Modeling and Configuration Rate",
+            "n": "设备建模效率",
+            "v": 0.5,
+            "u": "人天/设备",
+            "s": "<0.5",
+            "g": "实施"
+        }, {
+            "id": "PMR",
+            "k": "Park Modeling Rate",
+            "n": "园区建模效率",
+            "v": 5,
+            "u": "人天/园区",
+            "s": "<5",
+            "g": "实施"
+        }, {
+            "id": "CSR",
+            "k": "Customer Satisfication Ratio",
+            "n": "客户满意率",
+            "v": 90,
+            "u": "%",
+            "s": ">90",
+            "g": "运营"
+        }, {
+            "id": "WRR",
+            "k": "Willing of Repurchase Ratio",
+            "n": "意愿回购率",
+            "v": 90,
+            "u": "%",
+            "s": ">90",
+            "g": "运营"
+        }]
+    }
+
+    let template = {
+        "<>": "tr",
+        'html': [{
+            "<>": "td",
+            "html": [{
+                "[]": 'link'
+            }]
+        }, {
+            "<>": "td",
+            "html": "${k}"
+        }, {
+            "<>": "td",
+            "html": "${n}"
+        }, {
+            "<>": "td",
+            "html": "${v}"
+        }, {
+            "<>": "td",
+            "html": "${u}"
+        }, {
+            "<>": "td",
+            "html": "${s}"
+        }, {
+            "<>": "td",
+            "html": "${g}"
+        }, ]
+    }
+
+    document.getElementsByTagName('tbody')[0].innerHTML = json2html.render(data.measures, template)
+
+    function get_url({
+        url,
+        success
+    }) {
+        let xhr = new XMLHttpRequest()
+        xhr.open('get', url, true)
+        xhr.send()
+        xhr.onreadystatechange = function() {
+            success(JSON.parse(xhr.response))
+        }
+    }
+</script>
+
+</html>

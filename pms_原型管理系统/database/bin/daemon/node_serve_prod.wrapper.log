@@ -1,0 +1,2 @@
+2019-02-21 13:40:19 - Starting C:\Program Files\nodejs\node.exe  --harmony F:\database\node_modules\node-windows\lib\wrapper.js --file F:\database\bin\www --log "node_serve_prod wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2019-02-21 13:40:19 - Started 3712

@@ -1,0 +1,779 @@
+{
+    "configuration": {
+        "showPageNotes": true,
+        "showPageNoteNames": false,
+        "showAnnotations": true,
+        "showAnnotationsSidebar": true,
+        "showConsole": true,
+        "linkStyle": "displayMultipleTargetsOnly",
+        "linkFlowsToPages": true,
+        "linkFlowsToPagesNewWindow": false,
+        "useLabels": false,
+        "useViews": true,
+        "loadFeedbackPlugin": false
+    },
+    "sitemap": {
+        "rootNodes": [
+            {
+                "id": "ou4e4p",
+                "pageName": "axpage",
+                "type": "Wireframe",
+                "url": "axpage.html"
+            }
+        ]
+    },
+    "additionalJs": [
+        "plugins/sitemap/sitemap.js",
+        "plugins/page_notes/page_notes.js",
+        "plugins/debug/debug.js"
+    ],
+    "additionalCss": [
+        "plugins/sitemap/styles/sitemap.css",
+        "plugins/page_notes/styles/page_notes.css",
+        "plugins/debug/styles/debug.css"
+    ],
+    "globalVariables": {
+        "onloadvariable": ""
+    },
+    "stylesheet": {
+        "defaultStyle": {
+            "id": "627587b6038d43cca051c114ac41ad32",
+            "fontName": "'Arial Normal', 'Arial'",
+            "fontWeight": "400",
+            "fontStyle": "normal",
+            "fontStretch": "5",
+            "foreGroundFill": {
+                "fillType": "solid",
+                "color": 4281545523,
+                "opacity": 1
+            },
+            "fontSize": "13px",
+            "underline": false,
+            "horizontalAlignment": "center",
+            "lineSpacing": "normal",
+            "characterSpacing": "normal",
+            "letterCase": "none",
+            "strikethrough": false,
+            "location": {
+                "x": 0,
+                "y": 0
+            },
+            "size": {
+                "width": 0,
+                "height": 0
+            },
+            "visible": true,
+            "limbo": false,
+            "baseStyle": "627587b6038d43cca051c114ac41ad32",
+            "fill": {
+                "fillType": "solid",
+                "color": 4294967295
+            },
+            "borderFill": {
+                "fillType": "solid",
+                "color": 4286151033
+            },
+            "borderWidth": "1",
+            "linePattern": "solid",
+            "opacity": "1",
+            "cornerRadius": "0",
+            "verticalAlignment": "middle",
+            "paddingLeft": "2",
+            "paddingTop": "2",
+            "paddingRight": "2",
+            "paddingBottom": "2",
+            "stateStyles": {},
+            "image": null,
+            "imageFilter": null,
+            "rotation": "0",
+            "outerShadow": {
+                "on": false,
+                "offsetX": 5,
+                "offsetY": 5,
+                "blurRadius": 5,
+                "color": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 0.349019607843137
+                }
+            },
+            "innerShadow": {
+                "on": false,
+                "offsetX": 0,
+                "offsetY": 5,
+                "blurRadius": 5,
+                "color": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 0.349019607843137
+                }
+            },
+            "textShadow": {
+                "on": false,
+                "offsetX": 1,
+                "offsetY": 1,
+                "blurRadius": 5,
+                "color": {
+                    "r": 0,
+                    "g": 0,
+                    "b": 0,
+                    "a": 0.647058823529412
+                }
+            },
+            "viewOverride": "19e82109f102476f933582835c373474"
+        },
+        "customStyles": {
+            "_形状": {
+                "id": "40519e9ec4264601bfb12c514e4f4867"
+            },
+            "_一级标题": {
+                "id": "1111111151944dfba49f67fd55eb1f88",
+                "fontSize": "32px",
+                "fontWeight": "bold",
+                "borderWidth": "0",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "horizontalAlignment": "left",
+                "verticalAlignment": "top",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0"
+            },
+            "_二级标题": {
+                "id": "b3a15c9ddde04520be40f94c8168891e",
+                "fontSize": "24px",
+                "fontWeight": "bold",
+                "borderWidth": "0",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "horizontalAlignment": "left",
+                "verticalAlignment": "top",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0"
+            },
+            "_三级标题": {
+                "id": "8c7a4c5ad69a4369a5f7788171ac0b32",
+                "fontSize": "18px",
+                "fontWeight": "bold",
+                "borderWidth": "0",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "horizontalAlignment": "left",
+                "verticalAlignment": "top",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0"
+            },
+            "_四级标题": {
+                "id": "e995c891077945c89c0b5fe110d15a0b",
+                "fontSize": "14px",
+                "fontWeight": "bold",
+                "borderWidth": "0",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "horizontalAlignment": "left",
+                "verticalAlignment": "top",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0"
+            },
+            "_五级标题": {
+                "id": "386b19ef4be143bd9b6c392ded969f89",
+                "fontWeight": "bold",
+                "borderWidth": "0",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "horizontalAlignment": "left",
+                "verticalAlignment": "top",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0"
+            },
+            "_六级标题": {
+                "id": "fc3b9a13b5574fa098ef0a1db9aac861",
+                "fontSize": "10px",
+                "fontWeight": "bold",
+                "borderWidth": "0",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "horizontalAlignment": "left",
+                "verticalAlignment": "top",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0"
+            },
+            "_文本段落": {
+                "id": "4988d43d80b44008a4a415096f1632af",
+                "fontName": "'FontAwesome'",
+                "fontWeight": "400",
+                "borderWidth": "0",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "horizontalAlignment": "center",
+                "verticalAlignment": "middle",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0",
+                "fontSize": "18px"
+            },
+            "_表单提示": {
+                "id": "4889d666e8ad4c5e81e59863039a5cc0",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4288256409,
+                    "opacity": 1
+                }
+            },
+            "_表单禁用": {
+                "id": "9bd0236217a94d89b0314c8c7fc75f16",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4293980400
+                }
+            },
+            "_对话框背景": {
+                "id": "19cfb4f5f09745119b449578d713384c",
+                "fontName": "'FontAwesome'",
+                "fontWeight": "400",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4294967295,
+                    "opacity": 1
+                },
+                "horizontalAlignment": "left",
+                "lineSpacing": "20px",
+                "fill": {
+                    "fillType": "radialGradient",
+                    "center": {
+                        "x": 1,
+                        "y": 2.58379176640036e-15
+                    },
+                    "axis1": {
+                        "x": 1,
+                        "y": 1
+                    },
+                    "axis2": {
+                        "x": 0,
+                        "y": 0
+                    },
+                    "stops": [
+                        {
+                            "color": 4288585374,
+                            "offset": 0
+                        },
+                        {
+                            "color": 4284572001,
+                            "offset": 1
+                        }
+                    ]
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 4342338
+                },
+                "borderWidth": "0",
+                "linePattern": "none",
+                "cornerRadius": "4",
+                "verticalAlignment": "top",
+                "paddingLeft": "16",
+                "paddingTop": "56",
+                "paddingRight": "16",
+                "outerShadow": {
+                    "on": true,
+                    "offsetX": 0,
+                    "offsetY": 6,
+                    "blurRadius": 18,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.498039215686275
+                    }
+                }
+            },
+            "_图片_": {
+                "id": "d7ffdd58eb754c32a8625fb1e596c674",
+                "borderWidth": "0"
+            },
+            "_二级标题1": {
+                "id": "fd211e57683443ecacdcdaa4056e2011",
+                "fontName": "'微软雅黑'",
+                "fontWeight": "400",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4292730333,
+                    "opacity": 1
+                },
+                "fontSize": "16px",
+                "horizontalAlignment": "left",
+                "lineSpacing": "24px",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4342338
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 7960953
+                },
+                "borderWidth": "0",
+                "linePattern": "none",
+                "cornerRadius": "8",
+                "paddingLeft": "8",
+                "paddingRight": "8"
+            },
+            "input_text": {
+                "id": "305652305c7f43a582158955c0bfe31b",
+                "fontName": "'FontAwesome'",
+                "fontWeight": "400",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4278190080,
+                    "opacity": 1
+                },
+                "fontSize": "13px",
+                "horizontalAlignment": "left",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4294967295
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 4290624957
+                },
+                "borderWidth": "1",
+                "linePattern": "solid",
+                "verticalAlignment": "middle",
+                "paddingLeft": "8",
+                "paddingRight": "8"
+            },
+            "card_light": {
+                "id": "c841a2b1ff5e42f18ca54a9e4672b928",
+                "fontName": "'FontAwesome'",
+                "fontWeight": "400",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4284572001,
+                    "opacity": 1
+                },
+                "fontSize": "14px",
+                "horizontalAlignment": "left",
+                "lineSpacing": "20px",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4292927712
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 4290624957
+                },
+                "borderWidth": "1",
+                "linePattern": "solid",
+                "verticalAlignment": "middle",
+                "paddingLeft": "16"
+            },
+            "btn_circle": {
+                "id": "a47df2c03c124daba128ae46cdd141e8",
+                "fontName": "'FontAwesome Bold', 'FontAwesome Regular', 'FontAwesome'",
+                "fontWeight": "700",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4294967295,
+                    "opacity": 1
+                },
+                "fontSize": "18px",
+                "horizontalAlignment": "center",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4278190080
+                },
+                "borderWidth": "0",
+                "linePattern": "none",
+                "cornerRadius": "80",
+                "verticalAlignment": "middle"
+            },
+            "_主要按钮": {
+                "id": "209c1fc20b15422da405f20fef4b2708",
+                "fontName": "'微软雅黑'",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4294967295,
+                    "opacity": 1
+                },
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4278221567
+                },
+                "borderWidth": "0",
+                "cornerRadius": "4",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0"
+            },
+            "_次要按钮": {
+                "id": "0730b8a78c944f1cb09a6fe2af474fcd",
+                "fontName": "'微软雅黑 Light', '微软雅黑 Regular', '微软雅黑'",
+                "fontWeight": "250",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4294967295,
+                    "opacity": 1
+                },
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4281152570
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 4287137928
+                },
+                "cornerRadius": "4",
+                "paddingLeft": "16",
+                "paddingTop": "0",
+                "paddingRight": "16"
+            },
+            "_标题图标": {
+                "id": "48320c30b4e94d1087380bdd52077c61",
+                "fontName": "'FontAwesome'",
+                "fontWeight": "400",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4292730333,
+                    "opacity": 1
+                },
+                "fontSize": "18px",
+                "lineSpacing": "24px",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4342338
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 7960953
+                },
+                "borderWidth": "0",
+                "linePattern": "none",
+                "cornerRadius": "8",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0"
+            },
+            "box_1": {
+                "id": "6eac6c9f50a4408592552f162809471d"
+            },
+            "label": {
+                "id": "c838f4349e7a4e81bb0034a7822bf194",
+                "fontSize": "14px",
+                "horizontalAlignment": "left",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "borderWidth": "0",
+                "verticalAlignment": "top",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0"
+            },
+            "card_dark": {
+                "id": "98dd70e7c10e418d8683ec95ff70718d",
+                "fontName": "'FontAwesome'",
+                "fontWeight": "400",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4288585374,
+                    "opacity": 1
+                },
+                "fontSize": "14px",
+                "horizontalAlignment": "left",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4278190080
+                },
+                "borderWidth": "0",
+                "paddingLeft": "16",
+                "paddingRight": "16"
+            },
+            "cell_label": {
+                "id": "558126e5240846a080003fbb3b2c2c9c",
+                "fontName": "'FontAwesome'",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4285887861,
+                    "opacity": 1
+                },
+                "fontSize": "14px",
+                "horizontalAlignment": "right",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 4292927712
+                },
+                "borderWidth": "0",
+                "paddingTop": "4",
+                "paddingRight": "16",
+                "paddingBottom": "4"
+            },
+            "badge": {
+                "id": "672f4a27b34f470885c7c6f679c620b8",
+                "fontName": "'FontAwesome'",
+                "fontWeight": "400",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4294967295,
+                    "opacity": 1
+                },
+                "fontSize": "11px",
+                "horizontalAlignment": "center",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4294924066
+                },
+                "cornerRadius": "16",
+                "verticalAlignment": "middle"
+            },
+            "heading_2": {
+                "id": "de44e3ca9c744dc1826067328d81533d",
+                "fontName": "'FontAwesome'",
+                "fontWeight": "400",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4285887861,
+                    "opacity": 1
+                },
+                "fontSize": "16px",
+                "horizontalAlignment": "left",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4294309365
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 4293848814
+                },
+                "borderWidth": "1",
+                "linePattern": "solid",
+                "verticalAlignment": "middle",
+                "paddingLeft": "16",
+                "paddingRight": "16"
+            },
+            "btn_light": {
+                "id": "016c9161fada471790f8d2e6845bcd99",
+                "fontName": "'FontAwesome Bold', 'FontAwesome Regular', 'FontAwesome'",
+                "fontWeight": "700",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4278190080,
+                    "opacity": 1
+                },
+                "fontSize": "14px",
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 4288585374
+                },
+                "borderWidth": "1",
+                "linePattern": "solid"
+            },
+            "card_white": {
+                "id": "3565d2688fc649fe9444237878f1c337",
+                "fontName": "'FontAwesome'",
+                "fontWeight": "400",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4285887861,
+                    "opacity": 1
+                },
+                "fontSize": "14px",
+                "horizontalAlignment": "left",
+                "lineSpacing": "24px",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4294967295
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 4293848814
+                },
+                "borderWidth": "1",
+                "linePattern": "solid",
+                "paddingLeft": "16",
+                "paddingRight": "16"
+            },
+            "flow_shape": {
+                "id": "22a958e4d1984e48bef203e45d5b298d",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4294967295
+                }
+            },
+            "_次要文本": {
+                "id": "8419efe98ab646009c1ba4aee4d4c47d",
+                "fontName": "'微软雅黑 Light', '微软雅黑 Regular', '微软雅黑'",
+                "fontWeight": "250",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4288585374,
+                    "opacity": 1
+                },
+                "fontSize": "14px",
+                "horizontalAlignment": "right",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "borderWidth": "0",
+                "verticalAlignment": "middle",
+                "paddingLeft": "2",
+                "paddingTop": "0",
+                "paddingRight": "16",
+                "paddingBottom": "0"
+            },
+            "_高亮文本": {
+                "id": "7d9f72c34be244a9a0c57231766eb657",
+                "fontName": "'微软雅黑 Bold', '微软雅黑 Regular', '微软雅黑'",
+                "fontWeight": "700",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4294967295,
+                    "opacity": 1
+                },
+                "fontSize": "16px",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "borderWidth": "0",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0"
+            },
+            "box_2": {
+                "id": "e1d998dff26a4794b70989f2b5223552",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4294111986
+                },
+                "borderWidth": "0"
+            },
+            "_卡片背景": {
+                "id": "e9a99ee50e354bdb8fc03fa720c048e7",
+                "fontName": "'微软雅黑 Light', '微软雅黑 Regular', '微软雅黑'",
+                "fontWeight": "250",
+                "fontStyle": "normal",
+                "fontStretch": "5",
+                "foreGroundFill": {
+                    "fillType": "solid",
+                    "color": 4294967295,
+                    "opacity": 1
+                },
+                "fontSize": "16px",
+                "horizontalAlignment": "center",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4284572001
+                },
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 16777215
+                },
+                "borderWidth": "0",
+                "linePattern": "none",
+                "cornerRadius": "4",
+                "verticalAlignment": "middle",
+                "paddingLeft": "0",
+                "paddingTop": "0",
+                "paddingRight": "0",
+                "paddingBottom": "0",
+                "outerShadow": {
+                    "on": true,
+                    "offsetX": 0,
+                    "offsetY": 1,
+                    "blurRadius": 3,
+                    "color": {
+                        "r": 0,
+                        "g": 0,
+                        "b": 0,
+                        "a": 0.349019607843137
+                    }
+                }
+            },
+            "_线段": {
+                "id": "dccc197779874383ae3d10c045d335f1",
+                "borderFill": {
+                    "fillType": "solid",
+                    "color": 4278190080
+                }
+            },
+            "checkbox": {
+                "id": "1868b29da11c4af7a999efd813c2daec",
+                "horizontalAlignment": "left",
+                "verticalAlignment": "top"
+            },
+            "form_disabled": {
+                "id": "6cc19c3b0a2f40669f3de35216ffc76a",
+                "fill": {
+                    "fillType": "solid",
+                    "color": 4293980400
+                }
+            }
+        },
+        "duplicateStyles": {}
+    }
+}

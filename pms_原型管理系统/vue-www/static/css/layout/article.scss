@@ -1,0 +1,17 @@
+article {
+  display: flex;
+  height: $ht-max;
+  flex-flow: column nowrap;
+  justify-content: center;
+  background-color: $cl-200;
+  >header {
+    flex: none;
+  }
+  >content {
+    flex: auto;
+    padding: $pd-s;
+    @include phone() {
+      padding: 0;
+    }
+  }
+}

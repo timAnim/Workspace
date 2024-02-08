@@ -1,0 +1,26 @@
+aside {
+    width: var(--wd-panel);
+    height: 100%;
+    background-color: var(--cl-front-i);
+    flex: none;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    color: var(--cl-sec-i);
+    li {
+        cursor: pointer;
+        width: var(--wd-panel);
+        transition: background 0.1s ease;
+        border-bottom: var(--bdr-width) var(--bdr-style) var(--bdr-color-i);
+        &[checked] {
+            background-color: var(--cl-theme);
+            color: var(--cl-prim-i);
+        }
+    }
+    div[opened]>li:first-child {
+        opacity: 0.7;
+    }
+    div[opened] .child {
+        display: flex;
+        background-color: var(--cl-front-i);
+    }
+}

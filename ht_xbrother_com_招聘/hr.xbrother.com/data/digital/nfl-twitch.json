@@ -1,0 +1,31 @@
+{
+    "page-title": "Richard Mattka | Twitch + NFL | Thursday Night Football",
+    "description": "The Thursday Night Football Twitch Extension is a real-time Twitch game running during the live NFL broadcast. Created for Twtich, Amazon and the NFL.",
+    "url": "https://richardmattka.com/work/nfl-twitch",
+    "shareImage": "assets/images/work/nfl-twitch/nfl-twitch.jpg",
+    "twitterShare": "Check out this Twitch Extension project, for Twitch, Amazon and the NFL by @synergyseeker 👽 ",
+    "hashtags": "nfl, tnf, thursdaynightfootball, football, twitch, streaming, livestreaming, amazon, thursday, night, webdev, gamedev, game, extension ",
+    "tags": "live, streaming, extension, api, chatbot, game, twitch, nfl, amazon, developer, google, app ,engine, statistics, data, database, ",
+    "link": "work/nfl-twitch",
+
+
+
+    "title": "Twitch + NFL | Thursday Night Football",
+    "subtitle": "Live Streaming | Game Development",
+    "client": "Twitch | NFL | Amazon | Tool of North America",
+    "role": "Senior Developer | Front-End  | Back-end Architect",
+    "content": "<p><b>The Twitch Extenison for Thursday Night Football</b>. For the past two years (2018-2020),I worked with the team at Tool to create a custom Twitch extension for the Thursday Night Football stream that allowed viewers to compete in a live, interactive game with each other where they had the opportunity to watch the NFL games, check team stats/standings, and make projections to score points that totaled on a community leaderboard throughout the season.</p><p>During the live NFL game, viewers can use the extension app, to show the score, standings, and statistics. Fans can make quarterly predictions, answer questions about projected stats, including number of touchdowns; rushing yards; field goals; total possession time; average yards per play; etc.</p><p>After each quarter, players are rewarded with points and ranked against others on a live leaderboard. It's like real time fantasy football, adding a game within the game.</p><p class='section-title'>[Project Highlights]</p><ul><li>50,000+ Weekly Concurrent Users</li><li>Over 400,000 predictions made</li><li>Over 150 Million Points scored</li></ul>",
+
+
+    "feature": {
+        "type": "video",
+        "id": "https://vimeo.com/373222609/39fd49bab4",
+        "source": "vimeo",
+        "title": "",
+        "images": [
+            { "file": "assets/images/work/nfl-twitch/nfl-twitch.jpg" }
+
+        ],
+        "iframe": "assets/protos/gateway/index_awesome2.html"
+    }
+}

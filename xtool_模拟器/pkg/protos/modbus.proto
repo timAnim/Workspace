@@ -1,0 +1,328 @@
+syntax = "proto3";
+
+package modbus;
+
+import "google/api/annotations.proto";
+
+service XModbus {
+	// 获取04功能码寄存器信息
+	rpc GetInputRegisters(Paging) returns (GetInputRegisterResp){
+		option (google.api.http) = {
+			get: "/modbus/input/list"
+		};
+	};
+
+	// 获取03功能码寄存器信息
+	rpc GetHoldingRegisters(Paging) returns (GetHoldingRegisterResp){
+		option (google.api.http) = {
+			get: "/modbus/holding/list"
+		};
+	};
+
+	// 获取02功能码寄存器信息
+	rpc GetDiscreteInputs(Paging) returns (GetDiscreteInputResp){
+		option (google.api.http) = {
+			get: "/modbus/dinput/list"
+		};
+	};
+
+	// 获取01功能码寄存器信息
+	rpc GetCoils(Paging) returns (GetCoilResp){
+		option (google.api.http) = {
+			get: "/modbus/coil/list"
+		};
+	};
+
+	// 获取 modbus RTU 协议地址列表
+	rpc GetRTUAddrs(GetRTUAddrReq) returns (GetRTUAddrResp){
+		option (google.api.http) = {
+			get: "/modbus/rtu/list"
+		};
+	};
+
+	// 获取 modbus TCP 协议地址列表
+	rpc GetTCPAddrs(GetTCPAddrReq) returns (GetTCPAddrResp){
+		option (google.api.http) = {
+			get: "/modbus/tcp/list"
+		};
+	};
+
+	// 获取 modbus RTU 串口地址列表
+	rpc GetTTYAddrs(GetTTYAddrReq) returns (GetTTYAddrResp){
+		option (google.api.http) = {
+			get: "/modbus/tty/list"
+		};
+	};
+
+	// 设置04功能码寄存器信息
+	rpc SetInputRegister(SetInputRegisterReq) returns (SetInputRegisterResp){
+		option (google.api.http) = {
+			post: "/modbus/input/register"
+			body: "*"
+		};
+	};
+
+	// 设置04功能码寄存器范围
+	rpc SetInputRange(SetInputRangeReq) returns (SetInputRangeResp){
+		option (google.api.http) = {
+			post: "/modbus/input/range"
+			body: "*"
+		};
+	};
+
+	// 设置04功能码寄存器随机
+	rpc InputRegisterCtrl(InputRegisterCtrlReq) returns (InputRegisterCtrlResp){
+		option (google.api.http) = {
+			post: "/modbus/input/ctrl"
+			body: "*"
+		};
+	};
+
+	// 设置03功能码寄存器信息
+	rpc SetHoldingRegister(SetHoldingRegisterReq) returns (SetHoldingRegisterResp){
+		option (google.api.http) = {
+			post: "/modbus/holding/register"
+			body: "*"
+		};
+	};
+
+	// 设置03功能码寄存器范围
+	rpc SetHoldingRange(SetHoldingRangeReq) returns (SetHoldingRangeResp){
+		option (google.api.http) = {
+			post: "/modbus/holding/range"
+			body: "*"
+		};
+	};
+
+	// 设置03功能码寄存器随机
+	rpc HoldingRegisterCtrl(HoldingRegisterCtrlReq) returns (HoldingRegisterCtrlResp){
+		option (google.api.http) = {
+			post: "/modbus/holding/ctrl"
+			body: "*"
+		};
+	};
+
+	// 设置02功能码寄存器信息
+	rpc SetDiscreteInput(SetDiscreteInputReq) returns (SetDiscreteInputResp){
+		option (google.api.http) = {
+			post: "/modbus/dinput/register"
+			body: "*"
+		};
+	};
+	// 设置02功能码寄存器信息
+	rpc DiscreteInputCtrl(DiscreteInputCtrlReq) returns (DiscreteInputCtrlResp){
+		option (google.api.http) = {
+			post: "/modbus/dinput/ctrl"
+			body: "*"
+		};
+	};
+
+	// 设置02功能码寄存器信息
+	rpc SetCoil(SetCoilReq) returns (SetCoilResp){
+		option (google.api.http) = {
+			post: "/modbus/coil/register"
+			body: "*"
+		};
+	};
+	// 设置02功能码寄存器信息
+	rpc CoilCtrl(CoilCtrlReq) returns (CoilCtrlResp){
+		option (google.api.http) = {
+			post: "/modbus/coil/ctrl"
+			body: "*"
+		};
+	};
+}
+
+message WordRegister {
+	string addr = 1;
+	string hex = 2;
+
+	uint32 ubint16 = 3;
+	uint32 ulint16 = 4;
+	int32 sbint16 = 5;
+	int32 slint16 = 6;
+
+	int32 min = 7;
+	int32 max = 8;
+	bool random = 9;
+}
+
+message BitGroupRegister {
+	string addr = 1;
+	string hex = 2;
+
+	int32 bit7 = 3;
+	int32 bit6 = 4;
+	int32 bit5 = 5;
+	int32 bit4 = 6;
+	int32 bit3 = 7;
+	int32 bit2 = 8;
+	int32 bit1 = 9;
+	int32 bit0 = 10;
+
+	bool random = 11;
+}
+
+message Paging {
+	int32 index = 1;
+	int32 size = 2;
+}
+
+message GetInputRegisterResp {
+	repeated WordRegister list = 1;
+	int32 index = 2;
+	int32 size = 3;
+	int32 total = 4;
+}
+
+message GetHoldingRegisterResp {
+	repeated WordRegister list = 1;
+	int32 index = 2;
+	int32 size = 3;
+	int32 total = 4;
+}
+
+message GetDiscreteInputResp {
+	repeated BitGroupRegister list = 1;
+	int32 index = 2;
+	int32 size = 3;
+	int32 total = 4;
+}
+
+message GetCoilResp {
+	repeated BitGroupRegister list = 1;
+	int32 index = 2;
+	int32 size = 3;
+	int32 total = 4;
+}
+
+message GetRTUAddrReq {
+}
+
+message GetRTUAddrResp {
+	repeated string addrs = 1;
+}
+
+message GetTCPAddrReq {
+}
+
+message GetTCPAddrResp {
+	repeated string addrs = 1;
+}
+
+message GetTTYAddrReq {
+}
+
+message TTYAddr {
+	string addr = 1;
+	int32 baud = 2;
+	int32 databits = 3;
+	int32 stopbits = 4;
+	string parity = 5;
+	int32 timeout = 6;
+}
+
+message GetTTYAddrResp {
+	repeated TTYAddr addrs = 1;
+}
+
+// 输入寄存器控制
+
+message SetInputRegisterReq {
+	string addr = 1;
+	string field = 2;
+	string value = 3;
+}
+
+message SetInputRegisterResp {
+	WordRegister info = 1;
+}
+
+message SetInputRangeReq {
+	string addr = 1;
+	int32 min = 2;
+	int32 max = 3;
+}
+
+message SetInputRangeResp {
+	WordRegister info = 1;
+}
+
+message InputRegisterCtrlReq {
+	string addr = 1;
+	bool random = 2;
+}
+
+message InputRegisterCtrlResp {
+	WordRegister info = 1;
+}
+
+// 锁存寄存器控制
+
+message SetHoldingRegisterReq {
+	string addr = 1;
+	string field = 2;
+	string value = 3;
+}
+
+message SetHoldingRegisterResp {
+	WordRegister info = 1;
+}
+
+message SetHoldingRangeReq {
+	string addr = 1;
+	int32 min = 2;
+	int32 max = 3;
+}
+
+message SetHoldingRangeResp {
+	WordRegister info = 1;
+}
+
+message HoldingRegisterCtrlReq {
+	string addr = 1;
+	bool random = 2;
+}
+
+message HoldingRegisterCtrlResp {
+	WordRegister info = 1;
+}
+
+message SetDiscreteInputReq {
+	string addr = 1;
+	string field = 2;
+	string value = 3;
+}
+
+message SetDiscreteInputResp {
+	BitGroupRegister info = 1;
+}
+
+message DiscreteInputCtrlReq {
+	string addr = 1;
+	bool random = 2;
+}
+
+message DiscreteInputCtrlResp {
+	BitGroupRegister info = 1;
+}
+
+message SetCoilReq {
+	string addr = 1;
+	string field = 2;
+	string value = 3;
+}
+
+message SetCoilResp {
+	BitGroupRegister info = 1;
+}
+
+message CoilCtrlReq {
+	string addr = 1;
+	bool random = 2;
+}
+
+message CoilCtrlResp {
+	BitGroupRegister info = 1;
+}
+

@@ -1,0 +1,95 @@
+// 间距 pd 基准为0.16rem
+$pd-xs:0.04rem;
+$pd-s:0.08rem;
+$pd-m: 0.16rem;
+$pd-l: 0.24rem;
+$pd-xl: 0.32rem;
+
+// 宽度wd 高度ht 基准为 0.4rem
+$wd-xs: 0.24rem;
+$wd-s: 0.32rem;
+$wd-m: 0.4rem;
+$wd-l: 0.56rem;
+$wd-xl: 1.2rem;
+$wd-panel: 2rem;
+$wd-dialog: 4.2rem;
+$wd-page: 9.6rem;
+$wd-max: 100%;
+
+$ht-xs: 0.24rem;
+$ht-s: 0.32rem;
+$ht-m: 0.4rem;
+$ht-l: 0.56rem;
+$ht-xl: 1.2rem;
+$ht-panel: 2rem;
+$ht-dialog: 3.6rem;
+$ht-page: 9.6rem;
+$ht-max: 100%;
+
+// cl 色彩 通用
+$cl-100: #f5f5f5;
+$cl-200: #eeeeee;
+$cl-300: #e0e0e0;
+$cl-400: #bdbdbd;
+$cl-500: #9e9e9e;
+$cl-600: #757575;
+$cl-700: #616161;
+$cl-800: #424242;
+$cl-900: #212121;
+
+$cl-white: #ffffff;
+$cl-black: #000000;
+$cl-alert: #ff9800;
+$cl-alert: #ff9800;
+$cl-mask: rgba(0, 0, 0, 0.8);
+$cl-shadow: rgba(0, 0, 0, 0.1);
+$cl-gradient: linear-gradient( rgba(200, 200, 200, 0.5), transparent);
+
+$cl-theme: #8bc34a;
+$cl-theme-light: lighten($cl-theme, 50%);
+
+// font-size 基于 0.14rem
+$fs-xs:0.1rem;
+$fs-s:0.12rem;
+$fs-m:0.14rem;
+$fs-l:0.16rem;
+$fs-xl:0.25rem;
+
+// radius 基于0.04rem
+$radius-s:0.02rem;
+$radius-m:0.04rem;
+$radius-l:50%;
+
+// shadow
+$shadow-m: 0 0 1px $cl-shadow,
+0 1px 6px $cl-shadow;
+$shadow-l: 0 3px 6px $cl-shadow;
+
+// border
+$border-normal: 1px solid $cl-300;
+$border-light: 1px solid $cl-200;
+$border-dark: 1px solid $cl-800;
+
+// time
+$presto:100ms;
+$vivo:200ms;
+$largo:800ms;
+
+// time
+@mixin pc() {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin pad() {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin phone() {
+  @media (max-width: 479px) {
+    @content;
+  }
+}

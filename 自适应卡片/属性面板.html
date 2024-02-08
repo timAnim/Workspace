@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/element.js"></script>
+    <link rel="stylesheet" href="./js/element.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .outer {
+            display: flex;
+            border: 1px solid #eeeeee;
+            padding: 4px;
+            flex-wrap: wrap;
+        }
+
+        li {
+            list-style: none;
+            background-color: #80ffff;
+            border-radius: 8px;
+            height: 40px;
+            margin: 4px;
+            min-width: 80px;
+            max-width: 88px;
+            flex: auto;
+        }
+
+        .outer::after {
+            content: '';
+            height: 0;
+            flex: auto;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="outer">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul class="outer">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <ul class="outer">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        function markRect() {
+            let doms = document.querySelectorAll('li')
+            let rect;
+            doms.forEach(dom => {
+                rect = dom.getBoundingClientRect()
+                dom.setAttribute('style', '--var-left:' + rect.width)
+                dom.innerText = rect.width.toFixed(1)
+            })
+        }
+
+        window.onload = window.onresize = markRect
+    </script>
+</body>
+
+</html>

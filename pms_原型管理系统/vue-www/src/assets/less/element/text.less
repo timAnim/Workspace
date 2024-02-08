@@ -1,0 +1,42 @@
+h1 {
+  color: var(--cl-prim);
+  fill: var(--cl-prim);
+  font-size: var(--fs-l);
+  font-weight: bold;
+}
+
+h2 {
+  color: var(--cl-theme-dark);
+  fill: var(--cl-theme-dark);
+  font-size: var(--fs-m);
+  line-height: var(--ht-m);
+  font-weight: bold;
+}
+
+h3 {
+  line-height: var(--ht-s);
+  color: var(--cl-hint);
+}
+
+h4 {
+  height: var(--ht-xs);
+  .pad({height: 0;});
+}
+a,
+pre,
+h2,
+h3,
+h1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+pre {
+  color: var(--cl-hint);
+  flex: auto;
+  text-align: right;
+}
+label {
+  text-align: center;
+  flex-basis: var(--wd-s);
+}

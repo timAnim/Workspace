@@ -1,0 +1,304 @@
+{
+    "info": {
+        "ResourceID": "0_3220",
+        "RefID": "0_3220"
+    },
+    "pages": [
+        {
+            "resource_id": "0_3220",
+            "attributes": {
+                "_location_translated": "区域/tim测试转换",
+                "ci_type": "6",
+                "default_page": "1",
+                "description": "默认",
+                "i_0_3220": {
+                    "data": {
+                        "d": [
+                            {
+                                "a": {
+                                    "actionData": {},
+                                    "isFirstInit": false,
+                                    "nosync_prop": [
+                                        "node.opacity"
+                                    ],
+                                    "nosync_theme_prop": [
+                                        "label.font.color",
+                                        "label.background.color",
+                                        "body.border.color"
+                                    ],
+                                    "patchData": {
+                                        "changeBindType": {
+                                            "value": ""
+                                        },
+                                        "currentBindType": {
+                                            "value": ""
+                                        },
+                                        "tableHard": {
+                                            "value": [
+                                                {
+                                                    "text": "图元标识",
+                                                    "value": "pic"
+                                                },
+                                                {
+                                                    "text": "原绑定关系",
+                                                    "value": "oldBind"
+                                                },
+                                                {
+                                                    "text": "现绑定关系",
+                                                    "value": "newBind"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "pointData": {},
+                                    "propertyData": {
+                                        "node.opacity": {
+                                            "value": 1
+                                        }
+                                    }
+                                },
+                                "c": "xe.Text",
+                                "i": 7598,
+                                "p": {
+                                    "position": {
+                                        "x": 311,
+                                        "y": 204
+                                    },
+                                    "tag": "C8EA3EDC14600001D0C51942189D9000"
+                                },
+                                "s": {
+                                    "label.rotation": 0
+                                }
+                            }
+                        ],
+                        "v": "5.0"
+                    }
+                },
+                "location": "project_root/0_3219",
+                "name": "默认",
+                "page_common": {
+                    "C8EA3EDC14600001D0C51942189D9000": {
+                        "a": {
+                            "3d.zoom": {
+                                "value": 1
+                            },
+                            "animation.type": {
+                                "bind": {
+                                    "resource_name": "",
+                                    "source": "resource_id",
+                                    "type": "default_value"
+                                },
+                                "subList": [
+                                    {
+                                        "rightValue": "default"
+                                    }
+                                ],
+                                "value_type": "enum.enum"
+                            },
+                            "body.border.color": {
+                                "theme": {
+                                    "black": {
+                                        "value": "rgba(255,255,255,1)"
+                                    },
+                                    "default": {
+                                        "value": "rgba(255,255,255,1)"
+                                    }
+                                }
+                            },
+                            "body.border.radius": {
+                                "value": "0"
+                            },
+                            "body.border.style": {
+                                "value": "solid"
+                            },
+                            "body.border.width": {
+                                "value": "0"
+                            },
+                            "highlight.color": {
+                                "value": "rgba(255,128,0,1)"
+                            },
+                            "is.highlight": {
+                                "value": "0"
+                            },
+                            "label.background.color": {
+                                "bind": {
+                                    "resource_name": "",
+                                    "source": "resource_id",
+                                    "type": "default_value"
+                                },
+                                "theme": {
+                                    "black": {
+                                        "subList": [
+                                            {
+                                                "rightValue": "rgba(255,255,255,0)"
+                                            }
+                                        ]
+                                    },
+                                    "default": {
+                                        "subList": [
+                                            {
+                                                "rightValue": "rgba(255,255,255,0)"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "value_type": "enum.color"
+                            },
+                            "label.font.color": {
+                                "bind": {
+                                    "resource_name": "",
+                                    "source": "resource_id",
+                                    "type": "default_value"
+                                },
+                                "theme": {
+                                    "black": {
+                                        "subList": [
+                                            {
+                                                "rightValue": "rgba(0,0,0,1)"
+                                            }
+                                        ]
+                                    },
+                                    "default": {
+                                        "subList": [
+                                            {
+                                                "rightValue": "rgba(0,0,0,1)"
+                                            }
+                                        ]
+                                    }
+                                },
+                                "value_type": "enum.color"
+                            },
+                            "label.font.family": {
+                                "value": "Microsoft Yahei"
+                            },
+                            "label.font.size": {
+                                "value": 12
+                            },
+                            "label.font.tAlign": {
+                                "value": "center"
+                            },
+                            "label.font.vAlign": {
+                                "value": "middle"
+                            },
+                            "label.font.weight": {
+                                "value": "400"
+                            },
+                            "label.pre": {
+                                "value": ""
+                            },
+                            "label.pre.color": {
+                                "bind": {
+                                    "resource_name": "",
+                                    "source": "resource_id",
+                                    "type": "default_value"
+                                },
+                                "subList": [
+                                    {
+                                        "rightValue": "rgba(0,0,0,1)"
+                                    }
+                                ],
+                                "value_type": "enum.color"
+                            },
+                            "label.pre.size": {
+                                "value": 12
+                            },
+                            "label.precision": {
+                                "value": "2"
+                            },
+                            "label.text": {
+                                "bind": {
+                                    "resource_name": "",
+                                    "source": "resource_id",
+                                    "type": "default_value"
+                                },
+                                "subList": [
+                                    {
+                                        "rightValue": "text"
+                                    }
+                                ],
+                                "value_type": "enum.string"
+                            },
+                            "label.unit": {
+                                "value": ""
+                            },
+                            "node.height": {
+                                "value": 34
+                            },
+                            "node.opacity": {
+                                "value": 1
+                            },
+                            "node.position.x": {
+                                "value": 311
+                            },
+                            "node.position.y": {
+                                "value": 204
+                            },
+                            "node.rotation": {
+                                "value": 0
+                            },
+                            "node.width": {
+                                "value": 48
+                            }
+                        },
+                        "action": {
+                            "event.click": {
+                                "eventType": "click",
+                                "operateType": "open_url",
+                                "subList": [
+                                    {
+                                        "firstValue": "_self",
+                                        "secondValue": ""
+                                    }
+                                ],
+                                "value_type": "event"
+                            },
+                            "event.dblclick": {
+                                "eventType": "dblclick",
+                                "operateType": "open_url",
+                                "subList": [
+                                    {
+                                        "firstValue": "_self",
+                                        "secondValue": ""
+                                    }
+                                ],
+                                "value_type": "event"
+                            },
+                            "event.mouseover": {
+                                "eventType": "mouseover",
+                                "operateType": "show_info",
+                                "subList": [
+                                    {
+                                        "defaultValue": "",
+                                        "firstValue": "",
+                                        "secondValue": "",
+                                        "thirdValue": "default_value"
+                                    }
+                                ],
+                                "value_type": "event"
+                            }
+                        },
+                        "p": {
+                            "position": {
+                                "x": 311,
+                                "y": 204
+                            },
+                            "tag": "C8EA3EDC14600001D0C51942189D9000"
+                        },
+                        "point": {},
+                        "s": {
+                            "label.rotation": 0
+                        }
+                    }
+                },
+                "page_info": "",
+                "parent_id": "0_3219",
+                "reference": "0",
+                "resource_id": "0_3220",
+                "template_page": "0"
+            },
+            "version": 995,
+            "deleted": 0
+        }
+    ],
+    "pictures": []
+}

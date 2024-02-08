@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>原型预览地址</title>
+    <script src="js/vue.js"></script>
+    <script src="js/axios.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        html,
+        body,
+        #app {
+            height: 100%;
+            overflow: hidden;
+            background: transparent;
+        }
+        
+        #app {
+            overflow: auto;
+        }
+        
+        .outer {
+            padding: 8px;
+        }
+        
+        .btn {
+            position: absolute;
+            bottom: 32px;
+            right: 32px;
+            background: #007acc;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+            height: 64px;
+            line-height: 64px;
+            width: 64px;
+            border-radius: 64px;
+            box-shadow: 0 3px 6px #007acc61, 0 3px 12px #007acc42;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.2s ease-in;
+            outline: none;
+            border: 2px solid #ffffff9e;
+            opacity: 0.8;
+        }
+        
+        .gen-all {
+            bottom: 32px;
+            right: 32px;
+            z-index: 99;
+        }
+        
+        .gen-proto,
+        .gen-resource,
+        .gen-asset {
+            opacity: 0;
+        }
+        
+        .gen-all:focus~.gen-proto {
+            bottom: 104px;
+            right: 104px;
+            opacity: 0.8;
+        }
+        
+        .gen-all:focus~.gen-asset {
+            bottom: 128px;
+            right: 32px;
+            opacity: 0.8;
+        }
+        
+        .gen-all:focus~.gen-resource {
+            bottom: 32px;
+            right: 128px;
+            opacity: 0.8;
+        }
+        
+        .gen-all:focus~.menu {
+            opacity: 0.8;
+        }
+        
+        .menu {
+            bottom: 84px;
+            right: 20px;
+            height: 24px;
+            line-height: 24px;
+            width: 24px;
+            z-index: 100;
+            background: #ff634775;
+            font-size: 16px;
+            border: none;
+            opacity: 0;
+            box-shadow: 0 3px 6px #352f2e61, 0 3px 12px #ff634761;
+        }
+        
+        .btn:hover {
+            opacity: 1!important;
+            box-shadow: 0 3px 6px #007acc9e, 0 3px 12px #007acc75;
+        }
+        
+        .menu:hover {
+            opacity: 1!important;
+            box-shadow: 0 3px 6px #ff634775, 0 3px 12px #ff634775;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" style="display: none;">
+        <div class="outer">
+            <button class="btn gen-all" title="文件夹拖拽至此" @dragstart="dragstartHdl" @dragend="dragendHdl" draggable="true" @dragover.prevent @drop="dropHdl">UXC</button>
+            <button class="btn gen-proto" @mousedown="protoHdl">原型库</button>
+            <button class="btn gen-asset" @mousedown="uxcHdl">设计资产</button>
+            <button class="btn gen-resource" @mousedown="srcHdl">资源下载</button>
+            <button class="btn menu" @mousedown="closeHdl">×</button>
+        </div>
+    </div>
+    <script>
+        var {
+            ipcRenderer,
+            shell,
+            remote
+        } = require('electron')
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                proj: {},
+                seed: 0,
+                draglock: false,
+                dragging: false,
+                dragSeed: 0,
+            },
+            methods: {
+                dragstartHdl(ev) {
+                    document.getElementsByClassName("gen-all")[0].blur()
+                    ev.dataTransfer.dropEffect = "move"
+                    ev.dataTransfer.effectAllowed = "move"
+                    ev.dataTransfer.setDragImage(new Image(), 0, 0)
+                    ipcRenderer.send("drag_start")
+                },
+                dragendHdl(ev) {
+                    ipcRenderer.send("drag_end")
+                },
+                protoHdl() {
+                    ipcRenderer.send('open_url', "http://192.168.1.203")
+                },
+                uxcHdl() {
+                    ipcRenderer.send('open_url', "http://uxc.yanfa.xbrother.com")
+                },
+                srcHdl() {
+                    ipcRenderer.send('open_url', "http://192.168.1.203/resources/%E7%BB%84%E4%BB%B6/")
+                },
+                dropHdl(ev) {
+                    if (!ev.dataTransfer.files.length) return false
+                    ev.dataTransfer.files[0]
+                    ipcRenderer.send('gen_all', ev.dataTransfer.files[0].path)
+                },
+                closeHdl(ev) {
+                    ipcRenderer.send('close')
+                }
+            },
+            mounted() {
+                document.getElementById("app").style = "block"
+            }
+        })
+
+        ipcRenderer.on('start_gen', ev => {
+            console.log(111)
+            document.getElementsByClassName("gen_all")[0].innerHTML = "生成中"
+        })
+
+        ipcRenderer.on('end_gen', ev => {
+            document.getElementsByClassName("gen_all")[0].innerHTML = "uxc"
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "xbro_pmviewer",
+  "version": "1.0.0",
+  "description": "html view from xbro inc. for browsing html folder",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "pack": "electron-packager . pmViewer --win --out ../ --arch=x64 --app-version=1.0.0 --electron-version=8.1.1 --overwrite"
+  },
+  "keywords": [
+    "html",
+    "viewer"
+  ],
+  "author": "chenzheng",
+  "license": "ISC",
+  "dependencies": {
+    "better-xlsx": "^0.7.5",
+    "cheerio": "^1.0.0-rc.3",
+    "jsmind": "^0.4.6",
+    "xmind": "^2.2.2"
+  }
+}

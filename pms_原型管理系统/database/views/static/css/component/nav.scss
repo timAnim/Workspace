@@ -1,0 +1,37 @@
+nav{
+  height: $ht-m;
+  line-height: $ht-m;
+  display: flex;
+  flex-flow: row nowrap;
+
+  &:empty{
+    display: none;
+  }
+
+  >* {
+    flex:auto;
+    text-align: center;
+    border-bottom: 0 solid $cl-theme;
+    transition:all 0.3s ease ;
+    @extend .blink-wave;
+    &[checked] {
+      color: $cl-theme;
+      font-weight: 600;
+      border-bottom: 3px solid $cl-theme;
+    }
+  }
+
+  &[type=inner] {
+    background-color: $cl-100;
+    >* {
+      height: $ht-m;
+      line-height: $ht-m;
+      border-bottom: none;
+      max-width: $wd-xl;
+    }
+    >*[checked] {
+      background-color: $cl-white;
+      border-top: 3px solid $cl-theme;
+    }
+  }
+}

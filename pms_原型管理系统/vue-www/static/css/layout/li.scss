@@ -1,0 +1,28 @@
+li {
+  height: $ht-m;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  position: relative;
+
+  >label,
+  >button,
+  >span {
+    flex: none;
+  }
+  >h1,
+  >div,
+  >em,
+  >pre {
+    flex: auto;
+  }
+  &[type=s] {
+    height: $ht-s;
+  }
+  &[type=l] {
+    height: $ht-l;
+  }
+  &[type=auto] {
+    height: inherit;
+  }
+}

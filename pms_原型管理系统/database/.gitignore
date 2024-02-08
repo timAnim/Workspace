@@ -1,0 +1,9 @@
+.vscode
+public
+log
+
+
+.git/
+.vscode/
+log/
+public/

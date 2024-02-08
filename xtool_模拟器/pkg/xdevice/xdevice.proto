@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package xdevice;
+
+import "google/protobuf/empty.proto";
+
+service XDevice {
+	rpc UpdateDevice (CommonReq) returns (google.protobuf.Empty);
+	rpc DeleteDevice (CommonReq) returns (google.protobuf.Empty);
+	rpc DebugDevice (CommonReq) returns (DebugDeviceRes);
+	rpc DebugSpot (CommonReq) returns (DebugSpotRes);
+	rpc DebugWork (DebugWorkReq) returns (DebugWorkRes);
+	rpc DebugBind (CommonReq) returns (DebugBindRes);
+}
+
+message CommonReq {
+	repeated string resourceid = 1;
+}
+
+message DebugDeviceRes {
+	repeated DeviceRuntime devices=1;
+}
+
+message DebugSpotRes {
+	repeated SpotRuntime spots=1;
+}
+
+message DebugWorkReq {
+	repeated int32 index=1;
+}
+
+message DebugWorkRes {
+	repeated WorkerRuntime workers=1;
+}
+
+message DebugBindRes {
+	repeated BindRuntime br=1;
+}
+
+message BindRuntime {
+	string resourceid=1;
+	repeated string binds=2;
+}
+
+message WorkerRuntime {
+	int32 index=1;
+	string rundata=2;
+	repeated string devices=3;
+}
+
+message EventStatusRuntime {
+	int32 level=1;
+	int32 status=2;
+	string lastguid=3;
+	string id=4;
+}
+
+message SpotRuntime {
+	string resourceid = 1;
+	string name = 2;
+	int32 citype = 3;
+	int32 spottype = 4;
+	string bindid = 5;
+	string parent = 6;
+	int32 precision =7;
+	int32 valuetype=8;
+	int32 valuesource=9;
+	int32 laststatus=10;
+	int64 lasttime=11;
+	string lastvalue=12;
+	repeated EventStatusRuntime eventstatus=13;
+	repeated string processor=14;
+}
+
+message ChildStatusRun {
+	string resourceid=1;
+	int32 status=2;
+}
+
+message DeviceRuntime {
+	string resourceid = 1;
+	int32 citype=2;
+	string devicetype=3;
+	repeated string bindboard=4;
+	int32 status=5;
+	int64 lasttime=6;
+	bool needupdate=7;
+	int32 threadindex=8;
+	repeated ChildStatusRun childstatus=9;
+	repeated SpotRuntime childs=10;
+}

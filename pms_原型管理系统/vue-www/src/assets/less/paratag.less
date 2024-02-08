@@ -1,0 +1,49 @@
+/*
+    初始化
+*/
+
+@import 'config.less';
+@import 'init.less';
+
+
+/*
+  参数封装
+*/
+
+*:lang(_pt) {
+  /*
+    动画
+  */
+  @import './anim/anim.less';
+  /*
+    组件
+  */
+  @import './component/dialog.less';
+  @import './component/toast.less';
+  @import './component/aside.less';
+  @import './component/section.less';
+  @import './component/header.less';
+  @import './component/nav.less';
+  @import './component/content.less';
+  /*
+    布局 
+  */
+  @import './layout/li.less';
+  @import './layout/ol.less';
+  @import './layout/ul.less';
+  @import './layout/dl.less';
+  @import './layout/main.less';
+  @import './layout/article.less';
+  /*
+    元素
+  */
+  @import './element/text.less';
+  @import './element/button.less';
+  @import './element/img.less';
+  @import './element/barget.less';
+  @import './element/input.less';
+}
+
+body:lang(_pt) {
+  @import 'paratag.core.less';
+}

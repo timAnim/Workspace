@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="图层_1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="640px" height="40px" viewBox="0 0 640 40" enable-background="new 0 0 640 40" xml:space="preserve">
+     <!-- <rect width="640" height="40"></rect> -->
+    <g>
+        <text x="51%" y="16" opacity="0.5"  fill="white" font-family="Microsoft YaHei" font-size="20px" text-anchor="middle" alignment-baseline="middle">X-BROTHER</text>
+        <animate  accumulate="none" additive="replace" attributeName="opacity" begin="0s" calcMode="linear" dur="10s" fill="remove" keyTimes="0;0.2;0.4;0.6;1" restart="always" values=".5;.5;1;.5;.5" repeatCount="indefinite"></animate>
+    </g>
+    <g>
+        <text  x="51%" y="16" fill="none" stroke="#e0e0e0" stroke-width="0.25" stroke-dasharray="200,200" font-family="Microsoft YaHei"  font-size="20px" text-anchor="middle" alignment-baseline="middle">X-BROTHER</text>
+        <animate  accumulate="none" additive="replace" attributeName="stroke-dashoffset" begin="0s" calcMode="linear" dur="10s" fill="freeze" restart="always" repeatCount="indefinite" keyTimes="0;0.4;0.6;1" values="200;0;0;200"></animate>
+    </g>
+    <polyline fill="none" stroke="url(#grad_1)" stroke-width="2" stroke-miterlimit="10" points="448.5,16 411.8,16 408.2,22.7 384.7,22.7 
+	379.2,30 325.2,30 271.2,30 265.7,22.7 242.2,22.7 238.5,16 201.8,16 "/>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="grad_1">
+            <stop stop-color="#007ACC" stop-opacity="0" offset="0"></stop>
+            <stop stop-color="#007ACC" stop-opacity="1" offset=".5">
+                <animate attributeName="offset" begin="0s" calcMode="linear" dur="10s" fill="remove" keyTimes="0;0.2;0.4;0.6;1" restart="always" values=".5;.9;.2;.8;.5" repeatCount="indefinite"></animate>
+            </stop>
+            <stop stop-color="#007ACC" stop-opacity="0" offset="1"></stop>
+        </linearGradient>
+    </defs>
+    <polyline fill="none" stroke="url(#grad_2)" stroke-width="2" stroke-miterlimit="10" points="384.7,32 
+	379.2,36 271.2,36 265.7,32"/>
+    <defs>
+        <linearGradient x1="0%" y1="100%" x2="100%" y2="100%" id="grad_2">
+            <stop stop-color="#007ACC" stop-opacity="0" offset="0"></stop>
+            <stop stop-color="#007ACC" stop-opacity="1" offset=".5">
+                <animate attributeName="offset" begin="0s" calcMode="linear" dur="10s" fill="remove" keyTimes="0;0.2;0.4;0.6;1" restart="always" values=".5;.9;.2;.8;.5" repeatCount="indefinite"></animate>
+            </stop>
+            <stop stop-color="#007ACC" stop-opacity="0" offset="1"></stop>
+        </linearGradient>
+    </defs>
+</svg>

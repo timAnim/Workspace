@@ -1,0 +1,11 @@
+header{
+  z-index: 2;
+  box-shadow: $shadow-m;
+  background-color: $cl-100;
+  li{
+  	height: $ht-l;
+  }
+  &[type=inner]{
+  	box-shadow: none;
+  }
+}

@@ -1,0 +1,71 @@
+  button{
+    @extend .blink-wave;
+    height: $ht-s;
+    width: $wd-l;
+    cursor: pointer;
+    border-radius: $radius-s;
+    fill: $cl-700;
+    color: $cl-700;
+    font-size: $fs-m;
+    transition: color 0.2s ease;
+    &[disabled] {
+      color: $cl-400;
+    }
+    &[notice]:after {
+      content: attr(notice);
+      height: $ht-xs;
+      width: $wd-xs;
+      border-radius: $radius-l;
+      position: absolute;
+      left: $pd-s;
+      top: $pd-s;
+      background-color: $cl-alert;
+    }
+
+
+
+    &[type=circle-s] {
+      width: $wd-s;
+      border-radius: $radius-l;
+      &:hover {
+        color: black;
+        fill: black;
+      }
+    }
+    &[type=circle-m] {
+      width: $wd-m;
+      height: $ht-m;
+      border-radius: $radius-l;
+      &:hover {
+        color: black;
+        fill: black;
+      }
+    }
+    &[type=square-s] {
+      width: $wd-s;
+    }
+    &[type=square-m] {
+      width: $wd-m;
+      height: $ht-m;
+    }
+    &[type=full] {
+      width: $wd-max;
+    }
+    &[type=half] {
+      width: 50%;
+    }
+    &[type=float] {
+      text-align: center;
+      height: $ht-l;
+      width: $wd-l;
+      border-radius: $radius-l;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      background-color: $cl-theme;
+      box-shadow: $shadow-l;
+      margin: $pd-m;
+      color: $cl-white;
+      z-index: 100;
+    }
+  }

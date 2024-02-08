@@ -1,0 +1,9 @@
+{
+    "port": 8080,
+    "watch": true,
+    "static": "./public",
+    "read-only": false,
+    "no-cors": false,
+    "no-gzip": false,
+    "host": "0.0.0.0"
+}

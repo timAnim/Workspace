@@ -1,0 +1,40 @@
+mailto:[[dev]][[qa]]?subject=《[[proj]]项目v[[version]]联调启动会邀请函》&cc= [[cc]][[ui]][[op]][[author]][[ba]] &body=
+敬启者：<br>
+    [[proj]]项目v[[version]]前后端开发阶段已经结束, 现邀请您参加《[[proj]]项目v[[version]]联调启动会》<br>
+<br>
+    主办单位：产品设计部<br>
+    会议形式：视频会议远程讲解讨论<br>
+    参与对象：PM，DEV，QA<br>
+<br>
+  【时间、地点】 [[dt_debug]]，深圳总部, 4楼大会议室<br>
+  【联系人】 [[author]]<br>
+<br>
+请提前阅读会议相关资料.<br>
+<br>
+-------------相关人员--------------<br>
+<br>
+【产品经理】 [[author]]<br>
+【设计】 [[ui]]<br>
+【开发】 [[dev]]<br>
+【测试】 [[qa]]<br>
+【抄送】 [[cc]]<br>
+<br>
+-------------里程碑--------------<br>
+<br>
+背景资料:<br>
+地址: [[url_story]]<br>
+<br>
+原型评审:  [[dt_proto]]<br>
+原型地址: [[url_proto]]<br>
+<br>
+设计截止:  [[dt_design]]<br>
+设计地址: [[url_design]]<br>
+<br>
+联调开始:  [[dt_debug]]<br>
+禅道地址: [[url_zentao]]<br>
+<br>
+提测:  [[dt_test]]<br>
+测试环境: [[url_dev]]<br>
+<br>
+上线:  [[dt_launch]]<br>
+正式环境: [[url_prd]]<br>

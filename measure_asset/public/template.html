@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./json2html.js"></script>
+    <title>Document</title>
+    <style>
+        section {
+            margin: 24px auto;
+            max-width: 1024px;
+        }
+        
+        table {
+            width: 100%;
+        }
+        
+        td {
+            padding: 4px 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <table border="1">
+            <tbody>
+
+            </tbody>
+        </table>
+    </section>
+</body>
+
+<script>
+    let template = {
+        "<>": "tr",
+        'html': [{
+            "<>": "td",
+            "html": [{
+                "[]": 'link'
+            }]
+        }, {
+            "<>": "td",
+            "html": "${k}"
+        }, {
+            "<>": "td",
+            "html": "${n}"
+        }, {
+            "<>": "td",
+            "html": "${v}"
+        }, {
+            "<>": "td",
+            "html": "${u}"
+        }, {
+            "<>": "td",
+            "html": "${s}"
+        }, {
+            "<>": "td",
+            "html": "${g}"
+        }, ]
+    }
+    json2html.component.add('link', {
+        "<>": "a",
+        "text": "${id}",
+        "href": "http://192.168.1.203:8080/measures/${id}"
+    })
+    get_url("./db.json", function(data) {
+        console.log(data)
+        document.getElementsByTagName('tbody')[0].innerHTML = json2html.render(data.measures, template)
+    })
+
+    function get_url(url, cb) {
+        let xhr = new XMLHttpRequest()
+        xhr.open('get', url, true)
+        xhr.send()
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) cb(JSON.parse(xhr.response))
+        }
+    }
+</script>
+
+</html>

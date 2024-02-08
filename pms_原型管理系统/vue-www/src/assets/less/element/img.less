@@ -1,0 +1,28 @@
+.clip {
+  position: relative;
+  overflow: hidden;
+
+  &:after {
+    content: '';
+    padding-top: 100%;
+    display: block;
+  }
+  >svg,
+  >img {
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: auto;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    margin: 0 auto;
+  }
+}
+
+.landscape {
+  >svg,
+  >img {
+    width: 100%;
+    height: auto;
+  }
+}

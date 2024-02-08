@@ -1,0 +1,2206 @@
+<!DOCTYPE html><html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <meta http-equiv="Cache" content="no-cache">
+  <title>word文档预览</title>
+  <style type="text/css">
+  *{
+    margin: 0; 
+    padding:0;
+  }
+  html,
+  body,
+  main {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .cover:nth-of-type(1){
+    text-align: center;
+    font-size: 32px;
+    margin-top: 128px;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 10px 76px 10px 96px;
+  }
+
+  aside {
+    height: 100%;
+    overflow-y: auto;
+    width: 320px;
+    box-sizing: border-box;
+    padding: 32px 0;
+    border: 1px solid #bdbdbd;
+    background-color: #e0e0e0;
+  }
+
+  .content {
+    background: #e0e0e0;
+    height: 100%;
+    flex: auto;
+    overflow-y: auto;
+  }
+
+  article {
+    width: 768px;
+    background: white;
+    padding: 56px 48px;
+    box-sizing: border-box;
+    margin: 8px auto;
+    border: 1px solid #bdbdbd;
+  }
+
+  img {
+    max-width: calc(100% - 48px);
+    display: inline-block;
+  }
+
+
+
+  table {
+    border-collapse: collapse;
+    margin: 16px 76px 0;
+    width: calc(100% - 152px);
+    border: 4px solid #9e9e9e;
+    border-style: double;
+  }
+
+  td,
+  th {
+    border: 1px solid #bdbdbd;
+    padding: 0 4px;
+    min-width: 3em;
+    height: 24px;
+  }
+  
+  th p,
+  td p {
+    padding: 8px 4px;
+    font-size: 13px;
+  }
+
+  tr:first-child td {
+    background: #f5f5f5;
+  }
+
+  tr:first-child p {
+    font-weight: 800;
+    font-size: 14px;
+    color: #212121;
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 200;
+    color: #2f7cbb;
+    cursor: pointer;
+    padding: 128px 76px 0 0;
+  }
+
+
+  h2 {
+    font-size: 20px;
+    color: #2f7cbb;
+    padding: 56px 76px 0 40px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  h3 {
+    font-size: 16px;
+    color: #2f7cbb;
+    padding: 32px 76px 0 64px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  h4 {
+    font-size: 16px;
+    color: black;
+    padding: 32px 76px 0 64px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  p {
+    font-size: 14px;
+    color: #616161;
+    padding: 10px 76px 0;
+    line-height: 1.5em;
+  }
+
+  br {
+    display: inline;
+    line-height: 2em;
+  }
+
+  li {
+    font-size: 14px;
+    font-weight: 200;
+    color: #616161;
+    line-height: 1.5em;
+    list-style-type: square;
+  }
+
+  strong {
+    font-weight: bold !important;
+  }
+
+  *[toggle=off]::before{
+    transform: rotate(45deg);
+    color: black;
+  }
+
+  h1:before,
+  h2:before,
+  h3:before,
+  h4:before {
+    text-align: center;
+    content: '◢';
+    color: #bdbdbd;
+    flex: fixed;
+    width: 1em;
+    display: inline-block;
+  }
+
+  *[end=end]:before{
+    color: transparent;
+  }
+  *[mark=mark]{
+    background-color: #daebf8!important;
+  }
+  *[mark=mark] > *{
+    color: #154b73!important;
+  }
+
+  article a,
+  article a:link,
+  article a:visited,
+  article a:active {
+    color: #154b73!important;
+  }
+
+  aside a,
+  aside a:link,
+  aside a:visited,
+  aside a:active {
+    color: black
+  }
+
+  aside a{
+    flex:auto;
+    text-decoration: none;
+    font-size: 12px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+  aside h1{
+    padding-left: 2em;
+  }
+  aside h2{
+    padding-left: 3em;
+  }
+  aside h3{
+    padding-left: 4em;
+  }
+  aside h4{
+    padding-left: 5em;
+  }
+  aside > *{
+    font-size: 12px;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 28px;
+    height: 28px;
+    display: flex;
+    font-weight: normal;
+    transition: background 0.2s ease;
+  }
+
+  aside>*:hover{
+    background-color: #eeeeee;
+  }
+  aside>*:hover a{
+    color: black;
+  }
+
+  </style>
+</head>
+
+<body>
+  <aside></aside>
+  <div class="content">
+    <!-- <article></article> -->
+  <article><div class="cover"><img style="width:280px" src="data: image/png;base64,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"></div>
+			<p>三维组态编辑器TDCE</p>
+		<div><table><tbody><tr><td><p>信息分类</p></td><td><p>系统设计</p></td></tr><tr><td><p>涉密等级</p></td><td><p>内部公开</p></td></tr><tr><td><p>责任人</p></td><td><p>陈峥</p></td></tr><tr><td><p>起草人</p></td><td><p>陈峥</p></td></tr><tr><td><p>授权范围</p></td><td><p>深圳市共济科技有限公司</p></td></tr><tr><td><p>涉密截止时间</p></td><td><p>至文件废止日</p></td></tr></tbody></table></div>
+			<p>相关负责人</p>
+		<div><table><tbody><tr><td><p>原始需求地址</p></td><td><p>https://gitlab.yanfa.xbrother.com/product/jk-3d-editor</p></td><td><p>[staff_ba]</p></td></tr><tr><td><p>任务地址</p></td><td><p>http://192.168.3.161:81/pro/project-task-444.html</p></td><td><p>杜耀</p></td></tr><tr><td><p>需求规格文档</p></td><td><p>http://192.168.4.65/#/html-viewer?code=xdwh&amp;type=proto</p></td><td><p>陈峥</p></td></tr><tr><td><p>原型地址</p></td><td><p>http://proto.yanfa.xbrother.com/3D%E7%BC%96%E8%BE%91%E5%99%A8/</p></td><td><p>陈峥</p></td></tr><tr><td><p>项目管理地址</p></td><td><p>http://192.168.3.161:81/pro/project-task-444.html</p></td><td><p>杜耀</p></td></tr><tr><td><p>测试用例</p></td><td><p>url_qa</p></td><td><p>陆伟婷</p></td></tr></tbody></table></div>
+			<p>版本修订记录</p>
+		<div><table><tbody><tr><td><p>日期</p></td><td><p>版本</p></td><td><p>人员</p></td><td><p>说明</p></td><td><p>审核人</p></td><td><p>备注</p></td></tr><tr><td><p>2020-08-21</p></td><td><p>0.1.0</p></td><td><p>陈峥</p></td><td><p>1. 园区, 建筑, 楼层, 房间级别实现2. 摄影机系统建立3. 基础空间对象建立4. 测点绑定实现5. 编辑态, 预览态, 运行态6. 独立运行, 系统嵌入</p></td><td><p></p></td><td><p></p></td></tr><tr><td><p>2020-11-23</p></td><td><p>0.2.0</p></td><td><p>陈峥</p></td><td><p>1. 设备类对象2. 对象抽象3. 装饰类对象4. 设备级别页面</p></td><td><p></p></td><td><p></p></td></tr><tr><td><p>2020-11-23</p></td><td><p>0.2.0</p></td><td><p>陈峥</p></td><td><p>1. 设备类对象2. 对象抽象3. 装饰类对象4. 设备级别页面</p></td><td><p></p></td><td><p></p></td></tr><tr><td><p>2021-03-02</p></td><td><p>0.3.0</p></td><td><p>陈峥</p></td><td><p>1. 增加地图级别2. 修改属性面板3. 增加2D场景编辑交互4. 增加 虚拟设备图元</p></td><td><p></p></td><td><p></p></td></tr><tr><td><p>2021-04-20</p></td><td><p>1.0.1</p></td><td><p>陈峥</p></td><td><p>1. 新增设备：资产-机柜（替换机柜列操作）、 供电设备-不间断电源、环境设备-列间空调、其他-货架2. 以KE子模块方式部署3. 采用KE登录鉴权(简图鉴权改KE鉴权)4. 项目导出导入增加对地图、临摹图、背景图的处理</p></td><td><p></p></td><td><p></p></td></tr><tr><td><p>2021-06-30</p></td><td><p>1.2.0</p></td><td><p>陈峥</p></td><td><p>1. 新增楼层组态三种模式2. 工具栏变更3. 新增标尺辅助线4. 新增3D、2D多选操作5. 新增2D对齐功能6. 新增3D批量移动功能</p></td><td><p></p></td><td><p></p></td></tr></tbody></table></div><h1>简介</h1>
+		<h2>项目背景</h2>
+	
+			<p></p><p>三维可视化产品的一部分，为工程人员提供组态工具</p><p></p>
+		<h1>系统功能</h1>
+		<h2>p01三维可视化</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p01c01</p></td><td><p>三维可视化</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P01C01三维可视化</h4>
+			
+			<p></p><p>【用户】点击（KE系统）3D可视化按钮</p><p>【系统】显示3D可视化系统运行态</p><p></p>
+		
+		<h2>p02KE系统入口</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p02c01</p></td><td><p>三维组态工具</p></td></tr><tr><td><p>p02c02</p></td><td><p>三维素材管理系统</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P02C01三维组态工具</h4>
+			
+			<p></p><p>【用户】点击（KE系统）三维组态工具按钮</p><p>【系统】在新标签页显示三维组态工具</p><p></p>
+		
+				<h4>P02C02三维素材管理系统</h4>
+			
+			<p></p><p>【用户】点击（KE系统）三维素材管理按钮</p><p>【系统】在新标签页显示素材管理系统</p><p></p>
+		
+		<h2>p03版本管理</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p03c01</p></td><td><p>上传升级包</p></td></tr><tr><td><p>p03c02</p></td><td><p>升级版本</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P03C01上传升级包</h4>
+			
+			<p></p><p>【用户】点击（KE系统）上传升级包按钮，选择升级包</p><p>【系统】上传并解压</p><p></p>
+		
+				<h4>P03C02升级版本</h4>
+			
+			<p></p><p>【用户】点击（KE系统）升级版本按钮</p><p>【系统】升级相应工具版本</p><p>02-a、目前只能管理前端包TODO，升级后台模块</p><p>02-b、兼容V3R4以上版本，依赖DCOM和KE模块，无法兼容GU版本</p><p></p>
+		
+		<h2>p04项目管理_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p04c01</p></td><td><p>添加项目</p></td></tr><tr><td><p>p04c02</p></td><td><p>查看项目</p></td></tr><tr><td><p>p04c03</p></td><td><p>编辑项目</p></td></tr><tr><td><p>p04c04</p></td><td><p>删除项目</p></td></tr><tr><td><p>p04c05</p></td><td><p>克隆项目</p></td></tr><tr><td><p>p04c06</p></td><td><p>修改详情</p></td></tr><tr><td><p>p04c07</p></td><td><p>项目列表</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P04C01添加项目</h4>
+			
+			<p></p><p>【用户】点击创建项目按钮</p><p>【系统】显示创建项目对话框</p><p></p>
+		
+				<h4>P04C02查看项目</h4>
+			
+			<p></p><p>【用户】点击项目缩略图</p><p>【系统】在新标签页中运行新项目</p><p></p>
+		
+				<h4>P04C03编辑项目</h4>
+			
+			<p></p><p>【用户】点击编辑按钮</p><p>【系统】在当前页面打开项目编辑器</p><p></p>
+		
+				<h4>P04C04删除项目</h4>
+			
+			<p></p><p>【用户】点击删除按钮</p><p>【系统】确认后删除</p><p></p>
+		
+				<h4>P04C05克隆项目</h4>
+			
+			<p></p><p>【用户】点击克隆按钮</p><p>【系统】克隆项目，名称为“项目_复制”</p><p></p>
+		
+				<h4>P04C06修改详情</h4>
+			
+			<p></p><p>【用户】点击修改详情按钮</p><p>【系统】显示“新增/修改项目模态”</p><p></p>
+		
+				<h4>P04C07项目列表</h4>
+			
+			<p></p><p>【说明】卡片左上对齐</p><p></p>
+		
+		<h2>p05添加修改项目</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p05c01</p></td><td><p>确认新增项目</p></td></tr><tr><td><p>p05c02</p></td><td><p>取消新建项目</p></td></tr><tr><td><p>p05c03</p></td><td><p>修改项目详情</p></td></tr><tr><td><p>p05c04</p></td><td><p>删除项目</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P05C01确认新增项目</h4>
+			
+			<p></p><p>【用户】点击确认添加按钮</p><p>【系统】添加项目</p><p></p>
+		
+				<h4>P05C02取消新建项目</h4>
+			
+			<p></p><p>【用户】点击取消/关闭按钮</p><p>【系统】关闭当前模态</p><p></p>
+		
+				<h4>P05C03修改项目详情</h4>
+			
+			<p></p><p>【用户】修改名称或描述</p><p>【系统】修改名称或描述</p><p></p>
+		
+				<h4>P05C04删除项目</h4>
+			
+			<p></p><p>【用户】点击删除按钮</p><p>【系统】确认后并删除</p><p>04-a、新增项目时不显示删除按钮</p><p></p>
+		
+		<h2>p06主界面_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p06c01</p></td><td><p>修改面板尺寸</p></td></tr><tr><td><p>p06c02</p></td><td><p>修改测点树高度</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P06C01修改面板尺寸</h4>
+			
+			<p></p><p>【用户】拖拽资源栏、模型栏边缘</p><p>【系统】修改资源栏、模型栏尺寸</p><p>01-a、最小200px，最大480px</p><p></p>
+		
+				<h4>P06C02修改测点树高度</h4>
+			
+			<p></p><p>【用户】拖拽资源栏、测点栏</p><p>【系统】修改资源栏、测点栏高度</p><p>01-a、最小200px</p><p></p>
+		
+		<h2>p07标题栏_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p07c01</p></td><td><p>保存当前场景</p></td></tr><tr><td><p>p07c02</p></td><td><p>导入（替换）当前项目</p></td></tr><tr><td><p>p07c03</p></td><td><p>导出当前项目</p></td></tr><tr><td><p>p07c04</p></td><td><p>查看项目列表</p></td></tr><tr><td><p>p07c05</p></td><td><p>撤销</p></td></tr><tr><td><p>p07c06</p></td><td><p>重做</p></td></tr><tr><td><p>p07c07</p></td><td><p>复制当前选择模型</p></td></tr><tr><td><p>p07c08</p></td><td><p>粘贴模型</p></td></tr><tr><td><p>p07c09</p></td><td><p>全局设置</p></td></tr><tr><td><p>p07c10</p></td><td><p>切换到二维视图</p></td></tr><tr><td><p>p07c11</p></td><td><p>切换到三维视图</p></td></tr><tr><td><p>p07c12</p></td><td><p>切换到对照视图_挂起</p></td></tr><tr><td><p>p07c13</p></td><td><p>关于</p></td></tr><tr><td><p>p07c14</p></td><td><p>快捷键清单</p></td></tr><tr><td><p>p07c15</p></td><td><p>显示网格线-新增</p></td></tr><tr><td><p>p07c16</p></td><td><p>网格对齐-新增</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P07C01保存当前场景</h4>
+			
+			<p></p><p>【用户】点击保存</p><p>【系统】保存</p><p>01-a、3分钟自动保存</p><p></p>
+		
+				<h4>P07C02导入（替换）当前项目</h4>
+			
+			<p></p><p>【用户】点击导入（需要二次确认）选择zip包</p><p>【系统】替换当前项目</p><p>02-a、导入时候需要校验图元和编辑器的版本号，如果向下不兼容则不允许导入（原则上校验前两位版本号）</p><p></p>
+		
+				<h4>P07C03导出当前项目</h4>
+			
+			<p></p><p>【用户】点击导出</p><p>【系统】导出到项目文件</p><p>03-a、包含巡检和自定义动画数据</p><p></p>
+		
+				<h4>P07C04查看项目列表</h4>
+			
+			<p></p><p>【用户】点击全部项目</p><p>【系统】跳转到项目列表</p><p></p>
+		
+				<h4>P07C05撤销</h4>
+			
+			<p></p><p>【用户】点击回退（或ctrl z）</p><p>【系统】撤销上一步</p><p>07-a、可回退40步</p><p></p>
+		
+				<h4>P07C06重做</h4>
+			
+			<p></p><p>【用户】点击前进 或（ctrl shift z）</p><p>【系统】重做一步</p><p></p>
+		
+				<h4>P07C07复制当前选择模型</h4>
+			
+			<p></p><p>【用户】点击复制（或ctrl c）</p><p>【系统】复制模型</p><p></p>
+		
+				<h4>P07C08粘贴模型</h4>
+			
+			<p></p><p>【用户】点击粘贴（或ctrl v）</p><p>【系统】粘贴模型</p><p>10-a、不可跨场景，跨场景使用场景的复制</p><p></p>
+		
+				<h4>P07C09全局设置</h4>
+			
+			<p></p><p>【用户】点击全局设置</p><p>【系统】显示全局设置模态</p><p></p>
+		
+				<h4>P07C10切换到二维视图</h4>
+			
+			<p></p><p>【用户】点击切换</p><p>【系统】切换到二维视图</p><p></p>
+		
+				<h4>P07C11切换到三维视图</h4>
+			
+			<p></p><p>【用户】点击切换</p><p>【系统】切换到三维视图</p><p></p>
+		
+				<h4>P07C12切换到对照视图_挂起</h4>
+			
+			<p></p><p>【用户】点击切换</p><p>【系统】切换到对照视图</p><p></p>
+		
+				<h4>P07C13关于</h4>
+			
+			<p></p><p>【用户】点击关于</p><p>【系统】显示关于模态</p><p></p>
+		
+				<h4>P07C14快捷键清单</h4>
+			
+			<p></p><p>【用户】点击快捷键清单</p><p>【系统】显示快捷键模态</p><p></p>
+		
+				<h4>P07C15显示网格线-新增</h4>
+			
+			<p></p><p>【用户】点击显示网格线</p><p>【系统】开启/关闭 网格线功能</p><p></p>
+		
+				<h4>P07C16网格对齐-新增</h4>
+			
+			<p></p><p>【用户】点击网格对齐</p><p>【系统】开启/关闭 网格对齐功能</p><p>16-a、网格吸附精度为10cm，开启此功能，位置只能是10cm的整数倍</p><p></p>
+		
+		<h2>p08全局设置_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p08c01</p></td><td><p>全局背景设置</p></td></tr><tr><td><p>p08c02</p></td><td><p>场景雾设置</p></td></tr><tr><td><p>p08c03</p></td><td><p>镜头遮罩设置</p></td></tr><tr><td><p>p08c04</p></td><td><p>显示设置</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P08C01全局背景设置</h4>
+			
+			<p></p><p>【用户】背景设置</p><p>【系统】背景设置</p><p>01-a、使用贴图时，需用360°全景图片（系统内置部分HDR贴图）并应用到场景的 环境贴图通道中</p><p>01-b、在安装系统时，新建场景贴图分组，并导入默认的场景贴图</p><p>01-c、如果用户使用普通背景贴图当做全景贴图时，可以正常显示背景（效果无需考虑）</p><p></p>
+		
+				<h4>P08C02场景雾设置</h4>
+			
+			<p></p><p>【用户】修改场景雾设置</p><p>【系统】进行场景雾设置，地面和天空边界的模糊，和镜头景深的实现</p><p></p>
+		
+				<h4>P08C03镜头遮罩设置</h4>
+			
+			<p></p><p>【用户】镜头遮罩设置</p><p>【系统】修改镜头遮罩设置，实现在画面四角或单一方向添加颜色的矫正</p><p></p>
+		
+				<h4>P08C04显示设置</h4>
+			
+			<p></p><p>【用户】显示设置</p><p>【系统】修改显示设置，网格线的显示，和网格对齐</p><p></p>
+		
+		<h2>p09关于</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p09c01</p></td><td><p>关闭模态</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P09C01关闭模态</h4>
+			
+			<p></p><p>【用户】点击关闭</p><p>【系统】关闭模态</p><p></p>
+		
+		<h2>p10快捷键</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p10c01</p></td><td><p>关闭模态</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P10C01关闭模态</h4>
+			
+			<p></p><p>【用户】点击关闭</p><p>【系统】关闭模态</p><p></p>
+		
+		<h2>p11工具栏_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p11c01</p></td><td><p>切换操作模式</p></td></tr><tr><td><p>p11c02</p></td><td><p>预览当前场景</p></td></tr><tr><td><p>p11c03</p></td><td><p>运行当前场景</p></td></tr><tr><td><p>p11c04</p></td><td><p>选择模式-挂起</p></td></tr><tr><td><p>p11c05</p></td><td><p>组合操作-挂起</p></td></tr><tr><td><p>p11c06</p></td><td><p>编辑态图元过滤</p></td></tr><tr><td><p>p11c07</p></td><td><p>子系统划分(图元面板、运行态)</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P11C01切换操作模式</h4>
+			
+			<p></p><p>【用户】点击操作模式切换按钮</p><p>【系统】切换当前的操作模式（选择、移动、旋转、缩放）</p><p>03-a、使用Q、W、E、R快捷键实现切换操作</p><p></p>
+		
+				<h4>P11C02预览当前场景</h4>
+			
+			<p></p><p>【用户】点击预览按钮</p><p>【系统】在新标签页预览场景</p><p></p>
+		
+				<h4>P11C03运行当前场景</h4>
+			
+			<p></p><p>【用户】点击运行按钮</p><p>【系统】在新标签页运行场景，请求物联数据，并根据数据进行状态实时更新</p><p></p>
+		
+				<h4>P11C04选择模式-挂起</h4>
+			
+			<p></p><p>【用户】框选 / 交叉选</p><p>【系统】切换框选 / 交叉选择模式</p><p></p>
+		
+				<h4>P11C05组合操作-挂起</h4>
+			
+			<p></p><p>【用户】启用组合/解组按钮按，ctrl+g/ctrl+shift+g</p><p>【系统】组合/解组</p><p>07-a、若包含已组合的对象，启用解组按钮；若选中的对象为组，则启用解组按钮</p><p>07-b、组操作不允许递归，如果选择组对象，与其它模型进行组操作，则显示“组操作失败”</p><p>07-c、单个模型选择不能进行组操作——如果不选择单个模型，组操作按钮被禁用，如果使用快捷键则显示“组操作失败”</p><p></p>
+		
+				<h4>P11C06编辑态图元过滤</h4>
+			
+			<p></p><p>【说明】</p><p>默认——除管线外的所有实体图元</p><p>温湿度——温室度图元</p><p>检测仪——检测仪图元</p><p>漏水——漏水绳</p><p>烟感——烟感图元</p><p>摄像头——摄像头图</p><p>暖通管线——暖通管线（在建筑级别默认显示）</p><p>电力线路——电力线路（在建筑级别默认显示）</p><p></p>
+		
+				<h4>P11C07子系统划分(图元面板、运行态)</h4>
+			
+			<p></p><p>【说明】</p><p>资产子系统——机柜、机柜列、微模块、集装箱机柜（容量分析时筛选）</p><p>供配电子系统——柴发、电池配电柜、电池箱、列头柜、配电箱、配电柜、UPS、</p><p>电力管线</p><p>环境子系统——空调、行间空调、水箱、油箱、温湿度、漏水绳、</p><p>暖通管线</p><p>安防子系统——摄像头、门</p><p>消防子系统——烟感、钢瓶</p><p>其它——货架、椅子、自定义图元</p><p></p>
+		
+		<h2>p12工具栏_楼层_平面_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p12c01</p></td><td><p>保存当前场景</p></td></tr><tr><td><p>p12c02</p></td><td><p>回退或前进一步操作</p></td></tr><tr><td><p>p12c03</p></td><td><p>预览当前场景</p></td></tr><tr><td><p>p12c04</p></td><td><p>运行当前场景</p></td></tr><tr><td><p>p12c05</p></td><td><p>组操作-挂起</p></td></tr><tr><td><p>p12c06</p></td><td><p>对齐-新增</p></td></tr><tr><td><p>p12c07</p></td><td><p>测量距离</p></td></tr><tr><td><p>p12c08</p></td><td><p>隐藏临摹图</p></td></tr><tr><td><p>p12c09</p></td><td><p>删除临摹图</p></td></tr><tr><td><p>p12c10</p></td><td><p>组合操作-挂起</p></td></tr><tr><td><p>p12c11</p></td><td><p>组态检查</p></td></tr><tr><td><p>p12c12</p></td><td><p>更新巡检地图</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P12C01保存当前场景</h4>
+			
+			<p></p><p>【用户】点击保存按钮</p><p>【系统】保存当前文</p><p>01-a、3分钟自动保存</p><p></p>
+		
+				<h4>P12C02回退或前进一步操作</h4>
+			
+			<p></p><p>【用户】点击前进、后退按钮</p><p>【系统】回退（前进）一步，最多不超过20步</p><p></p>
+		
+				<h4>P12C03预览当前场景</h4>
+			
+			<p></p><p>【用户】点击预览按钮</p><p>【系统】在新标签页预览场景</p><p></p>
+		
+				<h4>P12C04运行当前场景</h4>
+			
+			<p></p><p>【用户】点击运行按钮</p><p>【系统】在新标签页运行场景，请求物联数据，并根据数据进行状态实时更新</p><p></p>
+		
+				<h4>P12C05组操作-挂起</h4>
+			
+			<p></p><p>【用户】框选多个对象，点击组按钮</p><p>【系统】成组</p><p></p>
+		
+				<h4>P12C06对齐-新增</h4>
+			
+			<p></p><p>【用户】多选侯 点击对齐</p><p>【系统】对齐多个图元，左对齐则对齐到多选中的最左边的元素对齐；底对齐则对齐到多选图元中最底端的图元对齐</p><p></p>
+		
+				<h4>P12C07测量距离</h4>
+			
+			<p></p><p>【用户】点击起点、重点位置并点击enter</p><p>【系统】显示距离cm</p><p></p>
+		
+				<h4>P12C08隐藏临摹图</h4>
+			
+			<p></p><p>【用户】点击隐藏临摹图</p><p>【系统】隐藏临摹图</p><p></p>
+		
+				<h4>P12C09删除临摹图</h4>
+			
+			<p></p><p>【用户】点击删除临摹图</p><p>【系统】删除临摹图</p><p></p>
+		
+				<h4>P12C10组合操作-挂起</h4>
+			
+			<p></p><p>【用户】启用组合/解组按钮按，ctrl+g/ctrl+shift+g</p><p>【系统】组合/解组</p><p>10-a、若包含已组合的对象，启用解组按钮；若选中的对象为组，则启用解组按钮</p><p>10-b、组操作不允许递归，如果选择组对象，与其它模型进行组操作，则显示“组操作失败”</p><p>10-c、单个模型选择不能进行组操作——如果不选择单个模型，组操作按钮被禁用，如果使用快捷键则显示“组操作失败”</p><p></p>
+		
+				<h4>P12C11组态检查</h4>
+			
+			<p></p><p>【用户】开启/关闭检查功能</p><p>【系统】打开/关闭检查</p><p>11-a、检查功能包括显示--未绑定(仅编辑态), 停用, 锁定(仅编辑态)的图元</p><p>11-b、模型状态包括：</p><p>正常——编辑态、运行态</p><p>告警——运行态</p><p>预警（挂起）——运行态</p><p>离线——运行态</p><p>停用——编辑态、运行态，设备存放在场地，但是未投入使用</p><p></p>
+		
+				<h4>P12C12更新巡检地图</h4>
+			
+			<p></p><p>【用户】点击更新巡检地图按钮</p><p>【系统】更新全部场景巡检地图, 提示更新成功</p><p>12-a、当用户在楼层场景保存时, 更新按钮变为红色, 提醒用户巡检地图未更新, 点击更新巡检地图时, 更新全部楼层场景巡检地图</p><p></p>
+		
+		<h2>p13状态栏</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p13c01</p></td><td><p>显示选中对象的中心点</p></td></tr><tr><td><p>p13c02</p></td><td><p>显示鼠标当前相对于画布的位置</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P13C01显示选中对象的中心点</h4>
+			
+			<p></p><p>【用户】选中三维对象</p><p>【系统】显示选中对象的中心点</p><p></p>
+		
+				<h4>P13C02显示鼠标当前相对于画布的位置</h4>
+			
+			<p></p><p>【用户】在画布上移动鼠标</p><p>【系统】显示鼠标当前相对于画布的位置</p><p></p>
+		
+		<h2>p14资源栏</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p14c01</p></td><td><p>添加场景</p></td></tr><tr><td><p>p14c02</p></td><td><p>场景编辑</p></td></tr><tr><td><p>p14c03</p></td><td><p>切换项目_删除</p></td></tr><tr><td><p>p14c04</p></td><td><p>场景管理操作</p></td></tr><tr><td><p>p14c05</p></td><td><p>复制场景</p></td></tr><tr><td><p>p14c06</p></td><td><p>删除场景</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P14C01添加场景</h4>
+			
+			<p></p><p>【用户】点击添加按钮</p><p>【系统】显示添加场景下拉菜单（地图, 园区, 建筑 楼层）</p><p></p>
+		
+				<h4>P14C02场景编辑</h4>
+			
+			<p></p><p>【用户】点击场景编辑按钮</p><p>【系统】显示修改场景弹窗</p><p></p>
+		
+				<h4>P14C03切换项目_删除</h4>
+			
+			<p></p><p>【用户】点击场景条目</p><p>【系统】切换场景</p><p></p>
+		
+				<h4>P14C04场景管理操作</h4>
+			
+			<p></p><p>【用户】点击场景条目更多按钮</p><p>【系统】显示场景管理下拉菜单</p><p></p>
+		
+				<h4>P14C05复制场景</h4>
+			
+			<p></p><p>【用户】点击复制场景按钮</p><p>【系统】复制场景，名称默认带"_复制"</p><p>* 04a建筑场景不能复制</p><p></p>
+		
+				<h4>P14C06删除场景</h4>
+			
+			<p></p><p>【用户】点击删除场景按钮</p><p>【系统】确认后删除场景 和所有子场景</p><p></p>
+		
+		<h2>p15增改地图弹窗_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p15c01</p></td><td><p>地图选择</p></td></tr><tr><td><p>p15c02</p></td><td><p>确认新增场景</p></td></tr><tr><td><p>p15c03</p></td><td><p>取消新建场景</p></td></tr><tr><td><p>p15c04</p></td><td><p>修改场景父节点</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P15C01地图选择</h4>
+			
+			<p></p><p>【用户】选择地图</p><p>【系统】修改当前地图数据</p><p>* 04a、目前支持部分地图</p><p></p>
+		
+				<h4>P15C02确认新增场景</h4>
+			
+			<p></p><p>【用户】点击确认添加按钮</p><p>【系统】添加场景</p><p>01-a、空间类模型名称最多不超过6个字符</p><p>（设备名称不超过8个字符）</p><p></p>
+		
+				<h4>P15C03取消新建场景</h4>
+			
+			<p></p><p>【用户】点击取消/关闭按钮</p><p>【系统】关闭当前模态</p><p></p>
+		
+				<h4>P15C04修改场景父节点</h4>
+			
+			<p></p><p>【用户】修改父节点字段</p><p>【系统】修改场景父节点</p><p></p>
+		
+		<h2>p16增改园区弹窗_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p16c01</p></td><td><p>确认新增场景</p></td></tr><tr><td><p>p16c02</p></td><td><p></p></td></tr><tr><td><p>p16c03</p></td><td><p>修改场景父节点</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P16C01确认新增场景</h4>
+			
+			<p></p><p>【用户】点击确认添加按钮</p><p>【系统】添加场景</p><p>01-a、空间类模型名称最多不超过6个字符</p><p>（设备名称不超过8个字符）</p><p></p>
+		
+				<h4>P16C02</h4>
+			
+			<p></p><p>【用户】点击取消/关闭按钮</p><p>【系统】关闭当前模态</p><p></p>
+		
+				<h4>P16C03修改场景父节点</h4>
+			
+			<p></p><p>【用户】修改父节点字段</p><p>【系统】修改场景父节点</p><p></p>
+		
+		<h2>p17增改建筑弹窗_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p17c01</p></td><td><p>确认新增场景</p></td></tr><tr><td><p>p17c02</p></td><td><p>取消新建场景</p></td></tr><tr><td><p>p17c03</p></td><td><p>修改场景父节点</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P17C01确认新增场景</h4>
+			
+			<p></p><p>【用户】点击确认添加按钮</p><p>【系统】添加场景</p><p>01-a、空间类模型名称最多不超过6个字符</p><p>（设备名称不超过8个字符）</p><p></p>
+		
+				<h4>P17C02取消新建场景</h4>
+			
+			<p></p><p>【用户】点击取消/关闭按钮</p><p>【系统】关闭当前模态</p><p></p>
+		
+				<h4>P17C03修改场景父节点</h4>
+			
+			<p></p><p>【用户】修改父节点字段</p><p>【系统】修改场景父节点</p><p></p>
+		
+		<h2>p18增改楼层弹窗_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p18c01</p></td><td><p>确认新增场景</p></td></tr><tr><td><p>p18c02</p></td><td><p>取消新建场景</p></td></tr><tr><td><p>p18c03</p></td><td><p>修改场景父节点</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P18C01确认新增场景</h4>
+			
+			<p></p><p>【用户】点击确认添加按钮</p><p>【系统】添加场景</p><p>01-a、空间类模型名称最多不超过6个字符</p><p>（设备名称不超过8个字符）</p><p></p>
+		
+				<h4>P18C02取消新建场景</h4>
+			
+			<p></p><p>【用户】点击取消/关闭按钮</p><p>【系统】关闭当前模态</p><p></p>
+		
+				<h4>P18C03修改场景父节点</h4>
+			
+			<p></p><p>【用户】修改父节点字段</p><p>【系统】修改场景父节点</p><p></p>
+		
+		<h2>p19编辑窗口</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p19c01</p></td><td><p>切换至对照视图</p></td></tr><tr><td><p>p19c02</p></td><td><p>切换2/3D模式</p></td></tr><tr><td><p>p19c03</p></td><td><p>选中模型</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P19C01切换至对照视图</h4>
+			
+			<p></p><p>【用户】点击坐标按钮</p><p>【系统】切换至正交视图</p><p></p>
+		
+				<h4>P19C02切换2/3D模式</h4>
+			
+			<p></p><p>【用户】点击2/3D单选按钮组，或者按键盘的T、P</p><p>【系统】切换显示模式</p><p></p>
+		
+				<h4>P19C03选中模型</h4>
+			
+			<p></p><p>【用户】鼠标在模型上悬停</p><p>【系统】高亮模型</p><p>【用户】点击模型</p><p>【系统】模型为选中状</p><p></p>
+		
+		<h2>p20分屏_挂起</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p20c01</p></td><td><p>实时更新</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P20C01实时更新</h4>
+			
+			<p></p><p>【用户】更新2D/3D视图</p><p>【系统】相应的更新其它视图</p><p>01-a、拖拽或连续修改，停止拖拽或停止修改时生效</p><p></p>
+		
+		<h2>p21辅助线_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p21c01</p></td><td><p>标尺</p></td></tr><tr><td><p>p21c02</p></td><td><p>添加辅助线</p></td></tr><tr><td><p>p21c03</p></td><td><p>修改辅助线</p></td></tr><tr><td><p>p21c04</p></td><td><p>删除辅助线</p></td></tr><tr><td><p>p21c05</p></td><td><p>网格吸附</p></td></tr><tr><td><p>p21c06</p></td><td><p>显示/隐藏网格</p></td></tr><tr><td><p>p21c07</p></td><td><p>显示/隐藏辅助线</p></td></tr><tr><td><p>p21c08</p></td><td><p>说明</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P21C01标尺</h4>
+			
+			<p></p><p>【用户】</p><p>【场景】显示标尺系统，10m的整数倍的关键尺寸，标尺的位置</p><p></p>
+		
+				<h4>P21C02添加辅助线</h4>
+			
+			<p></p><p>【用户】点击右键，添加辅助线</p><p>【场景】新增辅助线</p><p>02-a、添加辅助线 总计最多不超过40个</p><p></p>
+		
+				<h4>P21C03修改辅助线</h4>
+			
+			<p></p><p>【用户】悬停至辅助线，拖拽</p><p>【场景】修改辅助线位置</p><p></p>
+		
+				<h4>P21C04删除辅助线</h4>
+			
+			<p></p><p>【用户】辅助线上点击右键，点击删除</p><p>【场景】删除辅助线</p><p></p>
+		
+				<h4>P21C05网格吸附</h4>
+			
+			<p></p><p>【用户】点击网格吸附按钮</p><p>【场景】开启/禁止 网格吸附</p><p>07-a、网格吸附的精度为10cm，开启网格吸附位置只能是10cm的倍数</p><p></p>
+		
+				<h4>P21C06显示/隐藏网格</h4>
+			
+			<p></p><p>【用户】点击网格线按钮</p><p>【场景】显示/隐藏网格线</p><p></p>
+		
+				<h4>P21C07显示/隐藏辅助线</h4>
+			
+			<p></p><p>【用户】点击辅助线按钮</p><p>【场景】显示/隐藏辅助线</p><p></p>
+		
+				<h4>P21C08说明</h4>
+			
+			<p></p><p>【说明】辅助线根据每个场景变化（需要根据场景存储），网格则为全局根据摄影机镜头变化</p><p></p>
+		
+		<h2>p22模型栏_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p22c01</p></td><td><p>根据场景对选项卡进行调整</p></td></tr><tr><td><p>p22c02</p></td><td><p>添加模型</p></td></tr><tr><td><p>p22c03</p></td><td><p>拓展系统图元</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P22C01根据场景对选项卡进行调整</h4>
+			
+			<p></p><p>参看三维场景部分</p><p></p>
+		
+				<h4>P22C02添加模型</h4>
+			
+			<p></p><p>【用户】点击系统图元/模型</p><p>【系统】激活添加模型状态，根据鼠标位置预览添加的图元/模型</p><p>【用户】点击鼠标左键</p><p>【系统】添加图元/模型到场景</p><p>02-a、用户点击右键，取消图元的激活状态</p><p>02-b、临摹图没有激活状态</p><p>注：需要设计图元的激活状态</p><p></p>
+		
+				<h4>P22C03拓展系统图元</h4>
+			
+			<p></p><p>【说明】在每一类设备内，内置自定义图元，预留与系统图元拓展</p><p></p>
+		
+		<h2>p23测点栏_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p23c01</p></td><td><p>通过拖拽进行测点绑定</p></td></tr><tr><td><p>p23c02</p></td><td><p>展开或收缩多级测点</p></td></tr><tr><td><p>p23c03</p></td><td><p>搜索测点</p></td></tr><tr><td><p>p23c04</p></td><td><p>拖拽添加设备并绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P23C01通过拖拽进行测点绑定</h4>
+			
+			<p></p><p>【用户】拖拽测点跳步至绑定框</p><p>【系统】绑定测点</p><p>01-a、属性面板的测点绑定，支持测点、设备的类型</p><p>01-b、动作面板的测点绑定，支持所有类型</p><p></p>
+		
+				<h4>P23C02展开或收缩多级测点</h4>
+			
+			<p></p><p>【用户】点击展开收缩当前级别</p><p>【系统】展开收缩当前级别</p><p></p>
+		
+				<h4>P23C03搜索测点</h4>
+			
+			<p></p><p>【用户】搜索框输入测点id/名称</p><p>【系统】显示模糊匹配后的测点列表</p><p>03-a、搜索框不为空时，显示清空按钮</p><p>03-b、点击清空按钮时，清除搜索条件，并且还原测点列表</p><p></p>
+		
+				<h4>P23C04拖拽添加设备并绑定</h4>
+			
+			<p></p><p>【用户】从测点树拖拽设备到3D场景或者2d画布，释放到设备对应位置</p><p>【系统】在指定位置，添加相应设备模型，并</p><p>绑定名称、位置、状态</p><p>04-a、如果设备类型图元没有（</p><p>机柜列、配电柜、配电箱、电池配电柜、电池箱、列头柜、UPS、柴发、普通空调、精密空调、温湿度仪、烟感报警、水箱、油箱、摄像头</p><p>），显示“不支持的设备类型”</p><p>04-b、拖拽</p><p>机柜列</p><p>到画布，添加机柜列图元，并绑定机柜列里所有的柜，并绑定相关参数（参考机柜图元）</p><p>04-c、拖拽</p><p>温湿度仪</p><p>到画布，添加温湿度图元，并绑定名称、位置、状态、温度、湿度</p><p>04-d、拖拽时修改显示名称修改为最后</p><p>8个字符</p><p>04-e、对于摄像机默认绑定球机，行间空调默认绑定600宽的设备</p><p></p>
+		
+		<h2>p24属性面板</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p24c01</p></td><td><p>修改模型空间属性</p></td></tr><tr><td><p>p24c02</p></td><td><p>修改模型选择模式</p></td></tr><tr><td><p>p24c03</p></td><td><p>修改贴图</p></td></tr><tr><td><p>p24c04</p></td><td><p>修改物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P24C01修改模型空间属性</h4>
+			
+			<p></p><p>【用户】修改空间属性或平移、旋转、缩放模型</p><p>【系统】修改空间属性</p><p>01-a、设备、空间名称最大不超过8个字符（失去焦点时校验，超出长度恢复到修改前的值），字符集为任意字符（\&nbsp; &lt;&nbsp; &gt;&nbsp; , . &amp;&nbsp; (&nbsp; )&nbsp; 等特殊字符视开发情况可以屏蔽）</p><p></p>
+		
+				<h4>P24C02修改模型选择模式</h4>
+			
+			<p></p><p>【用户】修改选择模式复选框</p><p>【系统】修改显示模式</p><p></p>
+		
+				<h4>P24C03修改贴图</h4>
+			
+			<p></p><p>【用户】修改贴图属性</p><p>【系统】修改贴图</p><p>03-a、点击贴图按钮，显示贴图修改模态</p><p></p>
+		
+				<h4>P24C04修改物联数据绑定</h4>
+			
+			<p></p><p>【用户】修改物联数据绑定ID</p><p>【系统】修改绑定属性，运行态根据实时值更新模型颜色</p><p>04-a、测点绑定的类型是设备时，自动修改设备名称</p><p>04-b</p><p>、楼层设备图元只能绑定设备、漏水绳绑定测点、机柜列绑定机柜列、其他图元可绑定空间、设备、测点；园区模型可绑定空间、设备、测点</p><p></p>
+		
+		<h2>p25动作面板_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p25c01</p></td><td><p>悬浮面板展示项管理</p></td></tr><tr><td><p>p25c02</p></td><td><p>悬浮面板动态数据展示</p></td></tr><tr><td><p>p25c03</p></td><td><p>建筑默认动作</p></td></tr><tr><td><p>p25c04</p></td><td><p>设备默认动作</p></td></tr><tr><td><p>p25c05</p></td><td><p>页面跳转说明</p></td></tr><tr><td><p>p25c06</p></td><td><p>页面选择说明-新增</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P25C01悬浮面板展示项管理</h4>
+			
+			<p></p><p>【用户】点击添加/删除展示项按钮</p><p>【系统】系统添加/减少展示项</p><p></p>
+		
+				<h4>P25C02悬浮面板动态数据展示</h4>
+			
+			<p></p><p>【用户】修改测点和当前属性的绑定条件</p><p>【系统】更新绑定关系，在运行态动态展示数值</p><p></p>
+		
+				<h4>P25C03建筑默认动作</h4>
+			
+			<p></p><p>【用户】选中建筑模型时</p><p>【系统】修改默认左键单击动作为"下钻(显示下一级)", 点击建筑时, 用内部场景替换建筑本身的模型</p><p></p>
+		
+				<h4>P25C04设备默认动作</h4>
+			
+			<p></p><p>【用户】选中建筑模型时</p><p>【系统】修改默认左键单击动作为"设备详情", 点击设备时, 跳转设备详情页面</p><p></p>
+		
+				<h4>P25C05页面跳转说明</h4>
+			
+			<p></p><p>【说明】当三维系统在组态当中时，在当前 iframe中 显示2D组态页面，和2D导航栏</p><p>当三维系统不在组态当中时，在当前页面显示所选url</p><p></p>
+		
+				<h4>P25C06页面选择说明-新增</h4>
+			
+			<p></p><p>【说明】使用多级列表展示现有的组态页面</p><p></p>
+		
+		<h2>p26渐变编辑器</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p26c01</p></td><td><p>渐变设置</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P26C01渐变设置</h4>
+			
+			<p></p><p>【用户】修改渐变颜色的起始颜色、透明度、终止颜色、透明度</p><p>【系统】修改背景渐变</p><p></p>
+		
+		<h2>p27摄影机面板_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p27c01</p></td><td><p>摄影机切换</p></td></tr><tr><td><p>p27c02</p></td><td><p>添加摄影机</p></td></tr><tr><td><p>p27c03</p></td><td><p>修改默认摄影机</p></td></tr><tr><td><p>p27c04</p></td><td><p>更新摄影机位置</p></td></tr><tr><td><p>p27c05</p></td><td><p>删除摄影机-变更</p></td></tr><tr><td><p>p27c06</p></td><td><p>修改摄影机名称</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P27C01摄影机切换</h4>
+			
+			<p></p><p>【用户】点击摄影机按钮、切换到此摄影机按钮</p><p>【系统】切换摄影机</p><p></p>
+		
+				<h4>P27C02添加摄影机</h4>
+			
+			<p></p><p>【用户】点击添加摄影机按钮</p><p>【系统】将当前镜头保存成新的摄影机</p><p></p>
+		
+				<h4>P27C03修改默认摄影机</h4>
+			
+			<p></p><p>【用户】点击设置为默认摄影机</p><p>【系统】将选中的摄影机修改为默认摄影机</p><p>03-a、运行态进入场景时，默认使用的摄影机</p><p></p>
+		
+				<h4>P27C04更新摄影机位置</h4>
+			
+			<p></p><p>【用户】点击更新摄影机位置按钮</p><p>【系统】更新选中的摄影机的位置</p><p></p>
+		
+				<h4>P27C05删除摄影机-变更</h4>
+			
+			<p></p><p>【用户】点击删除摄影机按钮</p><p>【系统】删除摄影机</p><p>【变更说明】修改按钮位置</p><p>05-a、选中默认摄影机时，提示“不能删除默认摄影机”</p><p></p>
+		
+				<h4>P27C06修改摄影机名称</h4>
+			
+			<p></p><p>【用户】修改摄影机名称</p><p>【系统】修改摄影机名称</p><p></p>
+		
+		<h2>p28贴图选择器_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p28c01</p></td><td><p>贴图筛选_变更</p></td></tr><tr><td><p>p28c02</p></td><td><p>确认修改</p></td></tr><tr><td><p>p28c03</p></td><td><p>取消/关闭</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P28C01贴图筛选_变更</h4>
+			
+			<p></p><p>【用户】点击修改贴图筛选分组</p><p>【系统】贴图筛选</p><p>样式变更</p><p></p>
+		
+				<h4>P28C02确认修改</h4>
+			
+			<p></p><p>【用户】点击确认按钮</p><p>【系统】修改贴图</p><p></p>
+		
+				<h4>P28C03取消/关闭</h4>
+			
+			<p></p><p>【用户】点击关闭按钮</p><p>【系统】关闭模态</p><p></p>
+		
+		<h2>p29地图场景</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p29c01</p></td><td><p>仅显示图元树</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P29C01仅显示图元树</h4>
+			
+			<p></p><p>说明：模型栏仅显示图元树</p><p></p>
+		
+		<h2>p30地图对象</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p30c01</p></td><td><p>管理热点列表</p></td></tr><tr><td><p>p30c02</p></td><td><p>地图轮播</p></td></tr><tr><td><p>p30c03</p></td><td><p>飞线特效</p></td></tr><tr><td><p>p30c04</p></td><td><p>柱形图特效</p></td></tr><tr><td><p>p30c05</p></td><td><p>地图边线宽度</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P30C01管理热点列表</h4>
+			
+			<p></p><p>【用户】点击新增、删除热点</p><p>【系统】添加或删除热点</p><p></p>
+		
+				<h4>P30C02地图轮播</h4>
+			
+			<p></p><p>【用户】修改轮播属性</p><p>【系统】更新地图轮播特效</p><p></p>
+		
+				<h4>P30C03飞线特效</h4>
+			
+			<p></p><p>【用户】选择飞线特效，并管理飞线</p><p>【系统】更新飞线特效中的飞线</p><p></p>
+		
+				<h4>P30C04柱形图特效</h4>
+			
+			<p></p><p>【用户】选择柱形图特效、修改柱形图数据绑定</p><p>【系统】将柱形图的大小与物联数据绑定</p><p>04-a、运行态时，柱形图大小与数据联动</p><p>04-b、如果没有绑定测点，则数据为0</p><p>04-c、柱形图高低根据用户设定的极值计算</p><p></p>
+		
+				<h4>P30C05地图边线宽度</h4>
+			
+			<p></p><p>【说明】地图需要添加边线，边线的宽度根据地图的大小选择</p><p></p>
+		
+		<h2>p31柱状图特效</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p31c01</p></td><td><p>管理热点列表</p></td></tr><tr><td><p>p31c02</p></td><td><p>地图轮播</p></td></tr><tr><td><p>p31c03</p></td><td><p>飞线特效</p></td></tr><tr><td><p>p31c04</p></td><td><p>柱形图特效</p></td></tr><tr><td><p>p31c05</p></td><td><p>地图边线宽度</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P31C01管理热点列表</h4>
+			
+			<p></p><p>【用户】点击新增、删除热点</p><p>【系统】添加或删除热点</p><p></p>
+		
+				<h4>P31C02地图轮播</h4>
+			
+			<p></p><p>【用户】修改轮播属性</p><p>【系统】更新地图轮播特效</p><p></p>
+		
+				<h4>P31C03飞线特效</h4>
+			
+			<p></p><p>【用户】选择飞线特效，并管理飞线</p><p>【系统】更新飞线特效中的飞线</p><p></p>
+		
+				<h4>P31C04柱形图特效</h4>
+			
+			<p></p><p>【用户】选择柱形图特效、修改柱形图数据绑定</p><p>【系统】将柱形图的大小与物联数据绑定</p><p>04-a、运行态时，柱形图大小与数据联动</p><p>04-b、如果没有绑定测点，则数据为0</p><p>04-c、柱形图高低根据用户设定的极值计算</p><p></p>
+		
+				<h4>P31C05地图边线宽度</h4>
+			
+			<p></p><p>【说明】地图需要添加边线，边线的宽度根据地图的大小选择</p><p></p>
+		
+		<h2>p32飞线特效</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p32c01</p></td><td><p>管理热点列表</p></td></tr><tr><td><p>p32c02</p></td><td><p>地图轮播</p></td></tr><tr><td><p>p32c03</p></td><td><p>飞线特效</p></td></tr><tr><td><p>p32c04</p></td><td><p>柱形图特效</p></td></tr><tr><td><p>p32c05</p></td><td><p>地图边线宽度</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P32C01管理热点列表</h4>
+			
+			<p></p><p>【用户】点击新增、删除热点</p><p>【系统】添加或删除热点</p><p></p>
+		
+				<h4>P32C02地图轮播</h4>
+			
+			<p></p><p>【用户】修改轮播属性</p><p>【系统】更新地图轮播特效</p><p></p>
+		
+				<h4>P32C03飞线特效</h4>
+			
+			<p></p><p>【用户】选择飞线特效，并管理飞线</p><p>【系统】更新飞线特效中的飞线</p><p></p>
+		
+				<h4>P32C04柱形图特效</h4>
+			
+			<p></p><p>【用户】选择柱形图特效、修改柱形图数据绑定</p><p>【系统】将柱形图的大小与物联数据绑定</p><p>04-a、运行态时，柱形图大小与数据联动</p><p>04-b、如果没有绑定测点，则数据为0</p><p>04-c、柱形图高低根据用户设定的极值计算</p><p></p>
+		
+				<h4>P32C05地图边线宽度</h4>
+			
+			<p></p><p>【说明】地图需要添加边线，边线的宽度根据地图的大小选择</p><p></p>
+		
+		<h2>p33热点对象</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p33c01</p></td><td><p>设置热点对象经纬度和名称</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P33C01设置热点对象经纬度和名称</h4>
+			
+			<p></p><p>【用户】修改热点对象属性</p><p>【系统】更新显示</p><p></p>
+		
+		<h2>p34园区场景</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p34c01</p></td><td><p>显示模型库、模型树</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P34C01显示模型库、模型树</h4>
+			
+			<p></p><p>说明：模型栏显示模型库、模型树</p><p></p>
+		
+		<h2>p35建筑对象</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p35c01</p></td><td><p>属性输入框-失去焦点事件</p></td></tr><tr><td><p>p35c02</p></td><td><p>测点绑定输入框-施放事件</p></td></tr><tr><td><p>p35c03</p></td><td><p>说明-图元面板隐藏墙体和墙</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P35C01属性输入框-失去焦点事件</h4>
+			
+			<p></p><p>改变对应属性</p><p></p>
+		
+				<h4>P35C02测点绑定输入框-施放事件</h4>
+			
+			<p></p><p>修改测点和当前属性的绑定条件</p><p></p>
+		
+				<h4>P35C03说明-图元面板隐藏墙体和墙</h4>
+			
+			<p></p><p>在园区层级, 隐藏 图元选项卡</p><p></p>
+		
+		<h2>p36多选_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p36c01</p></td><td><p>多选</p></td></tr><tr><td><p>p36c02</p></td><td><p>批量删除</p></td></tr><tr><td><p>p36c03</p></td><td><p>批量变换</p></td></tr><tr><td><p>p36c04</p></td><td><p>批量修改显示模式</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P36C01多选</h4>
+			
+			<p></p><p>【用户】按住ctrl选择多个、或使用Ctrl + A</p><p>【系统】多选</p><p></p>
+		
+				<h4>P36C02批量删除</h4>
+			
+			<p></p><p>【用户】点击del按键</p><p>【系统】批量删除</p><p></p>
+		
+				<h4>P36C03批量变换</h4>
+			
+			<p></p><p>【用户】点击批量变换按钮</p><p>【系统】显示批量变换对话框</p><p>【用户】输入整体（以各自模型中心为中心）进行相对移动、绝对旋转、绝对缩放</p><p>【系统】进行相对移动、绝对旋转</p><p></p>
+		
+				<h4>P36C04批量修改显示模式</h4>
+			
+			<p></p><p>【用户】点击显示、锁定复选框</p><p>【系统】批量修改 显示、锁定模式</p><p></p>
+		
+		<h2>p37建筑场景</h2>
+	
+		<h2>p38楼层对象</h2>
+	
+		<h2>p39画空间模式_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p39c01</p></td><td><p>框选多选</p></td></tr><tr><td><p>p39c02</p></td><td><p>点选多选</p></td></tr><tr><td><p>p39c03</p></td><td><p>说明空间对象不能多选</p></td></tr><tr><td><p>p39c04</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p39c05</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P39C01框选多选</h4>
+			
+			<p></p><p>【用户】框选多个</p><p>【系统】多选</p><p></p>
+		
+				<h4>P39C02点选多选</h4>
+			
+			<p></p><p>【用户】点击ctrl选择多个模型</p><p>【系统】多选</p><p></p>
+		
+				<h4>P39C03说明空间对象不能多选</h4>
+			
+			<p></p><p>【说明】多选目前只能选择 设备（空间对象 和 管线对象不能多选）</p><p></p>
+		
+				<h4>P39C04修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P39C05进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p40临摹图</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p40c01</p></td><td><p>添加临摹图</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P40C01添加临摹图</h4>
+			
+			<p></p><p>【用户】点击并选择图片作为临摹图</p><p>【系统】添加临摹图到场景</p><p></p>
+		
+		<h2>p41墙体对象</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p41c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p41c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P41C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P41C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p42点编辑</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p42c01</p></td><td><p>移除点</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P42C01移除点</h4>
+			
+			<p></p><p>【用户】点击移除点</p><p>【系统】移除点</p><p></p>
+		
+		<h2>p43线编辑</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p43c01</p></td><td><p>在空白处定义线段</p></td></tr><tr><td><p>p43c02</p></td><td><p>通过已有点定义线段</p></td></tr><tr><td><p>p43c03</p></td><td><p>创建水平或垂直线</p></td></tr><tr><td><p>p43c04</p></td><td><p>添加点</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P43C01在空白处定义线段</h4>
+			
+			<p></p><p>【用户】在空白出点击左键</p><p>【系统】添加点</p><p></p>
+		
+				<h4>P43C02通过已有点定义线段</h4>
+			
+			<p></p><p>【用户】悬停至已有点鼠标显示</p><p>【系统】闭合线段，创建包含现有点的线段</p><p></p>
+		
+				<h4>P43C03创建水平或垂直线</h4>
+			
+			<p></p><p>【用户】按住shift添加点</p><p>【系统】添加水平或垂直的点</p><p></p>
+		
+				<h4>P43C04添加点</h4>
+			
+			<p></p><p>【用户】点击添加点按钮</p><p>【系统】添加点</p><p></p>
+		
+		<h2>p44房间_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p44c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p44c02</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p44c03</p></td><td><p>动作绑定</p></td></tr><tr><td><p>p44c04</p></td><td><p>设置地砖大小与对齐</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P44C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P44C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P44C03动作绑定</h4>
+			
+			<p></p><p>【用户】创建封闭墙体</p><p>【系统】创建房间，并绑定动作修改为默认——推进摄影机镜头，房间内设备高亮，其它部分设备和房间透明</p><p></p>
+		
+				<h4>P44C04设置地砖大小与对齐</h4>
+			
+			<p></p><p>【说明】房间对象可是设置地砖大小与对齐，如果使用自定义贴图，则不生效</p><p>04-a、地砖参考起始点，由包围盒为标准，不以实际墙角为标准</p><p></p>
+		
+		<h2>p45门</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p45c01</p></td><td><p>虚拟设备图元激活切换子系统</p></td></tr><tr><td><p>p45c02</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p45c03</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p45c04</p></td><td><p>门类型</p></td></tr><tr><td><p>p45c05</p></td><td><p>门宽度</p></td></tr><tr><td><p>p45c06</p></td><td><p>修改门位置</p></td></tr><tr><td><p>p45c07</p></td><td><p>开门方向说明</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P45C01虚拟设备图元激活切换子系统</h4>
+			
+			<p></p><p>• 虚拟设备图元激活时切换到子系统</p><p>• 非虚拟设备图元激活时切换到默认视图</p><p></p>
+		
+				<h4>P45C02修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P45C03进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，根据开合状态、告警状态更新模型</p><p></p>
+		
+				<h4>P45C04门类型</h4>
+			
+			<p></p><p>【用户】修改门类型</p><p>【系统】修改门图标和模型（单门、双门、门洞）</p><p></p>
+		
+				<h4>P45C05门宽度</h4>
+			
+			<p></p><p>【用户】修改门宽度</p><p>【系统】调整门宽度</p><p></p>
+		
+				<h4>P45C06修改门位置</h4>
+			
+			<p></p><p>【用户】拖拽门</p><p>【系统】修改门的位置</p><p>05-1、移动到不同的墙体上</p><p></p>
+		
+				<h4>P45C07开门方向说明</h4>
+			
+			<p></p><p>【说明】默认门轴在靠近起始点，开门向左开</p><p></p>
+		
+		<h2>p46柱图元</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p46c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p46c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P46C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P46C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p47摆设备模式_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p47c01</p></td><td><p>显示图元、模型树</p></td></tr><tr><td><p>p47c02</p></td><td><p>编辑态图元过滤</p></td></tr><tr><td><p>p47c03</p></td><td><p>子系统划分(图元面板、运行态)</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P47C01显示图元、模型树</h4>
+			
+			<p></p><p>说明：模型栏显示图元、模型树</p><p></p>
+		
+				<h4>P47C02编辑态图元过滤</h4>
+			
+			<p></p><p>【说明】</p><p>默认——除管线外的所有实体图元</p><p>温湿度——温室度图元</p><p>检测仪——检测仪图元</p><p>漏水——漏水绳</p><p>烟感——烟感图元</p><p>摄像头——摄像头图</p><p>暖通管线——暖通管线（在建筑级别默认显示）</p><p>电力线路——电力线路（在建筑级别默认显示）</p><p></p>
+		
+				<h4>P47C03子系统划分(图元面板、运行态)</h4>
+			
+			<p></p><p>【说明】</p><p>资产子系统——机柜、机柜列、微模块、集装箱机柜（容量分析时筛选）</p><p>供配电子系统——柴发、电池配电柜、电池箱、列头柜、配电箱、配电柜、UPS、</p><p>电力管线</p><p>环境子系统——空调、行间空调、水箱、油箱、温湿度、漏水绳、</p><p>暖通管线</p><p>安防子系统——摄像头、门</p><p>消防子系统——烟感、钢瓶</p><p>其它——货架、椅子、自定义图元</p><p></p>
+		
+		<h2>p48物体3D_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p48c01</p></td><td><p>锁定时包围框颜色改变</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P48C01锁定时包围框颜色改变</h4>
+			
+			<p></p><p>【用户】修改空间属性或平移、旋转、缩放模型</p><p>【系统】修改空间属性</p><p></p>
+		
+		<h2>p49多选_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p49c01</p></td><td><p>多选</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P49C01多选</h4>
+			
+			<p></p><p>【用户】按住ctrl点选多个、或使用ctrl+A</p><p>【系统】多选</p><p></p>
+		
+		<h2>p50停用_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p50c01</p></td><td><p>停用时包围框颜色改变</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P50C01停用时包围框颜色改变</h4>
+			
+			<p></p><p>【说明】停用时包围框颜色改变</p><p></p>
+		
+		<h2>p51未绑定_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p51c01</p></td><td><p>未绑定时包围框颜色改变</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P51C01未绑定时包围框颜色改变</h4>
+			
+			<p></p><p>【说明】未绑定时包围框颜色改变</p><p></p>
+		
+		<h2>p52物体_2D_选中</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p52c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p52c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P52C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P52C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p53多选_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p53c01</p></td><td><p>多选</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P53C01多选</h4>
+			
+			<p></p><p>【用户】框选、按住ctrl点选多个、或使用ctrl+A</p><p>【系统】多选</p><p></p>
+		
+		<h2>p54停用_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p54c01</p></td><td><p>停用时包围框颜色改变</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P54C01停用时包围框颜色改变</h4>
+			
+			<p></p><p>【说明】停用时包围框颜色改变</p><p></p>
+		
+		<h2>p55未绑定_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p55c01</p></td><td><p>未绑定时包围框颜色改变</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P55C01未绑定时包围框颜色改变</h4>
+			
+			<p></p><p>【说明】未绑定时包围框颜色改变</p><p></p>
+		
+		<h2>p56机柜</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p56c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p56c02</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p56c03</p></td><td><p>IT资产面板显示</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P56C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P56C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P56C03IT资产面板显示</h4>
+			
+			<p></p><p>【说明】</p><p>可以放到机柜U位的IT设备：</p><p>服务器（不包含刀片服务器和塔式服务器）、存储、网络安全、IT容器</p><p>可以放到机柜U位的其它设备：</p><p>配线架、PDU、机架式UPS、底座式空调</p><p>可以放到IT容器内的设备（暂不支持）：</p><p>刀片放到刀箱、塔式服务器放到托盘</p><p></p>
+		
+		<h2>p57机柜列</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p57c01</p></td><td><p>说明-机柜尺寸</p></td></tr><tr><td><p>p57c02</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p57c03</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p57c04</p></td><td><p>机柜排布</p></td></tr><tr><td><p>p57c05</p></td><td><p>新增行间设备</p></td></tr><tr><td><p>p57c06</p></td><td><p>删除行间设备</p></td></tr><tr><td><p>p57c07</p></td><td><p>倒序</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P57C01说明-机柜尺寸</h4>
+			
+			<p></p><p>服务器机柜 2000x600x800mm</p><p>标准U高 44.45mm</p><p>通用戴尔服务器2U&nbsp; 87.3x444x684</p><p></p>
+		
+				<h4>P57C02修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P57C03进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P57C04机柜排布</h4>
+			
+			<p></p><p>【用户】点击机柜排布按钮</p><p>【系统】打开机柜排布模态</p><p></p>
+		
+				<h4>P57C05新增行间设备</h4>
+			
+			<p></p><p>【用户】点击添加按钮</p><p>【系统】新增行间设备行</p><p>可以添加的有：机柜、列头柜、配电柜、行间空调_300、</p><p>行间空调_600、UPS</p><p>默认绑定悬停面板：名称、位置、告警状态。点击事件默认设备详细信息</p><p></p>
+		
+				<h4>P57C06删除行间设备</h4>
+			
+			<p></p><p>【用户】点击删除行间设备按钮</p><p>【系统】删除行间设备</p><p>05-a、第一个设备不允许删除</p><p></p>
+		
+				<h4>P57C07倒序</h4>
+			
+			<p></p><p>【用户】点击倒序按钮</p><p>【系统】对列表进行倒序排序</p><p></p>
+		
+		<h2>p58集装箱机柜</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p58c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p58c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P58C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P58C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p59微模块</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p59c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p59c02</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p59c03</p></td><td><p>机柜排布</p></td></tr><tr><td><p>p59c04</p></td><td><p>删除行间设备</p></td></tr><tr><td><p>p59c05</p></td><td><p>倒序</p></td></tr><tr><td><p>p59c06</p></td><td><p>新增行间设备</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P59C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P59C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P59C03机柜排布</h4>
+			
+			<p></p><p>【用户】点击机柜排布按钮</p><p>【系统】打开机柜排布模态</p><p>01-a、默认添加10个机柜</p><p></p>
+		
+				<h4>P59C04删除行间设备</h4>
+			
+			<p></p><p>【用户】点击删除行间设备按钮</p><p>【系统】删除行间设备</p><p>05-a、第一个设备不允许删除</p><p></p>
+		
+				<h4>P59C05倒序</h4>
+			
+			<p></p><p>【用户】点击倒序按钮</p><p>【系统】对列表进行倒序排序</p><p></p>
+		
+				<h4>P59C06新增行间设备</h4>
+			
+			<p></p><p>【用户】点击添加按钮</p><p>【系统】新增行间设备行</p><p>可以添加的有：机柜、列头柜、配电柜、行间空调_300、</p><p>行间空调_600、UPS</p><p>默认绑定悬停面板：名称、位置、告警状态。点击事件默认设备详细信息</p><p></p>
+		
+		<h2>p60微模块2D</h2>
+	
+		<h2>p61柴发</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p61c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p61c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P61C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P61C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p62电池配电柜</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p62c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p62c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P62C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P62C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p63电池箱</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p63c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p63c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P63C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P63C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p64列头柜</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p64c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p64c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P64C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P64C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p65配电箱</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p65c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p65c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P65C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P65C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p66配电柜_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p66c01</p></td><td><p>修改属性、样式_变更</p></td></tr><tr><td><p>p66c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P66C01修改属性、样式_变更</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p>01-a、修改电表数，根据电表树修改模型中层数</p><p></p>
+		
+				<h4>P66C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p67UPS</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p67c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p67c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P67C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P67C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p68普通空调_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p68c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p68c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P68C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P68C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p69精密空调_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p69c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p69c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P69C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P69C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p70行间空调半</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p70c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p70c02</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p70c03</p></td><td><p>修改空调类型</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P70C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P70C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P70C03修改空调类型</h4>
+			
+			<p></p><p>【用户】修改空调类型</p><p>【系统】修改空调类型</p><p></p>
+		
+		<h2>p71行间空调全</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p71c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p71c02</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p71c03</p></td><td><p>修改空调类型</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P71C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P71C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P71C03修改空调类型</h4>
+			
+			<p></p><p>【用户】修改空调类型</p><p>【系统】修改空调类型</p><p></p>
+		
+		<h2>p72水箱</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p72c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p72c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P72C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P72C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p73油箱</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p73c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p73c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P73C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P73C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p74温湿度</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p74c01</p></td><td><p>虚拟设备图元激活切换子系统</p></td></tr><tr><td><p>p74c02</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p74c03</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P74C01虚拟设备图元激活切换子系统</h4>
+			
+			<p></p><p>• 虚拟设备图元激活时切换到子系统</p><p>• 非虚拟设备图元激活时切换到默认视图</p><p></p>
+		
+				<h4>P74C02修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P74C03进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p75漏水绳</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p75c01</p></td><td><p>虚拟设备图元激活切换子系统</p></td></tr><tr><td><p>p75c02</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p75c03</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p75c04</p></td><td><p>漏水位置显示</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P75C01虚拟设备图元激活切换子系统</h4>
+			
+			<p></p><p>• 虚拟设备图元激活时切换到子系统</p><p>• 非虚拟设备图元激活时切换到默认视图</p><p></p>
+		
+				<h4>P75C02修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P75C03进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定漏水位置、漏水告警测点</p><p>【系统】绑定测点Id</p><p>（当两个测点都有值时，进行漏水告警展示）</p><p></p>
+		
+				<h4>P75C04漏水位置显示</h4>
+			
+			<p></p><p>【说明】漏水位置显示会和实际情况有误差</p><p>开始位置：漏水绳的传感器 大多数情况 不在地面上，所以漏水绳布线时，有一部分是悬空的，在3D系统中不会体现出来，但是漏水位置却计算了此长度。</p><p>每段长度的计算：</p><p>漏水绳长度（3D） /&nbsp; 总段数（录入） = 每段长度</p><p>漏水位置（段）计算：</p><p>漏水位置 = [漏水位置（测点）-&nbsp; 开始位置（录入]&nbsp; / 每段长度</p><p></p>
+		
+		<h2>p76检测仪_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p76c01</p></td><td><p>虚拟设备图元激活切换子系统</p></td></tr><tr><td><p>p76c02</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p76c03</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P76C01虚拟设备图元激活切换子系统</h4>
+			
+			<p></p><p>• 虚拟设备图元激活时切换到子系统</p><p>• 非虚拟设备图元激活时切换到默认视图</p><p></p>
+		
+				<h4>P76C02修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P76C03进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p77泵_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p77c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p77c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P77C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P77C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p78恒温恒湿机_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p78c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p78c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P78C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P78C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p79压缩机_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p79c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p79c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P79C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P79C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p80蓄冷罐_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p80c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p80c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P80C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P80C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p81烟感</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p81c01</p></td><td><p>虚拟设备图元激活切换子系统</p></td></tr><tr><td><p>p81c02</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p81c03</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P81C01虚拟设备图元激活切换子系统</h4>
+			
+			<p></p><p>• 虚拟设备图元激活时切换到子系统</p><p>• 非虚拟设备图元激活时切换到默认视图</p><p></p>
+		
+				<h4>P81C02修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p>烟感默认 在楼层顶部</p><p></p>
+		
+				<h4>P81C03进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p82钢瓶</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p82c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p82c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P82C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P82C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p83摄像头_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p83c01</p></td><td><p>虚拟设备图元激活切换子系统</p></td></tr><tr><td><p>p83c02</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p83c03</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p83c04</p></td><td><p>修改视频地址</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P83C01虚拟设备图元激活切换子系统</h4>
+			
+			<p></p><p>• 虚拟设备图元激活时切换到子系统</p><p>• 非虚拟设备图元激活时切换到默认视图</p><p></p>
+		
+				<h4>P83C02修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p>02-a、摄像头默认 在楼层顶部</p><p>02-b、运行状态默认显示摄像头</p><p></p>
+		
+				<h4>P83C03进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P83C04修改视频地址</h4>
+			
+			<p></p><p>【用户】修改视频地址</p><p>【系统】修改视频地址</p><p>视频格式：http://{{填入IP}}:9090/live?port=1395&amp;app=simple_video&amp;stream=haikang_{{填入通道}}</p><p></p>
+		
+		<h2>p84货架_椅子</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p84c01</p></td><td><p>修改货架尺寸、层数</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P84C01修改货架尺寸、层数</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示，默认尺寸0.6x0.4x1.2 ，默认层数5层</p><p></p>
+		
+		<h2>p85自定义图元_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p85c01</p></td><td><p>修改尺寸</p></td></tr><tr><td><p>p85c02</p></td><td><p>编辑贴图</p></td></tr><tr><td><p>p85c03</p></td><td><p>修改图元类型</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P85C01修改尺寸</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P85C02编辑贴图</h4>
+			
+			<p></p><p>【用户】编辑六面贴图、透明度</p><p>【系统】修改六面贴图、透明度</p><p></p>
+		
+				<h4>P85C03修改图元类型</h4>
+			
+			<p></p><p>【用户】修改图元类型</p><p>【系统】</p><p>修改图元类型——资产、供配电、环境、消防、安防、其它</p><p></p>
+		
+		<h2>p86画管线模式_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p86c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p86c02</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p86c03</p></td><td><p>说明</p></td></tr><tr><td><p>p86c04</p></td><td><p>线的状态</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P86C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P86C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P86C03说明</h4>
+			
+			<p></p><p>说明：线类型的图元，没有动作面板</p><p></p>
+		
+				<h4>P86C04线的状态</h4>
+			
+			<p></p><p>说明：线有默认状态、选中状态、编辑状态三种状态。</p><p>默认→选中：通过点击线切换</p><p>选中→编辑：通过点击右键上下文面板中的编辑点切换</p><p>编辑→默认：通过点击画板中空白区域切换</p><p>移动：只有非编辑状态下可以整体做拽移动（原型交互）</p><p></p>
+		
+		<h2>p87创建管线_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p87c01</p></td><td><p>在空白处定义线段</p></td></tr><tr><td><p>p87c02</p></td><td><p>通过已有点定义线段</p></td></tr><tr><td><p>p87c03</p></td><td><p>创建水平或垂直线</p></td></tr><tr><td><p>p87c04</p></td><td><p>同步到同类图元</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P87C01在空白处定义线段</h4>
+			
+			<p></p><p>【用户】在空白出点击左键</p><p>【系统】添加点</p><p></p>
+		
+				<h4>P87C02通过已有点定义线段</h4>
+			
+			<p></p><p>【用户】悬停至已有点鼠标显示</p><p>【系统】闭合线段，创建包含现有点的线段</p><p></p>
+		
+				<h4>P87C03创建水平或垂直线</h4>
+			
+			<p></p><p>【用户】按住shift添加点</p><p>【系统】添加水平或垂直的点</p><p>03-a、暖通管线只能创建水平或垂直</p><p></p>
+		
+				<h4>P87C04同步到同类图元</h4>
+			
+			<p></p><p>【用户】点击同步到同类图元</p><p>【系统】将直径设置同步到同类图元</p><p></p>
+		
+		<h2>p88电力线路_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p88c01</p></td><td><p></p></td></tr><tr><td><p>p88c02</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p88c03</p></td><td><p>说明</p></td></tr><tr><td><p>p88c04</p></td><td><p>线的状态</p></td></tr><tr><td><p>p88c05</p></td><td><p>同步到同类图元</p></td></tr><tr><td><p>p88c06</p></td><td><p>管理管线标签</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P88C01</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P88C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P88C03说明</h4>
+			
+			<p></p><p>说明：线类型的图元，没有动作面板</p><p>说明：通过端点样式，知道管线的Z轴位置（上边还是下边）</p><p></p>
+		
+				<h4>P88C04线的状态</h4>
+			
+			<p></p><p>说明：线有默认状态、选中状态、编辑状态三种状态。</p><p>默认→选中：通过点击线切换</p><p>选中→编辑：通过点击右键上下文面板中的编辑点切换</p><p>编辑→默认：通过点击画板中空白区域切换</p><p>移动：只有非编辑状态下可以整体做拽移动（原型交互）</p><p></p>
+		
+				<h4>P88C05同步到同类图元</h4>
+			
+			<p></p><p>【用户】点击同步到同类图元</p><p>【系统】将直径设置同步到同类图元</p><p></p>
+		
+				<h4>P88C06管理管线标签</h4>
+			
+			<p></p><p>【用户】点击管理标签按钮</p><p>【系统】打开标签管理器</p><p></p>
+		
+		<h2>p89管线编辑_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p89c01</p></td><td><p>移除点</p></td></tr><tr><td><p>p89c02</p></td><td><p>添加拐点</p></td></tr><tr><td><p>p89c03</p></td><td><p>通向上/下一层</p></td></tr><tr><td><p>p89c04</p></td><td><p>添加点</p></td></tr><tr><td><p>p89c05</p></td><td><p>编辑点</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P89C01移除点</h4>
+			
+			<p></p><p>【用户】点击移除点</p><p>【系统】移除点</p><p></p>
+		
+				<h4>P89C02添加拐点</h4>
+			
+			<p></p><p>【用户】点击向上/向下添加拐点按钮</p><p>【系统】向上/向下添加拐点（1m）</p><p></p>
+		
+				<h4>P89C03通向上/下一层</h4>
+			
+			<p></p><p>【用户】点击通向上/下一层按钮</p><p>【系统】管线通向上/下一层（层高+1m）</p><p></p>
+		
+				<h4>P89C04添加点</h4>
+			
+			<p></p><p>【用户】点击添加点按钮</p><p>【系统】在线段上添加点</p><p></p>
+		
+				<h4>P89C05编辑点</h4>
+			
+			<p></p><p>【用户】右键点击点</p><p>【系统】“点图元”显示上下文菜单</p><p>此处“点”的可控区域 需要大于 24px</p><p></p>
+		
+		<h2>p90标签编辑器_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p90c01</p></td><td><p></p></td></tr><tr><td><p>p90c02</p></td><td><p>删除标签</p></td></tr><tr><td><p>p90c03</p></td><td><p>重命名</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P90C01</h4>
+			
+			<p></p><p>【用户】点击加号</p><p>【系统】在所选项目后面添加标签</p><p></p>
+		
+				<h4>P90C02删除标签</h4>
+			
+			<p></p><p>【用户】点击删除按钮</p><p>【系统】删除标签</p><p>02-a、已经标记此标签的管线，重置为默认标签</p><p></p>
+		
+				<h4>P90C03重命名</h4>
+			
+			<p></p><p>【用户】点击重命名按钮</p><p>【系统】标签名称变为可编辑状态，修改后失去焦点生效</p><p></p>
+		
+		<h2>p91暖通管线_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p91c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p91c02</p></td><td><p>进行物联数据绑定</p></td></tr><tr><td><p>p91c03</p></td><td><p>说明</p></td></tr><tr><td><p>p91c04</p></td><td><p>线的状态</p></td></tr><tr><td><p>p91c05</p></td><td><p>同步到同类图元</p></td></tr><tr><td><p>p91c06</p></td><td><p>管理管线标签</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P91C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示，暖通管线的类型有，冷通道、暖通道。方向有上下行</p><p></p>
+		
+				<h4>P91C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+				<h4>P91C03说明</h4>
+			
+			<p></p><p>说明：线类型的图元，没有动作面板</p><p></p>
+		
+				<h4>P91C04线的状态</h4>
+			
+			<p></p><p>说明：线有默认状态、选中状态、编辑状态三种状态。</p><p>默认→选中：通过点击线切换</p><p>选中→编辑：通过点击右键上下文面板中的编辑点切换</p><p>编辑→默认：通过点击画板中空白区域切换</p><p>移动：只有非编辑状态下可以整体做拽移动（原型交互）</p><p></p>
+		
+				<h4>P91C05同步到同类图元</h4>
+			
+			<p></p><p>【用户】点击同步到同类图元</p><p>【系统】将直径设置同步到同类图元</p><p></p>
+		
+				<h4>P91C06管理管线标签</h4>
+			
+			<p></p><p>【用户】点击管理标签按钮</p><p>【系统】打开标签管理器</p><p></p>
+		
+		<h2>p92管线编辑_变更</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p92c01</p></td><td><p>移除点</p></td></tr><tr><td><p>p92c02</p></td><td><p>添加拐点</p></td></tr><tr><td><p>p92c03</p></td><td><p>通向上/下一层</p></td></tr><tr><td><p>p92c04</p></td><td><p>添加点</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P92C01移除点</h4>
+			
+			<p></p><p>【用户】点击移除点</p><p>【系统】移除点</p><p></p>
+		
+				<h4>P92C02添加拐点</h4>
+			
+			<p></p><p>【用户】点击向上/向下添加拐点按钮</p><p>【系统】向上/向下添加拐点（1m）</p><p>02-a、暖通管线只能垂直或者水平</p><p></p>
+		
+				<h4>P92C03通向上/下一层</h4>
+			
+			<p></p><p>【用户】点击通向上/下一层按钮</p><p>【系统】管线通向上/下一层（层高+1m）</p><p></p>
+		
+				<h4>P92C04添加点</h4>
+			
+			<p></p><p>【用户】点击添加点按钮</p><p>【系统】在线段上添加点</p><p></p>
+		
+		<h2>p93阀门_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p93c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p93c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P93C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P93C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p94传感器_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p94c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p94c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P94C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P94C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p95过滤器_新增</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p95c01</p></td><td><p>修改属性、样式</p></td></tr><tr><td><p>p95c02</p></td><td><p>进行物联数据绑定</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P95C01修改属性、样式</h4>
+			
+			<p></p><p>【用户】修改属性、样式</p><p>【系统】更新显示</p><p></p>
+		
+				<h4>P95C02进行物联数据绑定</h4>
+			
+			<p></p><p>【用户】绑定测点ID</p><p>【系统】绑定测点ID，运行态根据实时值更新显示</p><p></p>
+		
+		<h2>p96点三维视图</h2>
+	
+				<h3>用例列表</h3>
+			<div><table><tbody><tr><td><p>编号</p></td><td><p>用例</p></td></tr><tr><td><p>p96c01</p></td><td><p>修改点位置</p></td></tr></tbody></table></div>
+				<h3>用例说明</h3>
+			
+				<h4>P96C01修改点位置</h4>
+			
+			<p></p><p>【用户】修改点位置</p><p>【系统】修改点位置</p><p></p>
+		<h1>非功能性需求</h1>
+		<h2>标准与规范</h2>
+	
+			<p></p><p>SQ_SD_nnn [需要遵循的标准与规范，如：需遵循软件开发国家标准，行业标准，企业标准等]</p><p></p>
+		
+		<h2>运行环境</h2>
+	
+			<p></p><p>SQ_ENVI_nnn [以KE子模块方式部署（前端）、采用KE登录鉴权、后台部署提供部署文档（时间不超过5min）]</p><p></p>
+		
+		<h2>开发环境</h2>
+	
+			<p></p><p>SQ_DEV_nnn [如果用户有要求进行描述，无要求则写无。]</p><p></p>
+		
+		<h2>接口需求</h2>
+	
+			<p></p><p>SQ_INTF_nnn[使用的网络协议，用户互动要求等。]</p><p></p>
+		
+		<h2>用户界面</h2>
+	
+			<p></p><p>SQ_UI_nnn [用户对界面流、报表格式等的要求。]</p><p></p>
+		
+		<h2>安全</h2>
+	
+			<p></p><p>SQ_SA_nnn [数据完整性、保密、可用性等要求。]</p><p></p>
+		
+		<h2>性能</h2>
+	
+			<p></p><p>SQ_PERF_nnn [系统对并发、响应时间、峰值压力等特性要求]</p><p></p>
+		
+		<h2>资源化要求</h2>
+	
+			<p></p><p>SQ_RES_nnn [对于产品线的软件项目，除非特别声明，一般默认需要中文。如有其它语言版本要求，可在此处列明]</p><p></p>
+		
+		<h2>体系要求</h2>
+	
+			<p></p><p>SQ_QMS_nnn [外部客户对该项目流程、模板等方面的要求]</p><p></p>
+		
+		<h2>其他</h2>
+	
+			<p></p><p>SQ_ELSE_nnn [无法划入分类的非功能性需求]</p><p></p>
+		</article></div>
+  <script>
+  var aside =document.querySelector('aside')
+  var article =document.querySelector('article')
+  var chars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'b', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  var endStack = {
+    length: 0,
+    pointer: ''
+  }
+
+  var curMarkId = ''
+  initClsName()
+  initEvnt()
+
+  function randId(n) {
+    var res = "";
+    for (var i = 0; i < n; i++) {
+      var id = Math.ceil(Math.random() * 35);
+      res += chars[id];
+    }
+    return res;
+  }
+
+  function addToAside(tag, id, clslist, text){
+    var a = document.createElement('a')
+    var outer = document.createElement(tag)
+    outer.setAttribute('class', clslist.join(' '))
+    outer.setAttribute('id', '_'+id)
+    a.setAttribute('href', '#' + id)
+    a.innerText = text
+    outer.appendChild(a)
+    aside.appendChild(outer)
+    movePointer(clslist, id)
+  }
+
+
+  function movePointer(clslist, id){
+    if(clslist.length <= endStack.length){
+      //说明上一个主题已经是最末的主题了
+      var _id = '_' + endStack.pointer
+      document.getElementById(_id).setAttribute('end','end')
+    }
+    endStack.length = clslist.length
+    endStack.pointer = id
+  }
+
+  function initClsName() {
+    var tags = document.querySelectorAll('article>*')
+    var clslist = []
+    tags.forEach(tag => {
+      var tagName = tag.tagName.toLowerCase()
+      var id = randId(4)
+      var text = tag.innerText
+      switch (tagName) {
+        case 'h1':
+          clslist = [id]
+          addToAside(tagName, id, clslist, text)
+          break;
+        case 'h2':
+          clslist = [clslist[0], id]
+          addToAside(tagName, id, clslist, text)
+          break;
+        case 'h3':
+          clslist[2] = [clslist[0], clslist[1], id]
+          addToAside(tagName, id, clslist, text)
+          break;
+        case 'h4':
+          clslist[3] = [clslist[0], clslist[1], clslist[2], id]
+          addToAside(tagName, id, clslist, text)
+          break;
+        default:
+          id = ''
+          break;
+      }
+      if(!clslist.length) clslist=['cover']
+      if (id) tag.setAttribute('id', id)
+      tag.setAttribute('class', clslist.join(' '))
+    })
+  }
+
+  function initEvnt() {
+    document.addEventListener('click', function(e) {
+      var target = e.target;
+      if(target.getAttribute('end')=='end') return false
+      if (target.tagName == 'H1' || target.tagName == 'H2' || target.tagName == 'H3' || target.tagName == 'H4') {
+        var toggle = target.getAttribute('toggle') || "on"
+        var visible = toggle == "on" ? false : true
+        target.setAttribute('toggle', (toggle == "on" ? 'off' : 'on'))
+
+        var cls = target.classList
+        cls = cls[cls.length - 1]
+        var list = aside.getElementsByClassName(cls)
+        for (var i = 1; i < list.length; i++) {
+          if(visible) list[i].removeAttribute('style')
+          else list[i].style.display = 'none'
+        }
+
+        // 联动处理另一栏的状态
+        var flag = target.id.split('_')
+        var _id = flag.length == 2 ? flag[1] : ('_' + target.id)
+        var _dom = document.getElementById(_id)
+        _dom.setAttribute('toggle', (toggle == "on" ? 'off' : 'on'))
+        var _list = article.getElementsByClassName(cls)
+        for (var i = 1; i < _list.length; i++) {
+          if(visible) _list[i].removeAttribute('style')
+          else _list[i].style.display = 'none'
+        }
+      }
+    })
+
+    aside.addEventListener('click',function(e){
+      var target = e.target;
+      if(target.tagName == 'A'){
+        target = target.parentNode
+        // 把之前的标记清掉
+        var curMark = document.getElementById(curMarkId);
+        if(curMark) curMark.removeAttribute('mark')
+        curMarkId = target.id
+        target.setAttribute('mark','mark')
+      }
+    })
+
+    article.addEventListener('mouseover', function(e){
+      // 如果没有id 就往前找找
+      var target = e.target;
+      if(!target.id) target = getPrevNode(target)
+      // 如果之前没有有id的 就散了吧
+      if(!target) return false
+      // 把之前的标记清掉
+      var curMark = document.getElementById(curMarkId);
+      if(curMark) curMark.removeAttribute('mark')
+      // 即便是有id但是不一定是能标记的id
+      curMarkId = '_' + target.id
+      curMark = document.getElementById(curMarkId)
+      if(curMark) curMark.setAttribute('mark','mark')
+    })
+  }
+
+  function getPrevNode(dom){
+    var tagName = dom.tagName.toLowerCase()
+    if(tagName == 'li') dom = dom .parentNode
+    while(dom && !dom.id){
+      dom=dom.previousElementSibling
+    }
+    return dom
+  }
+  </script>
+
+
+</body></html>

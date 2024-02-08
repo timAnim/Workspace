@@ -1,0 +1,437 @@
+.lay-h {
+  display: flex;
+  align-items: center; // 纵向居中
+  flex-flow: row nowrap; // 横向 不换行
+}
+
+.lay-v {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.lay-r {
+  position: relative;
+}
+
+.float-nw {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.float-se {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.float-ne {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.float-sw {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.float-c {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+.pd-xs {
+  padding: $pd-xs;
+}
+
+.pd-s {
+  padding: $pd-s;
+}
+
+.pd-m {
+  padding: $pd-m;
+}
+
+.pd-l {
+  padding: $pd-l;
+}
+
+.pd-xl {
+  padding: $pd-xl;
+}
+
+
+.pd-xs-v {
+  padding: $pd-xs 0;
+}
+
+.pd-xs-h {
+  padding: 0 $pd-xs;
+}
+
+.pd-s-v {
+  padding: $pd-s 0;
+}
+
+.pd-s-h {
+  padding: 0 $pd-s;
+}
+
+.pd-m-v {
+  padding: $pd-m 0;
+}
+
+.pd-m-h {
+  padding: 0 $pd-m;
+}
+
+.pd-l-v {
+  padding: $pd-l 0;
+}
+
+.pd-l-h {
+  padding: 0 $pd-l;
+}
+
+.pd-xl-v {
+  padding: $pd-xl 0;
+}
+
+.pd-xl-h {
+  padding: 0 $pd-xl;
+}
+
+.wd-xs {
+  width: $wd-xs;
+}
+
+.wd-s {
+  width: $wd-s;
+}
+
+.wd-m {
+  width: $wd-m;
+}
+
+.wd-l {
+  width: $wd-l;
+}
+
+.wd-xl {
+  width: $wd-xl;
+}
+
+.wd-panel {
+  width: $wd-panel;
+}
+
+@for $i from 1 through 10 {
+  .wd-char-#{$i} {
+    width: 1em*$i;
+    flex: none;
+  }
+}
+
+.wd-fix {
+  flex: none;
+}
+
+.wd-auto {
+  flex: auto;
+}
+
+.wd-dialog {
+  width: $wd-dialog;
+  box-sizing: border-box;
+}
+
+.wd-page {
+  max-width: $wd-page;
+  box-sizing: border-box;
+}
+
+.wd-max {
+  width: $wd-max;
+  box-sizing: border-box;
+}
+
+.ht-xs {
+  height: $ht-xs;
+  line-height: $ht-xs;
+}
+
+.ht-s {
+  height: $ht-s;
+  line-height: $ht-s;
+}
+
+.ht-m {
+  height: $ht-m;
+  line-height: $ht-m;
+}
+
+.ht-l {
+  height: $ht-l;
+  line-height: $ht-l;
+}
+
+.ht-xl {
+  height: $ht-xl;
+}
+
+.ht-panel {
+  height: $ht-panel;
+}
+
+.ht-auto {
+  flex: auto;
+}
+
+.ht-fix {
+  flex: none;
+}
+
+.ht-dialog {
+  height: $ht-dialog;
+  box-sizing: border-box;
+}
+
+.ht-max {
+  height: $ht-max;
+  box-sizing: border-box;
+}
+
+.cl-white {
+  color: $cl-white;
+  fill: $cl-white;
+}
+
+.cl-black {
+  color: $cl-black;
+  fill: $cl-black;
+}
+
+.cl-theme {
+  color: $cl-theme;
+  fill: $cl-theme;
+}
+
+.cl-prim {
+  color: $cl-700;
+  fill: $cl-700;
+}
+
+.cl-sec {
+  color: $cl-500;
+  fill: $cl-500;
+}
+
+.cl-disabled {
+  color: $cl-400;
+  fill: $cl-400;
+}
+
+.cl-alert {
+  color: $cl-alert;
+  fill: $cl-alert;
+}
+
+.bg-white {
+  background-color: $cl-white;
+}
+
+.bg-bright {
+  background-color: $cl-100;
+}
+
+.bg-light {
+  background-color: $cl-200;
+}
+
+.bg-black {
+  background-color: $cl-black;
+}
+
+.bg-alert {
+  background-color: $cl-alert;
+}
+
+.bg-theme {
+  background-color: $cl-theme;
+}
+
+.bg-mask {
+  background-color: $cl-mask;
+  z-index: 10;
+}
+
+.bg-gradient {
+  background: $cl-gradient;
+}
+
+.radius-s {
+  border-radius: $radius-s;
+}
+
+.radius-m {
+  border-radius: $radius-m;
+}
+
+.radius-l {
+  border-radius: $radius-l;
+}
+
+.fs-xs {
+  font-size: $fs-xs;
+}
+
+.fs-s {
+  font-size: $fs-s;
+}
+
+.fs-m {
+  font-size: $fs-m;
+}
+
+.fs-l {
+  font-size: $fs-l;
+}
+
+.fs-xl {
+  font-size: $fs-xl;
+}
+
+.sd-list>*:not(:last-child) {
+  border-bottom: $border-light;
+}
+
+.sd-card {
+  background: $cl-white;
+  box-shadow: $shadow-m;
+}
+
+.sd-cut {
+  background: $cl-white;
+  border: $border-normal;
+  box-sizing: border-box;
+}
+
+.sd-theme {
+  fill: $cl-white;
+  color: $cl-white;
+  background-color: $cl-theme;
+}
+
+.sd-dark {
+  fill: $cl-300;
+  color: $cl-300;
+  background: $cl-700;
+}
+
+.sd-black {
+  fill: $cl-300;
+  color: $cl-300;
+  background-color: $cl-black;
+}
+
+.align-indent {
+  text-indent: $pd-s;
+}
+
+.align-c {
+  text-align: center;
+}
+
+.align-l {
+  text-align: left;
+}
+
+.align-r {
+  text-align: right;
+}
+
+.mg-m {
+  margin: $pd-m;
+}
+
+.mg-m-h {
+  margin-left: $pd-m;
+  margin-right: $pd-m;
+}
+
+.mg-m-v {
+  margin-top: $pd-m;
+  margin-bottom: $pd-m;
+}
+
+.mg-s {
+  margin: $pd-s;
+}
+
+.mg-s-h {
+  margin-left: $pd-s;
+  margin-right: $pd-s;
+}
+
+.mg-s-v {
+  margin-top: $pd-s;
+  margin-bottom: $pd-s;
+}
+
+.mg-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shadow-m {
+  box-shadow: $shadow-m;
+}
+
+.shadow-l {
+  box-shadow: $shadow-l;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.scroll-y {
+  overflow-x: none;
+  overflow-y: auto;
+}
+
+.scroll-x {
+  overflow-x: auto;
+  overflow-y: none;
+}
+
+.scroll {
+  overflow: auto;
+}
+
+.fa-icon {
+  vertical-align: middle;
+  margin-top: -3px;
+}
+
+.hidden {
+  visibility: hidden;
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+}
+
+.invisible {
+  opacity: 0;
+  cursor: pointer;
+}

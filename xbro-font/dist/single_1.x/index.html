@@ -1,0 +1,4483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>共济字体图标</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./xbro.css">
+    <link rel="stylesheet" href="./element.css">
+    <script src="./vue.js"></script>
+    <script src="./element.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        header {
+            background: #0063f5;
+            height: 56px;
+        }
+        
+        header span {
+            line-height: 52px;
+            color: #80b1fa;
+            text-align: center;
+            display: inline-block;
+            width: 56px;
+            box-sizing: border-box;
+            height: 52px;
+            margin: 0 32px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        
+        .des {
+            padding: 8px 16px;
+            width: 100%;
+        }
+        
+        .des .th span {
+            margin: 0 16px;
+            line-height: 40px;
+        }
+        
+        .des span[checked] {
+            color: #0063f5;
+            font-size: 18px;
+        }
+        
+        header span:first-child {
+            width: auto;
+            margin-left: 0;
+        }
+        
+        img {
+            display: inline-block;
+            height: 24px;
+            width: auto;
+            vertical-align: middle;
+        }
+        
+        header span[checked=checked] {
+            border-bottom: 2px solid white;
+            color: white;
+        }
+        
+        .neck,
+        .filter,
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            width: 100%;
+        }
+        
+        .neck {
+            padding: 16px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .icon,
+        .icon-cheat {
+            font-family: 'xbro';
+        }
+        
+        .icon_lists {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 16px 0;
+            width: 100%;
+        }
+        
+        .icon_lists li {
+            text-align: center;
+            list-style: none;
+            transition: all 1s ease-out 0s;
+            margin: 0 8px;
+            box-sizing: border-box;
+            text-align: left;
+            vertical-align: middle;
+            box-sizing: border-box;
+            flex: none;
+            flex-basis: calc(25% - 16px);
+            position: relative;
+            height: 56px;
+        }
+        
+        .el-dialog {
+            background: #f5f5f5;
+        }
+        
+        .el-dialog select {
+            line-height: 34px;
+            height: 34px;
+            border: 1px solid #bdbdbd;
+            border-radius: 4px;
+        }
+        
+        .el-dialog__body .icon:before,
+        .icon_lists .icon::before {
+            display: none;
+        }
+        
+        .el-dialog__body {
+            text-align: center;
+        }
+        
+        .el-dialog__body .m-canvas {
+            display: inline-block;
+            border-radius: 4px;
+            background-color: white;
+            padding: 4px 64px;
+            margin-bottom: 16px;
+        }
+        
+        .icon_lists .icon-cheat:hover {
+            color: #0063f5;
+            cursor: text;
+        }
+        
+        .icon_lists li:hover {
+            box-shadow: 0 0 4px #0063f5;
+            border-radius: 4px;
+        }
+        
+        .icon_lists::after {
+            content: '';
+            flex: auto;
+            flex-basis: 25%;
+        }
+        
+        .icon_lists li:hover .download-btn {
+            color: #0063f5;
+        }
+        
+        .name {
+            font-size: 10px;
+            cursor: text;
+            color: #616161;
+        }
+        
+        .clear:after {
+            content: '\20';
+            display: block;
+            height: 0;
+            clear: both;
+        }
+        
+        .icon {
+            position: relative;
+        }
+        
+        .icon>div {
+            position: absolute;
+        }
+        
+        .icon-cheat {
+            color: #424242;
+            transition: color 1s ease-out 0s;
+            font-size: 28px;
+            line-height: 56px;
+            width: 64px;
+            text-align: center;
+        }
+        
+        .icon-code {
+            font-size: 12px;
+            color: #9e9e9e;
+            left: 64px;
+            top: 50%;
+        }
+        
+        .icon .version {
+            font-size: 12px;
+            color: #9e9e9e;
+            left: 120px;
+            top: 50%;
+        }
+        
+        .icon .name {
+            line-height: 32px;
+            left: 64px;
+        }
+        
+        .color {
+            display: inline-block;
+            height: 24px;
+            width: 24px;
+            margin: 4px 0;
+            background: var(--color);
+        }
+        
+        .colors,
+        .ctrl {
+            text-align: left;
+            padding: 8px 16px;
+        }
+        
+        .ctrl {
+            padding: 32px 16px 0;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .colors {
+            display: flex;
+        }
+        
+        .cl-com {
+            height: 24px;
+            line-height: 24px;
+            border: 1px solid #bdbdbd;
+            display: flex;
+            padding: 4px;
+            width: 96px;
+            border-radius: 4px;
+            margin-left: 16px;
+        }
+        
+        .cl-inp {
+            width: 5em;
+            line-height: 24px;
+            height: 24px;
+            box-sizing: border-box;
+            display: inline-block;
+            border: none;
+        }
+        
+        .cl-picker {
+            border: none;
+            display: inline-block;
+            line-height: 24px;
+            height: 24px;
+        }
+        
+        .download-btn {
+            position: absolute;
+            right: 0;
+            width: 24px;
+            line-height: 56px;
+            display: inline-block;
+            text-align: center;
+            color: #e0e0e0;
+            cursor: pointer;
+            transition: color 1s ease;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .el-button--small {
+            padding: 4px 16px !important;
+            box-sizing: border-box;
+        }
+        
+         ::-webkit-scrollbar-thumb {
+            background: #bdbdbd;
+            width: 10px;
+            border-radius: 10px;
+        }
+        
+         ::-webkit-scrollbar-track {
+            background: #f5f5f5;
+            width: 10px;
+        }
+        
+         ::-webkit-scrollbar {
+            background: #f5f5f5;
+            width: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="neck">
+            <div class="des">
+                <el-row type="flex" justify="space-between">
+                    <el-col :span="12">
+                        <div class="th">
+                            <span checked><a href="../single_1.x/index.html">xb字体图标1.x</a></span>
+                            <span><a href="../single_2.x/index.html">xb字体图标2.x</a></span>
+                            <span><a href="../multi/index.html">xb多色图标</a></span>
+                        </div>
+                    </el-col>
+                    <el-col :span="12">
+                        <div>
+                            <el-button type="primary"><a href="./xbro.ttf">下载图标字体_1.x</a></el-button>
+                            <el-button type="primary"><a href="./xbro.zip">下载图标css_1.x</a></el-button>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+        </div>
+        <div class="content">
+            <ul class="icon_lists clear">
+                
+                    <li class="icon icon-xbro-l-anfangxitong">
+                        <div class="name">
+                            xbro-l-anfangxitong
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-baobiaobaogao">
+                        <div class="name">
+                            xbro-l-baobiaobaogao
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-biangengguanli">
+                        <div class="name">
+                            xbro-l-biangengguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-caifaxitong">
+                        <div class="name">
+                            xbro-l-caifaxitong
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-chongdianzhuangtai">
+                        <div class="name">
+                            xbro-l-chongdianzhuangtai
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-churuguanli">
+                        <div class="name">
+                            xbro-l-churuguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-chushuiwendu">
+                        <div class="name">
+                            xbro-l-chushuiwendu
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-fengjixitong">
+                        <div class="name">
+                            xbro-l-fengjixitong
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-fuwujibie">
+                        <div class="name">
+                            xbro-l-fuwujibie
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-fuzailv">
+                        <div class="name">
+                            xbro-l-fuzailv
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-gaojinggaozhi">
+                        <div class="name">
+                            xbro-l-gaojinggaozhi
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-gerengongzuotai">
+                        <div class="name">
+                            xbro-l-gerengongzuotai
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-gongchengpeizhi">
+                        <div class="name">
+                            xbro-l-gongchengpeizhi
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-gongchengzutai">
+                        <div class="name">
+                            xbro-l-gongchengzutai
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-gongdanguanli">
+                        <div class="name">
+                            xbro-l-gongdanguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-gonglvyinshu">
+                        <div class="name">
+                            xbro-l-gonglvyinshu
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-gongpeidianxitong">
+                        <div class="name">
+                            xbro-l-gongpeidianxitong
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-gongyingshangguanli">
+                        <div class="name">
+                            xbro-l-gongyingshangguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-gongyouxitong">
+                        <div class="name">
+                            xbro-l-gongyouxitong
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-guzhangguanli">
+                        <div class="name">
+                            xbro-l-guzhangguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-houbeishijian">
+                        <div class="name">
+                            xbro-l-houbeishijian
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-huifengwendu">
+                        <div class="name">
+                            xbro-l-huifengwendu
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-huozaixiaofang">
+                        <div class="name">
+                            xbro-l-huozaixiaofang
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-jifanghuanjing">
+                        <div class="name">
+                            xbro-l-jifanghuanjing
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-jinji">
+                        <div class="name">
+                            xbro-l-jinji
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-jinshuiwendu">
+                        <div class="name">
+                            xbro-l-jinshuiwendu
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-keyongxingguanli">
+                        <div class="name">
+                            xbro-l-keyongxingguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-kongtiaohuanjingxitong">
+                        <div class="name">
+                            xbro-l-kongtiaohuanjingxitong
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-kongtiaoyunxingzhuangtai">
+                        <div class="name">
+                            xbro-l-kongtiaoyunxingzhuangtai
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-nengxiaoguanli">
+                        <div class="name">
+                            xbro-l-nengxiaoguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-pinlv">
+                        <div class="name">
+                            xbro-l-pinlv
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-rongliangguanli">
+                        <div class="name">
+                            xbro-l-rongliangguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-sheshijiankong">
+                        <div class="name">
+                            xbro-l-sheshijiankong
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-shezhi">
+                        <div class="name">
+                            xbro-l-shezhi
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-shouqi">
+                        <div class="name">
+                            xbro-l-shouqi
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-shuaxin">
+                        <div class="name">
+                            xbro-l-shuaxin
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-shuilengxitong">
+                        <div class="name">
+                            xbro-l-shuilengxitong
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-songfengliang">
+                        <div class="name">
+                            xbro-l-songfengliang
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-songfengwendu">
+                        <div class="name">
+                            xbro-l-songfengwendu
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-wangluoxitong">
+                        <div class="name">
+                            xbro-l-wangluoxitong
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-weihubaoyang">
+                        <div class="name">
+                            xbro-l-weihubaoyang
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-wentiguanli">
+                        <div class="name">
+                            xbro-l-wentiguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-xitongguanli">
+                        <div class="name">
+                            xbro-l-xitongguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-yeweixitong">
+                        <div class="name">
+                            xbro-l-yeweixitong
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-yidongxunjian">
+                        <div class="name">
+                            xbro-l-yidongxunjian
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-yingjiyanlian">
+                        <div class="name">
+                            xbro-l-yingjiyanlian
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-yonghu">
+                        <div class="name">
+                            xbro-l-yonghu
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-youjiantou">
+                        <div class="name">
+                            xbro-l-youjiantou
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-zhankai">
+                        <div class="name">
+                            xbro-l-zhankai
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-zhibanguanli">
+                        <div class="name">
+                            xbro-l-zhibanguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-zhishiguanli">
+                        <div class="name">
+                            xbro-l-zhishiguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-zichanguanli">
+                        <div class="name">
+                            xbro-l-zichanguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-zongyougonggonglv">
+                        <div class="name">
+                            xbro-l-zongyougonggonglv
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-zudianliu">
+                        <div class="name">
+                            xbro-l-zudianliu
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-zudianya">
+                        <div class="name">
+                            xbro-l-zudianya
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-zuhuguanli">
+                        <div class="name">
+                            xbro-l-zuhuguanli
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-l-zuoshuangjiantou">
+                        <div class="name">
+                            xbro-l-zuoshuangjiantou
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-2d">
+                        <div class="name">
+                            xbro-r-2d
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-3d">
+                        <div class="name">
+                            xbro-r-3d
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-3d2">
+                        <div class="name">
+                            xbro-r-3d2
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-baojing2">
+                        <div class="name">
+                            xbro-r-baojing2
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-bianji">
+                        <div class="name">
+                            xbro-r-bianji
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-chaoshi">
+                        <div class="name">
+                            xbro-r-chaoshi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-dingwei">
+                        <div class="name">
+                            xbro-r-dingwei
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-duankailianjie">
+                        <div class="name">
+                            xbro-r-duankailianjie
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-gaojing">
+                        <div class="name">
+                            xbro-r-gaojing
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-guanbi2">
+                        <div class="name">
+                            xbro-r-guanbi2
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-jiangji">
+                        <div class="name">
+                            xbro-r-jiangji
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-jianhao">
+                        <div class="name">
+                            xbro-r-jianhao
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-jinzhi">
+                        <div class="name">
+                            xbro-r-jinzhi
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-lianjie">
+                        <div class="name">
+                            xbro-r-lianjie
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-mimayincang">
+                        <div class="name">
+                            xbro-r-mimayincang
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-queren">
+                        <div class="name">
+                            xbro-r-queren
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-renwu">
+                        <div class="name">
+                            xbro-r-renwu
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-rili">
+                        <div class="name">
+                            xbro-r-rili
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-riqishijian">
+                        <div class="name">
+                            xbro-r-riqishijian
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-shanchu">
+                        <div class="name">
+                            xbro-r-shanchu
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-shanchu2">
+                        <div class="name">
+                            xbro-r-shanchu2
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-shangdanjiantou">
+                        <div class="name">
+                            xbro-r-shangdanjiantou
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-shangshuangjiantou">
+                        <div class="name">
+                            xbro-r-shangshuangjiantou
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-shangyi">
+                        <div class="name">
+                            xbro-r-shangyi
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-shengji">
+                        <div class="name">
+                            xbro-r-shengji
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-shidu2">
+                        <div class="name">
+                            xbro-r-shidu2
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-sousuo">
+                        <div class="name">
+                            xbro-r-sousuo
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-sousuo2">
+                        <div class="name">
+                            xbro-r-sousuo2
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-sousuo3">
+                        <div class="name">
+                            xbro-r-sousuo3
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-tianjia">
+                        <div class="name">
+                            xbro-r-tianjia
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-tianjia2">
+                        <div class="name">
+                            xbro-r-tianjia2
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-wendu">
+                        <div class="name">
+                            xbro-r-wendu
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-xiadanjiantou">
+                        <div class="name">
+                            xbro-r-xiadanjiantou
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-xiala">
+                        <div class="name">
+                            xbro-r-xiala
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-xiashuangjiantou">
+                        <div class="name">
+                            xbro-r-xiashuangjiantou
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-xiayi">
+                        <div class="name">
+                            xbro-r-xiayi
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-xinjiantongjifenlei">
+                        <div class="name">
+                            xbro-r-xinjiantongjifenlei
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-xinjianxiajifenlei">
+                        <div class="name">
+                            xbro-r-xinjianxiajifenlei
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-yemian">
+                        <div class="name">
+                            xbro-r-yemian
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-youcejiantou">
+                        <div class="name">
+                            xbro-r-youcejiantou
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-youcexiangxiajiantou">
+                        <div class="name">
+                            xbro-r-youcexiangxiajiantou
+                        </div>
+                        <div class="version">
+                            1.0.7
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-youdanjiantou">
+                        <div class="name">
+                            xbro-r-youdanjiantou
+                        </div>
+                        <div class="version">
+                            1.0.7
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-youjiantou2">
+                        <div class="name">
+                            xbro-r-youjiantou2
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-zhuxiao">
+                        <div class="name">
+                            xbro-r-zhuxiao
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-zuidahua">
+                        <div class="name">
+                            xbro-r-zuidahua
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-zuixiaohua2">
+                        <div class="name">
+                            xbro-r-zuixiaohua2
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-zuodanjiantou">
+                        <div class="name">
+                            xbro-r-zuodanjiantou
+                        </div>
+                        <div class="version">
+                            1.0.7
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-r-zuojiantou">
+                        <div class="name">
+                            xbro-r-zuojiantou
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-3dxuanzhuan">
+                        <div class="name">
+                            xbro-s-3dxuanzhuan
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-anquanfa">
+                        <div class="name">
+                            xbro-s-anquanfa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-banreguan">
+                        <div class="name">
+                            xbro-s-banreguan
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-banshihuanreqi">
+                        <div class="name">
+                            xbro-s-banshihuanreqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-baobiaobaogao">
+                        <div class="name">
+                            xbro-s-baobiaobaogao
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-baobiaodingyi">
+                        <div class="name">
+                            xbro-s-baobiaodingyi
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-baobiaogailan">
+                        <div class="name">
+                            xbro-s-baobiaogailan
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-baobiaoguanli">
+                        <div class="name">
+                            xbro-s-baobiaoguanli
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-baocun">
+                        <div class="name">
+                            xbro-s-baocun
+                        </div>
+                        <div class="version">
+                            1.2.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-baojing">
+                        <div class="name">
+                            xbro-s-baojing
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-beifenhuanyuan">
+                        <div class="name">
+                            xbro-s-beifenhuanyuan
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-beixianglianjie">
+                        <div class="name">
+                            xbro-s-beixianglianjie
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-biangengguanli">
+                        <div class="name">
+                            xbro-s-biangengguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-biangengliebiao">
+                        <div class="name">
+                            xbro-s-biangengliebiao
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-biangengpeizhi">
+                        <div class="name">
+                            xbro-s-biangengpeizhi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-biangengrili">
+                        <div class="name">
+                            xbro-s-biangengrili
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-bianpinqi">
+                        <div class="name">
+                            xbro-s-bianpinqi
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-bianyaqiwenkongyi">
+                        <div class="name">
+                            xbro-s-bianyaqiwenkongyi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-biaodanguanli">
+                        <div class="name">
+                            xbro-s-biaodanguanli
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-bileigui">
+                        <div class="name">
+                            xbro-s-bileigui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-bileijiedidianzugui">
+                        <div class="name">
+                            xbro-s-bileijiedidianzugui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-buchangzhuangzhi">
+                        <div class="name">
+                            xbro-s-buchangzhuangzhi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-caiyoufadianji">
+                        <div class="name">
+                            xbro-s-caiyoufadianji
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cebianlanzhankai">
+                        <div class="name">
+                            xbro-s-cebianlanzhankai
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cebianlanzhedie">
+                        <div class="name">
+                            xbro-s-cebianlanzhedie
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cedian">
+                        <div class="name">
+                            xbro-s-cedian
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cediancanshu">
+                        <div class="name">
+                            xbro-s-cediancanshu
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cediangaojing">
+                        <div class="name">
+                            xbro-s-cediangaojing
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cediankongzhi">
+                        <div class="name">
+                            xbro-s-cediankongzhi
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cedianpeizhi">
+                        <div class="name">
+                            xbro-s-cedianpeizhi
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cedianzhuangtai">
+                        <div class="name">
+                            xbro-s-cedianzhuangtai
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cexiao">
+                        <div class="name">
+                            xbro-s-cexiao
+                        </div>
+                        <div class="version">
+                            1.2.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-chenggong">
+                        <div class="name">
+                            xbro-s-chenggong
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-chuangkoushezhi">
+                        <div class="name">
+                            xbro-s-chuangkoushezhi
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-chulishixianpeizhi">
+                        <div class="name">
+                            xbro-s-chulishixianpeizhi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-churuguanli">
+                        <div class="name">
+                            xbro-s-churuguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-chuyouguan">
+                        <div class="name">
+                            xbro-s-chuyouguan
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-cunchupeizhi">
+                        <div class="name">
+                            xbro-s-cunchupeizhi
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-dianchi">
+                        <div class="name">
+                            xbro-s-dianchi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-dianchikaiguangui">
+                        <div class="name">
+                            xbro-s-dianchikaiguangui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-dianchizu">
+                        <div class="name">
+                            xbro-s-dianchizu
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-diancifa">
+                        <div class="name">
+                            xbro-s-diancifa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-diandongkaiguanfa">
+                        <div class="name">
+                            xbro-s-diandongkaiguanfa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-diandongsantongfa">
+                        <div class="name">
+                            xbro-s-diandongsantongfa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-diandongtiaojiefa">
+                        <div class="name">
+                            xbro-s-diandongtiaojiefa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-dianliangyi">
+                        <div class="name">
+                            xbro-s-dianliangyi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-dianligelibianyaqi">
+                        <div class="name">
+                            xbro-s-dianligelibianyaqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-dianyuanqiehuanxiang">
+                        <div class="name">
+                            xbro-s-dianyuanqiehuanxiang
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-dianzisuojiankong">
+                        <div class="name">
+                            xbro-s-dianzisuojiankong
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-diefa">
+                        <div class="name">
+                            xbro-s-diefa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-difa">
+                        <div class="name">
+                            xbro-s-difa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-dingwei">
+                        <div class="name">
+                            xbro-s-dingwei
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-dingyabushuizhuangzhi">
+                        <div class="name">
+                            xbro-s-dingyabushuizhuangzhi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-ditubiao">
+                        <div class="name">
+                            xbro-s-ditubiao
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-diyiye">
+                        <div class="name">
+                            xbro-s-diyiye
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-duankou">
+                        <div class="name">
+                            xbro-s-duankou
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-eps">
+                        <div class="name">
+                            xbro-s-eps
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fanghu">
+                        <div class="name">
+                            xbro-s-fanghu
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fangqifa">
+                        <div class="name">
+                            xbro-s-fangqifa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fanhui">
+                        <div class="name">
+                            xbro-s-fanhui
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fengjipanguan">
+                        <div class="name">
+                            xbro-s-fengjipanguan
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fenglengjizu">
+                        <div class="name">
+                            xbro-s-fenglengjizu
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuqiufa">
+                        <div class="name">
+                            xbro-s-fuqiufa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuwei">
+                        <div class="name">
+                            xbro-s-fuwei
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuwei2">
+                        <div class="name">
+                            xbro-s-fuwei2
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuwubaogao">
+                        <div class="name">
+                            xbro-s-fuwubaogao
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuwujibie">
+                        <div class="name">
+                            xbro-s-fuwujibie
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuwujibiexieyi">
+                        <div class="name">
+                            xbro-s-fuwujibiexieyi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuwumulu">
+                        <div class="name">
+                            xbro-s-fuwumulu
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuwuqingqiu">
+                        <div class="name">
+                            xbro-s-fuwuqingqiu
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuwuqingqiuliebiao">
+                        <div class="name">
+                            xbro-s-fuwuqingqiuliebiao
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuzaigui">
+                        <div class="name">
+                            xbro-s-fuzaigui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-fuzhi">
+                        <div class="name">
+                            xbro-s-fuzhi
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gailan">
+                        <div class="name">
+                            xbro-s-gailan
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gaodiyakaiguangui">
+                        <div class="name">
+                            xbro-s-gaodiyakaiguangui
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gaodiyamuliangui">
+                        <div class="name">
+                            xbro-s-gaodiyamuliangui
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gaojinggaozhi">
+                        <div class="name">
+                            xbro-s-gaojinggaozhi
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gaojinggaozhi2">
+                        <div class="name">
+                            xbro-s-gaojinggaozhi2
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gaojingpeizhi">
+                        <div class="name">
+                            xbro-s-gaojingpeizhi
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gaojingpingbi">
+                        <div class="name">
+                            xbro-s-gaojingpingbi
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gengduo">
+                        <div class="name">
+                            xbro-s-gengduo
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gengduo2">
+                        <div class="name">
+                            xbro-s-gengduo2
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gerengongzuotai">
+                        <div class="name">
+                            xbro-s-gerengongzuotai
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gongchengpeizhi">
+                        <div class="name">
+                            xbro-s-gongchengpeizhi
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gongchengzutai">
+                        <div class="name">
+                            xbro-s-gongchengzutai
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gongdanguanli">
+                        <div class="name">
+                            xbro-s-gongdanguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gongdian">
+                        <div class="name">
+                            xbro-s-gongdian
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-gongyingshangguanli">
+                        <div class="name">
+                            xbro-s-gongyingshangguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-guanbi">
+                        <div class="name">
+                            xbro-s-guanbi
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-guzhangguanli">
+                        <div class="name">
+                            xbro-s-guzhangguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-hanbaobaotiao">
+                        <div class="name">
+                            xbro-s-hanbaobaotiao
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-hanshuguanli">
+                        <div class="name">
+                            xbro-s-hanshuguanli
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-houmen">
+                        <div class="name">
+                            xbro-s-houmen
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-huanjing">
+                        <div class="name">
+                            xbro-s-huanjing
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-itsheshi">
+                        <div class="name">
+                            xbro-s-itsheshi
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiafuzai">
+                        <div class="name">
+                            xbro-s-jiafuzai
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiankonggui">
+                        <div class="name">
+                            xbro-s-jiankonggui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jianyafa">
+                        <div class="name">
+                            xbro-s-jianyafa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiaojieban">
+                        <div class="name">
+                            xbro-s-jiaojieban
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiaoliupeidiangui">
+                        <div class="name">
+                            xbro-s-jiaoliupeidiangui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiarepanguan">
+                        <div class="name">
+                            xbro-s-jiarepanguan
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiashiqi">
+                        <div class="name">
+                            xbro-s-jiashiqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiayouzhuangzhi">
+                        <div class="name">
+                            xbro-s-jiayouzhuangzhi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jichushujupeizhi">
+                        <div class="name">
+                            xbro-s-jichushujupeizhi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiechuqunzu">
+                        <div class="name">
+                            xbro-s-jiechuqunzu
+                        </div>
+                        <div class="version">
+                            1.2.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiedizhuangzhi">
+                        <div class="name">
+                            xbro-s-jiedizhuangzhi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jieliufa">
+                        <div class="name">
+                            xbro-s-jieliufa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jienengkongzhi">
+                        <div class="name">
+                            xbro-s-jienengkongzhi
+                        </div>
+                        <div class="version">
+                            1.1.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiesuo">
+                        <div class="name">
+                            xbro-s-jiesuo
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiesuo3">
+                        <div class="name">
+                            xbro-s-jiesuo3
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiezhifa">
+                        <div class="name">
+                            xbro-s-jiezhifa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiezhiliuxiang">
+                        <div class="name">
+                            xbro-s-jiezhiliuxiang
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jifang">
+                        <div class="name">
+                            xbro-s-jifang
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jigui">
+                        <div class="name">
+                            xbro-s-jigui
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiguilie">
+                        <div class="name">
+                            xbro-s-jiguilie
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jihuaguanli">
+                        <div class="name">
+                            xbro-s-jihuaguanli
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jilianggui">
+                        <div class="name">
+                            xbro-s-jilianggui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jingmikongtiao">
+                        <div class="name">
+                            xbro-s-jingmikongtiao
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-jiqiguan">
+                        <div class="name">
+                            xbro-s-jiqiguan
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-kaimenzhuapaijilu">
+                        <div class="name">
+                            xbro-s-kaimenzhuapaijilu
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-kaishi">
+                        <div class="name">
+                            xbro-s-kaishi
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-keyongxingguanli">
+                        <div class="name">
+                            xbro-s-keyongxingguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-kongjian">
+                        <div class="name">
+                            xbro-s-kongjian
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-kongtiao">
+                        <div class="name">
+                            xbro-s-kongtiao
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-kongtiaojizu">
+                        <div class="name">
+                            xbro-s-kongtiaojizu
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-kongzhixiang">
+                        <div class="name">
+                            xbro-s-kongzhixiang
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-kuaikaifa">
+                        <div class="name">
+                            xbro-s-kuaikaifa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-lengquepanguan">
+                        <div class="name">
+                            xbro-s-lengquepanguan
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-lengqueta">
+                        <div class="name">
+                            xbro-s-lengqueta
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-liandongcelue">
+                        <div class="name">
+                            xbro-s-liandongcelue
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-lianjie">
+                        <div class="name">
+                            xbro-s-lianjie
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-lianjieduankai">
+                        <div class="name">
+                            xbro-s-lianjieduankai
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-lianjiejinzhi">
+                        <div class="name">
+                            xbro-s-lianjiejinzhi
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-lianjieshuaxin">
+                        <div class="name">
+                            xbro-s-lianjieshuaxin
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-lietougui">
+                        <div class="name">
+                            xbro-s-lietougui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-liuchengguanli">
+                        <div class="name">
+                            xbro-s-liuchengguanli
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-liuchengpeizhi">
+                        <div class="name">
+                            xbro-s-liuchengpeizhi
+                        </div>
+                        <div class="version">
+                            1.1.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-liuliangchuanganqi">
+                        <div class="name">
+                            xbro-s-liuliangchuanganqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-liuliangji">
+                        <div class="name">
+                            xbro-s-liuliangji
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-liuliangkaiguan">
+                        <div class="name">
+                            xbro-s-liuliangkaiguan
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-lixinfengji">
+                        <div class="name">
+                            xbro-s-lixinfengji
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-louceng">
+                        <div class="name">
+                            xbro-s-louceng
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-loudong">
+                        <div class="name">
+                            xbro-s-loudong
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-loushui">
+                        <div class="name">
+                            xbro-s-loushui
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-mensuoguanli">
+                        <div class="name">
+                            xbro-s-mensuoguanli
+                        </div>
+                        <div class="version">
+                            1.0.7
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-mianrong">
+                        <div class="name">
+                            xbro-s-mianrong
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-mimaxianshi">
+                        <div class="name">
+                            xbro-s-mimaxianshi
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-mimaxiugai">
+                        <div class="name">
+                            xbro-s-mimaxiugai
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-mokuaiyewupeizhi">
+                        <div class="name">
+                            xbro-s-mokuaiyewupeizhi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-muxian">
+                        <div class="name">
+                            xbro-s-muxian
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-nengxiao">
+                        <div class="name">
+                            xbro-s-nengxiao
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-nengxiaofenxi">
+                        <div class="name">
+                            xbro-s-nengxiaofenxi
+                        </div>
+                        <div class="version">
+                            1.1.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-nengxiaoguanli">
+                        <div class="name">
+                            xbro-s-nengxiaoguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-nengxiaozongjie">
+                        <div class="name">
+                            xbro-s-nengxiaozongjie
+                        </div>
+                        <div class="version">
+                            1.1.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-nengxiaozonglan">
+                        <div class="name">
+                            xbro-s-nengxiaozonglan
+                        </div>
+                        <div class="version">
+                            1.2.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-pdu">
+                        <div class="name">
+                            xbro-s-pdu
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-peidianxiang">
+                        <div class="name">
+                            xbro-s-peidianxiang
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-peizhiguanli">
+                        <div class="name">
+                            xbro-s-peizhiguanli
+                        </div>
+                        <div class="version">
+                            1.1.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-pengzhangfa">
+                        <div class="name">
+                            xbro-s-pengzhangfa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-qiangjishexiangtou">
+                        <div class="name">
+                            xbro-s-qiangjishexiangtou
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-qianmen">
+                        <div class="name">
+                            xbro-s-qianmen
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-qiufa">
+                        <div class="name">
+                            xbro-s-qiufa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-quanping">
+                        <div class="name">
+                            xbro-s-quanping
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-quanxianguanli">
+                        <div class="name">
+                            xbro-s-quanxianguanli
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-qudongguanli">
+                        <div class="name">
+                            xbro-s-qudongguanli
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-qunzu">
+                        <div class="name">
+                            xbro-s-qunzu
+                        </div>
+                        <div class="version">
+                            1.2.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-quyu">
+                        <div class="name">
+                            xbro-s-quyu
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-renlianshibie">
+                        <div class="name">
+                            xbro-s-renlianshibie
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-renwuguanli">
+                        <div class="name">
+                            xbro-s-renwuguanli
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-renwuxinxi">
+                        <div class="name">
+                            xbro-s-renwuxinxi
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-riyongyouxiang">
+                        <div class="name">
+                            xbro-s-riyongyouxiang
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-rongliang">
+                        <div class="name">
+                            xbro-s-rongliang
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-rongliangguanli">
+                        <div class="name">
+                            xbro-s-rongliangguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-ruanshuixiang">
+                        <div class="name">
+                            xbro-s-ruanshuixiang
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-santongfa">
+                        <div class="name">
+                            xbro-s-santongfa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shanchu">
+                        <div class="name">
+                            xbro-s-shanchu
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shangsanjiao">
+                        <div class="name">
+                            xbro-s-shangsanjiao
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shangyiye">
+                        <div class="name">
+                            xbro-s-shangyiye
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shanjian">
+                        <div class="name">
+                            xbro-s-shanjian
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shebei">
+                        <div class="name">
+                            xbro-s-shebei
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shebeigailan">
+                        <div class="name">
+                            xbro-s-shebeigailan
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shebeiguanli">
+                        <div class="name">
+                            xbro-s-shebeiguanli
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-sheshijiankong">
+                        <div class="name">
+                            xbro-s-sheshijiankong
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shexiangtou">
+                        <div class="name">
+                            xbro-s-shexiangtou
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shezhi2">
+                        <div class="name">
+                            xbro-s-shezhi2
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shibai">
+                        <div class="name">
+                            xbro-s-shibai
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shidu">
+                        <div class="name">
+                            xbro-s-shidu
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shigongliebiao">
+                        <div class="name">
+                            xbro-s-shigongliebiao
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shijianguanli">
+                        <div class="name">
+                            xbro-s-shijianguanli
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shijianliebiao">
+                        <div class="name">
+                            xbro-s-shijianliebiao
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shijianpeizhi">
+                        <div class="name">
+                            xbro-s-shijianpeizhi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shitupeizhi">
+                        <div class="name">
+                            xbro-s-shitupeizhi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shouquanguanli">
+                        <div class="name">
+                            xbro-s-shouquanguanli
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shuangxiangliuliangji">
+                        <div class="name">
+                            xbro-s-shuangxiangliuliangji
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shuaxin">
+                        <div class="name">
+                            xbro-s-shuaxin
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shuaxin2">
+                        <div class="name">
+                            xbro-s-shuaxin2
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shuaxin3">
+                        <div class="name">
+                            xbro-s-shuaxin3
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shuibeng">
+                        <div class="name">
+                            xbro-s-shuibeng
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shuilenglixinshilengshuijizu">
+                        <div class="name">
+                            xbro-s-shuilenglixinshilengshuijizu
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shuiliukaiguan">
+                        <div class="name">
+                            xbro-s-shuiliukaiguan
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shujuchaxun">
+                        <div class="name">
+                            xbro-s-shujuchaxun
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-shujuzhongxin">
+                        <div class="name">
+                            xbro-s-shujuzhongxin
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-suo">
+                        <div class="name">
+                            xbro-s-suo
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-suo3">
+                        <div class="name">
+                            xbro-s-suo3
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-suoxiao">
+                        <div class="name">
+                            xbro-s-suoxiao
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-suoxiao2">
+                        <div class="name">
+                            xbro-s-suoxiao2
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-tianchuang">
+                        <div class="name">
+                            xbro-s-tianchuang
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-tianjia">
+                        <div class="name">
+                            xbro-s-tianjia
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-tongyongtubiao1">
+                        <div class="name">
+                            xbro-s-tongyongtubiao1
+                        </div>
+                        <div class="version">
+                            1.0.7
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-tongyongtubiao2">
+                        <div class="name">
+                            xbro-s-tongyongtubiao2
+                        </div>
+                        <div class="version">
+                            1.0.7
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-tubiao">
+                        <div class="name">
+                            xbro-s-tubiao
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-tuichu">
+                        <div class="name">
+                            xbro-s-tuichu
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-ups">
+                        <div class="name">
+                            xbro-s-ups
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-ups2">
+                        <div class="name">
+                            xbro-s-ups2
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-weibaoxinxi">
+                        <div class="name">
+                            xbro-s-weibaoxinxi
+                        </div>
+                        <div class="version">
+                            1.1.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-weihubaoyang">
+                        <div class="name">
+                            xbro-s-weihubaoyang
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-weixiuguanli">
+                        <div class="name">
+                            xbro-s-weixiuguanli
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-weixiuliebiao">
+                        <div class="name">
+                            xbro-s-weixiuliebiao
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-wenduchuanganqi">
+                        <div class="name">
+                            xbro-s-wenduchuanganqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-wenduji">
+                        <div class="name">
+                            xbro-s-wenduji
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-wenshidu">
+                        <div class="name">
+                            xbro-s-wenshidu
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-wenshiduchuanganqi">
+                        <div class="name">
+                            xbro-s-wenshiduchuanganqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-wenshidukongzhiqi">
+                        <div class="name">
+                            xbro-s-wenshidukongzhiqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-wentiguanli">
+                        <div class="name">
+                            xbro-s-wentiguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-wentiliebiao">
+                        <div class="name">
+                            xbro-s-wentiliebiao
+                        </div>
+                        <div class="version">
+                            1.2.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-wodegongzuo">
+                        <div class="name">
+                            xbro-s-wodegongzuo
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-wuliji">
+                        <div class="name">
+                            xbro-s-wuliji
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xbrother">
+                        <div class="name">
+                            xbro-s-xbrother
+                        </div>
+                        <div class="version">
+                            1.2.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xiajiantou">
+                        <div class="name">
+                            xbro-s-xiajiantou
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xiaoping">
+                        <div class="name">
+                            xbro-s-xiaoping
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xiaoxiezhuangzhi">
+                        <div class="name">
+                            xbro-s-xiaoxiezhuangzhi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xiaoximobanpeizhi">
+                        <div class="name">
+                            xbro-s-xiaoximobanpeizhi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xiasanjiao">
+                        <div class="name">
+                            xbro-s-xiasanjiao
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xiayibu">
+                        <div class="name">
+                            xbro-s-xiayibu
+                        </div>
+                        <div class="version">
+                            1.2.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xiayiye">
+                        <div class="name">
+                            xbro-s-xiayiye
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xiezhugongdan">
+                        <div class="name">
+                            xbro-s-xiezhugongdan
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xiezhugongdanliebiao">
+                        <div class="name">
+                            xbro-s-xiezhugongdanliebiao
+                        </div>
+                        <div class="version">
+                            1.1.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xinxi">
+                        <div class="name">
+                            xbro-s-xinxi
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xitonggongju">
+                        <div class="name">
+                            xbro-s-xitonggongju
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xitongguanli">
+                        <div class="name">
+                            xbro-s-xitongguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xitonghuanfu">
+                        <div class="name">
+                            xbro-s-xitonghuanfu
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xitongpeizhi">
+                        <div class="name">
+                            xbro-s-xitongpeizhi
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xitongrizhi">
+                        <div class="name">
+                            xbro-s-xitongrizhi
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xitongshengji">
+                        <div class="name">
+                            xbro-s-xitongshengji
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xitongshouquan">
+                        <div class="name">
+                            xbro-s-xitongshouquan
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xuansaifa">
+                        <div class="name">
+                            xbro-s-xuansaifa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xuanze">
+                        <div class="name">
+                            xbro-s-xuanze
+                        </div>
+                        <div class="version">
+                            1.2.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xulengguan">
+                        <div class="name">
+                            xbro-s-xulengguan
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-xushuichi">
+                        <div class="name">
+                            xbro-s-xushuichi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yachachuanganqi">
+                        <div class="name">
+                            xbro-s-yachachuanganqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yachapangtongfa">
+                        <div class="name">
+                            xbro-s-yachapangtongfa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yachapinghengfa">
+                        <div class="name">
+                            xbro-s-yachapinghengfa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yalibiao">
+                        <div class="name">
+                            xbro-s-yalibiao
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yalichuanganqi">
+                        <div class="name">
+                            xbro-s-yalichuanganqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yangan">
+                        <div class="name">
+                            xbro-s-yangan
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yemian">
+                        <div class="name">
+                            xbro-s-yemian
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yemianpeizhi">
+                        <div class="name">
+                            xbro-s-yemianpeizhi
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yemianshezhi">
+                        <div class="name">
+                            xbro-s-yemianshezhi
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yeweiji">
+                        <div class="name">
+                            xbro-s-yeweiji
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yidong">
+                        <div class="name">
+                            xbro-s-yidong
+                        </div>
+                        <div class="version">
+                            1.2.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yidongxunjian">
+                        <div class="name">
+                            xbro-s-yidongxunjian
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yingjiyanlian">
+                        <div class="name">
+                            xbro-s-yingjiyanlian
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yingyongguanli">
+                        <div class="name">
+                            xbro-s-yingyongguanli
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-youdanjiantou">
+                        <div class="name">
+                            xbro-s-youdanjiantou
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yuanqu">
+                        <div class="name">
+                            xbro-s-yuanqu
+                        </div>
+                        <div class="version">
+                            1.0.6
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yunfuwuqi">
+                        <div class="name">
+                            xbro-s-yunfuwuqi
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yunxing">
+                        <div class="name">
+                            xbro-s-yunxing
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yunziyuanzonglan">
+                        <div class="name">
+                            xbro-s-yunziyuanzonglan
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yuyin">
+                        <div class="name">
+                            xbro-s-yuyin
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-yxingguolvqi">
+                        <div class="name">
+                            xbro-s-yxingguolvqi
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zanting">
+                        <div class="name">
+                            xbro-s-zanting
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhafa">
+                        <div class="name">
+                            xbro-s-zhafa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhankai1">
+                        <div class="name">
+                            xbro-s-zhankai1
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhankai2">
+                        <div class="name">
+                            xbro-s-zhankai2
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhantie">
+                        <div class="name">
+                            xbro-s-zhantie
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhedie">
+                        <div class="name">
+                            xbro-s-zhedie
+                        </div>
+                        <div class="version">
+                            1.1.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhibanguanli">
+                        <div class="name">
+                            xbro-s-zhibanguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhibanjihua">
+                        <div class="name">
+                            xbro-s-zhibanjihua
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhibanpeizhi">
+                        <div class="name">
+                            xbro-s-zhibanpeizhi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhihuifa">
+                        <div class="name">
+                            xbro-s-zhihuifa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhiliugui">
+                        <div class="name">
+                            xbro-s-zhiliugui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhiliupeidiangui">
+                        <div class="name">
+                            xbro-s-zhiliupeidiangui
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhishiguanli">
+                        <div class="name">
+                            xbro-s-zhishiguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhishipeizhi">
+                        <div class="name">
+                            xbro-s-zhishipeizhi
+                        </div>
+                        <div class="version">
+                            1.1.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhouliufengji">
+                        <div class="name">
+                            xbro-s-zhouliufengji
+                        </div>
+                        <div class="version">
+                            1.0.4
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhuye">
+                        <div class="name">
+                            xbro-s-zhuye
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zhuye2">
+                        <div class="name">
+                            xbro-s-zhuye2
+                        </div>
+                        <div class="version">
+                            1.0.0
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zichan">
+                        <div class="name">
+                            xbro-s-zichan
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zichanguanli">
+                        <div class="name">
+                            xbro-s-zichanguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zichanpandian">
+                        <div class="name">
+                            xbro-s-zichanpandian
+                        </div>
+                        <div class="version">
+                            1.1.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zichantiao">
+                        <div class="name">
+                            xbro-s-zichantiao
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zichanzonglan">
+                        <div class="name">
+                            xbro-s-zichanzonglan
+                        </div>
+                        <div class="version">
+                            1.1.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zidongpaiqifa">
+                        <div class="name">
+                            xbro-s-zidongpaiqifa
+                        </div>
+                        <div class="version">
+                            1.0.2
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zonglan">
+                        <div class="name">
+                            xbro-s-zonglan
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zuhuguanli">
+                        <div class="name">
+                            xbro-s-zuhuguanli
+                        </div>
+                        <div class="version">
+                            1.0.5
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zuidahua2">
+                        <div class="name">
+                            xbro-s-zuidahua2
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zuidahua3">
+                        <div class="name">
+                            xbro-s-zuidahua3
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zuihouyiye">
+                        <div class="name">
+                            xbro-s-zuihouyiye
+                        </div>
+                        <div class="version">
+                            1.0.3
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+                    <li class="icon icon-xbro-s-zuojiantou2">
+                        <div class="name">
+                            xbro-s-zuojiantou2
+                        </div>
+                        <div class="version">
+                            1.0.1
+                        </div>
+                        <span @click="openDlg" class="download-btn"><i class="el-icon-download"></i></span>
+                    </li>
+                    
+
+            </ul>
+        </div>
+        <el-dialog :title="cur_name" :visible.sync="show" @opened="showIcon" :width="'600px'" :left="dl_left" :top="dl_top">
+            <span class="m-canvas">
+                <canvas ref="can" height="200" width="200"></canvas>
+            </span>
+            <div class="colors">
+                <span class="color" v-for="cl in colors" :style="'background-color:' + cl " @click="selectColor" :cl="cl"></span>
+                <div class="cl-com">
+                    <input type="text" class="cl-inp" name="cl" :value="inp_cl" @change="testColor">
+                    <input type="color" name="cl" v-model="inp_cl" class="cl-picker">
+                </div>
+                <span>
+                    <select @change="selectChange">
+                        <option value="48">48</option>
+                        <option value="64">64</option>
+                        <option value="96">96</option>
+                        <option value="120">120</option>
+                        <option value="200" selected>200</option>
+                        <option value="400">400</option>
+                    </select>
+                </span>
+            </div>
+            <div class="ctrl">
+                <el-button @click="download">PNG下载</el-button>
+            </div>
+        </el-dialog>
+    </div>
+</body>
+<script>
+    var ctx, cur_icon, cur_name;
+    var pattern = /^#([0-9a-fA-F]{6})/
+
+    window.onload = function() {
+        var dom
+        var icons = document.querySelectorAll('.icon_lists .icon')
+        var con, code
+        icons.forEach(ico => {
+            con = window.getComputedStyle(ico, "::before").content.replace(/\"/g, "")
+            code = '<div class="icon-code">&#' + con.charCodeAt(0).toString(16).toUpperCase() + ';</div>'
+            dom = '<div class="icon-cheat">' + con + '</div>'
+            ico.innerHTML = code + dom + ico.innerHTML
+        });
+
+        window.mv = new Vue({
+            el: "#app",
+            data: {
+                show: false,
+                colors: ["#0063f5", "#007aff", "#4cd964", "#ff9500", "#ff3b30", "#d4237a", "#7e9ae8", "#ffffff", "#f5f5f5", "#e0e0e0", "#bdbdbd", "#9e9e9e", "#757575", "#424242", "#000000"],
+                inp_cl: "#000000",
+                cur_name: "图标名称",
+                dl_left: "0px",
+                dl_top: "0px",
+            },
+            methods: {
+                selectColor(ev) {
+                    this.inp_cl = ev.target.getAttribute('cl')
+                },
+                changeColor() {
+                    this.preFill()
+                    ctx.fillStyle = this.inp_cl
+                    ctx.clearRect(0, 0, mv.$refs.can.width, mv.$refs.can.height)
+                    ctx.fillText(cur_icon, mv.$refs.can.width / 2, mv.$refs.can.height / 2)
+                },
+                testColor(ev) {
+                    if (pattern.test(ev.target.value)) {
+                        this.$set(this, "inp_cl", ev.target.value)
+                    } else {
+                        ev.target.value = this.inp_cl
+                    }
+                },
+                openDlg(ev) {
+                    mv.show = true
+                    var target = ev.target
+                    if (target.tagName == "I") target = target.parentNode.parentNode
+                    else if (target.tagName == "SPAN") target = target.parentNode
+                    else return false
+                    console.log(target)
+                    this.cur_name = target.querySelector('.name').innerText
+                    this.cur_name = this.cur_name.replace(/\s/g, "")
+                    cur_icon = target.querySelector('.icon-cheat').innerHTML
+                },
+                showIcon(ev) {
+                    this.preFill()
+                    ctx.clearRect(0, 0, mv.$refs.can.width, mv.$refs.can.height)
+                    ctx.fillText(cur_icon, mv.$refs.can.width / 2, mv.$refs.can.height / 2)
+                },
+                download(ev) {
+                    var url = mv.$refs.can.toDataURL("image/png")
+                    var a_el = document.createElement("a")
+                    a_el.download = this.cur_name
+                    a_el.href = url
+                    document.body.appendChild(a_el)
+                    a_el.click()
+                    a_el.remove()
+                },
+                selectChange(ev) {
+                    this.changeSize(parseInt(ev.target.value))
+                },
+                changeSize(size) {
+                    mv.$refs.can.width = mv.$refs.can.height = size
+                    this.preFill()
+                    ctx.clearRect(0, 0, mv.$refs.can.width, mv.$refs.can.height)
+                    ctx.fillText(cur_icon, mv.$refs.can.width / 2, mv.$refs.can.height / 2)
+                },
+                preFill() {
+                    ctx = mv.$refs.can.getContext("2d")
+                    ctx.font = mv.$refs.can.width + "px xb"
+                    ctx.fillStyle = this.inp_cl
+                    ctx.textAlign = "center"
+                    ctx.textBaseline = "middle"
+                }
+            },
+            watch: {
+                inp_cl(newVal, oldVal) {
+                    this.changeColor(newVal)
+                }
+            }
+        })
+    }
+</script>
+
+</html>

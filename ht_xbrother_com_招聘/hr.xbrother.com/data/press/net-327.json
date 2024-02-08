@@ -1,0 +1,33 @@
+{
+
+    "page-title": "XBrother | 培养计划",
+    "description": "培养计划",
+    "url": "http://hr.xbrother.com:9000/press/net-327",
+    "shareImage": "assets/images/press/net-330/net-330-inside.jpg",
+    "twitterShare": "N共济科技是全国领先的绿色智慧数据中心整体方案供应商，致力于让数据中心更加简单、安全、高效、节能，在模块化数据中心、监控管理、云运维服务等三大领域，为超过10000家数据中心客户提供了行业领先的解决方案及全国范围内专业的技术服务保障。",
+    "hashtags": "新基建,共济科技,数据中心,数据时代",
+    "tags": "新基建,共济科技,数据中心,数据时代",
+    "link": "press/net-330",
+
+    "title": "培养计划",
+    "subtitle": "一对一导师 | 工作氛围",
+    "content": "<p>完整的应届生培养体系、师一对一悉心指导、行业大牛深入交流、国家级实验室助力成长</p><p>工作氛围</p><p>坐落粤海街道，毗邻大厂总部、年轻无代沟，沟通无障碍、破冰团建，快速融入</p>",
+
+    "feature": {
+        "type": "image",
+        "id": "",
+        "source": "",
+        "title": "",
+        "images": [{
+            "name": "完整的应届生培养体系",
+            "file": "../assets/images/press/train_1.jpg"
+        }, {
+            "name": "导师一对一悉心指导",
+            "file": "../assets/images/press/train_2.jpg"
+        }, {
+            "name": "行业大牛深入交流",
+            "file": "../assets/images/press/train_3.jpg"
+        }],
+        "iframe": ""
+    }
+}
