@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/components/Primitives/Mono.tsx"],
+  "sourcesContent": ["import { FunctionComponent } from \"react\";\n\nexport const Mono: FunctionComponent<{ className?: string }> = ({\n  className,\n  children,\n}) => {\n  return <p className={`font-mono text-sm ${className}`}>{children}</p>;\n};\n"],
+  "mappings": ";;;;;;AAAA;AAEO,IAAM,OAAkD,CAAC;AAAA,EAC9D;AAAA,EACA;AAAA,MACI;AACJ,SAAO,oCAAC,KAAD;AAAA,IAAG,WAAW,qBAAqB;AAAA,KAAc;AAAA;",
+  "names": []
+}

@@ -1,0 +1,1 @@
+import{B as m,b as n,c,l as s,n as d}from"/build/_shared/chunk-HPTJOB22.js";import{d as t,g as p,i as r}from"/build/_shared/chunk-2ADOHOB6.js";r();d();var u=t(c()),f=t(p());function y(){let{selectedNodeId:e}=m();if(!e)return;let[o]=n();return(0,f.useMemo)(()=>{let i=new u.JSONHeroPath(e).first(o);return s(i)},[o,e])}export{y as a};

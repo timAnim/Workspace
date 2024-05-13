@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/components/Primitives/Title.tsx"],
+  "sourcesContent": ["import { FunctionComponent } from \"react\";\n\nexport const Title: FunctionComponent<{ className?: string }> = ({\n  className,\n  children,\n}) => {\n  return (\n    <h2 className={`font-sans font-bold text-xl ${className}`}>{children}</h2>\n  );\n};\n"],
+  "mappings": ";;;;;;AAAA;AAEO,IAAM,QAAmD,CAAC;AAAA,EAC/D;AAAA,EACA;AAAA,MACI;AACJ,SACE,oCAAC,MAAD;AAAA,IAAI,WAAW,+BAA+B;AAAA,KAAc;AAAA;",
+  "names": []
+}

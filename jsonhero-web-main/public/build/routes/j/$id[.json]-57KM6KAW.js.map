@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:E:\\Workspace\\jsonhero-web-main\\app\\routes\\j\\$id[.json].ts?browser", "../../../../app/routes/j/$id[.json].ts"],
+  "sourcesContent": ["export * from \"E:\\\\Workspace\\\\jsonhero-web-main\\\\app\\\\routes\\\\j\\\\$id[.json].ts\";", "import { json, LoaderFunction } from \"remix\";\nimport invariant from \"tiny-invariant\";\nimport { getDocument } from \"~/jsonDoc.server\";\n\nexport const loader: LoaderFunction = async ({ params, request }) => {\n  invariant(params.id, \"expected params.id\");\n\n  const doc = await getDocument(params.id);\n\n  if (!doc) {\n    throw new Response(\"Not Found\", {\n      status: 404,\n    });\n  }\n\n  if (doc.type == \"url\") {\n    const jsonResponse = await fetch(doc.url);\n    return jsonResponse.json();\n  } else {\n    return json(JSON.parse(doc.contents));\n  }\n};\n"],
+  "mappings": ";;;;;;;;;;;;;;;AAAA;;;ACAA;AAEA,qBAA4B;AAErB,IAAM,SAAyB,OAAO,EAAE,QAAQ,cAAc;AACnE,YAAU,OAAO,IAAI;AAErB,QAAM,MAAM,MAAM,gCAAY,OAAO;AAErC,MAAI,CAAC,KAAK;AACR,UAAM,IAAI,SAAS,aAAa;AAAA,MAC9B,QAAQ;AAAA;AAAA;AAIZ,MAAI,IAAI,QAAQ,OAAO;AACrB,UAAM,eAAe,MAAM,MAAM,IAAI;AACrC,WAAO,aAAa;AAAA,SACf;AACL,WAAO,KAAK,KAAK,MAAM,IAAI;AAAA;AAAA;",
+  "names": []
+}

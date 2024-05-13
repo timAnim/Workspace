@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/components/Primitives/LargeTitle.tsx"],
+  "sourcesContent": ["import { FunctionComponent } from \"react\";\n\nexport const LargeTitle: FunctionComponent<{ className?: string }> = ({\n  className,\n  children,\n}) => {\n  return (\n    <h1 className={`font-sans font-bold text-2xl ${className}`}>{children}</h1>\n  );\n};\n"],
+  "mappings": ";;;;;;AAAA;AAEO,IAAM,aAAwD,CAAC;AAAA,EACpE;AAAA,EACA;AAAA,MACI;AACJ,SACE,oCAAC,MAAD;AAAA,IAAI,WAAW,gCAAgC;AAAA,KAAc;AAAA;",
+  "names": []
+}

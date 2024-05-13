@@ -1,0 +1,1 @@
+import{d as a,g as C,h as e,i as r}from"/build/_shared/chunk-2ADOHOB6.js";r();var t=a(C()),o=(0,t.createContext)(void 0);function p({children:n,starCount:u}){return e.createElement(o.Provider,{value:u},n)}function d(){return(0,t.useContext)(o)}export{p as a,d as b};

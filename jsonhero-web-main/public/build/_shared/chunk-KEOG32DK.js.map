@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/components/CopySelectedNode.tsx"],
+  "sourcesContent": ["import { useHotkeys } from \"react-hotkeys-hook\";\nimport { useSelectedInfo } from \"../hooks/useSelectedInfo\";\n\nexport function CopySelectedNodeShortcut() {\n  const selectedInfo = useSelectedInfo();\n\n  useHotkeys(\n    'shift+c,shift+C',\n    (e) => {\n      e.preventDefault();\n      const selectedJSON = selectedInfo?.name === \"string\"\n        ? selectedInfo?.value\n        : JSON.stringify(selectedInfo?.value, null, 2);\n      navigator.clipboard.writeText(selectedJSON);\n    },\n    [selectedInfo]\n  );\n\n  return <></>;\n}\n"],
+  "mappings": ";;;;;;;;;;;;AAAA;AAGO,oCAAoC;AACzC,QAAM,eAAe;AAErB,aACE,mBACA,CAAC,MAAM;AACL,MAAE;AACF,UAAM,eAAe,8CAAc,UAAS,WACxC,6CAAc,QACd,KAAK,UAAU,6CAAc,OAAO,MAAM;AAC9C,cAAU,UAAU,UAAU;AAAA,KAEhC,CAAC;AAGH,SAAO;AAAA;",
+  "names": []
+}

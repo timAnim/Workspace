@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["browser-route-module:E:\\Workspace\\jsonhero-web-main\\app\\routes\\j\\$id\\terminal.tsx?browser", "../../../../../app/routes/j/$id/terminal.tsx"],
+  "sourcesContent": ["export { default } from \"E:\\\\Workspace\\\\jsonhero-web-main\\\\app\\\\routes\\\\j\\\\$id\\\\terminal.tsx\";", "import { LargeTitle } from \"~/components/Primitives/LargeTitle\";\nimport { Body } from \"~/components/Primitives/Body\";\nimport { TerminalIcon } from \"@heroicons/react/outline\";\n\nexport default function TerminalViewPage() {\n  return (\n    <div className=\"flex items-center justify-center h-full\">\n      <div className=\"flex flex-col items-center justify-center max-w-[300px] rounded text-center bg-slate-200 shadow border-slate-100 border-[10px] border-solid py-16 px-16 transition dark:bg-slate-700 dark:border-slate-500\">\n        <TerminalIcon className=\"text-indigo-500 transition dark:text-white w-8 mb-2\" />\n        <LargeTitle className=\"text-gray-700 transition dark:text-white\">\n          Terminal View\n        </LargeTitle>\n        <Body className=\"text-gray-700 transition dark:text-white\">\n          Coming soon\n        </Body>\n      </div>\n    </div>\n  );\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;AAAA;;;ACAA;AAIe,4BAA4B;AACzC,SACE,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACb,oCAAC,OAAD;AAAA,IAAK,WAAU;AAAA,KACb,oCAAC,sBAAD;AAAA,IAAc,WAAU;AAAA,MACxB,oCAAC,YAAD;AAAA,IAAY,WAAU;AAAA,KAA2C,kBAGjE,oCAAC,MAAD;AAAA,IAAM,WAAU;AAAA,KAA2C;AAAA;",
+  "names": []
+}

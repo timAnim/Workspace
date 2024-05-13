@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/components/StarCountProvider.tsx"],
+  "sourcesContent": ["import { createContext, useContext } from \"react\";\nimport type { ReactNode } from \"react\";\n\nexport type StarCountType = number | undefined;\n\nconst StarCountContext = createContext<StarCountType>(undefined);\n\nexport function StarCountProvider({\n  children,\n  starCount,\n}: {\n  children: ReactNode;\n  starCount: StarCountType;\n}) {\n  return (\n    <StarCountContext.Provider value={starCount}>\n      {children}\n    </StarCountContext.Provider>\n  );\n}\n\nexport function useStarCount(): StarCountType {\n  return useContext(StarCountContext);\n}\n"],
+  "mappings": ";;;;;;;;AAAA;AAAA,mBAA0C;AAK1C,IAAM,mBAAmB,gCAA6B;AAE/C,2BAA2B;AAAA,EAChC;AAAA,EACA;AAAA,GAIC;AACD,SACE,oCAAC,iBAAiB,UAAlB;AAAA,IAA2B,OAAO;AAAA,KAC/B;AAAA;AAKA,wBAAuC;AAC5C,SAAO,6BAAW;AAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/utilities/colors.ts"],
+  "sourcesContent": ["import { inferType } from \"@jsonhero/json-infer-types\";\nimport { JSONHeroPath } from \"@jsonhero/path\";\n\nexport function colorForTypeName(typeName: string): string {\n  switch (typeName) {\n    case \"object\": {\n      return \"text-emerald-500\";\n    }\n    case \"array\": {\n      return \"text-cyan-500\";\n    }\n    case \"null\": {\n      return \"text-stone-400\";\n    }\n    case \"bool\": {\n      return \"text-rose-500\";\n    }\n    case \"int\":\n    case \"float\": {\n      return \"text-amber-500\";\n    }\n    case \"string\": {\n      return \"text-indigo-500\";\n    }\n    default: {\n      return \"\";\n    }\n  }\n}\n\nexport function colorForItemAtPath(path: string, json: unknown): string {\n  const heroPath = new JSONHeroPath(path);\n  const value = heroPath.first(json);\n  const item = inferType(value);\n\n  return colorForTypeName(item.name);\n}\n"],
+  "mappings": ";;;;;;;;;;;AAAA;AAAA;AACA,kBAA6B;AAEtB,0BAA0B,UAA0B;AACzD,UAAQ;AAAA,SACD,UAAU;AACb,aAAO;AAAA;AAAA,SAEJ,SAAS;AACZ,aAAO;AAAA;AAAA,SAEJ,QAAQ;AACX,aAAO;AAAA;AAAA,SAEJ,QAAQ;AACX,aAAO;AAAA;AAAA,SAEJ;AAAA,SACA,SAAS;AACZ,aAAO;AAAA;AAAA,SAEJ,UAAU;AACb,aAAO;AAAA;AAAA,aAEA;AACP,aAAO;AAAA;AAAA;AAAA;AAKN,4BAA4B,MAAc,MAAuB;AACtE,QAAM,WAAW,IAAI,yBAAa;AAClC,QAAM,QAAQ,SAAS,MAAM;AAC7B,QAAM,OAAO,UAAU;AAEvB,SAAO,iBAAiB,KAAK;AAAA;",
+  "names": []
+}

@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../app/hooks/useSelectedInfo.tsx"],
+  "sourcesContent": ["import { inferType, JSONValueType } from \"@jsonhero/json-infer-types\";\nimport { JSONHeroPath } from \"@jsonhero/path\";\nimport { useMemo } from \"react\";\nimport { useJson } from \"./useJson\";\nimport { useJsonColumnViewState } from \"./useJsonColumnView\";\n\nexport function useSelectedInfo(): JSONValueType | undefined {\n  const { selectedNodeId } = useJsonColumnViewState();\n\n  if (!selectedNodeId) {\n    return;\n  }\n\n  const [json] = useJson();\n\n  return useMemo(() => {\n    const heroPath = new JSONHeroPath(selectedNodeId);\n    const selectedJson = heroPath.first(json);\n    return inferType(selectedJson);\n  }, [json, selectedNodeId]);\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;AAAA;AAAA;AACA,kBAA6B;AAC7B,mBAAwB;AAIjB,2BAAsD;AAC3D,QAAM,EAAE,mBAAmB;AAE3B,MAAI,CAAC,gBAAgB;AACnB;AAAA;AAGF,QAAM,CAAC,QAAQ;AAEf,SAAO,0BAAQ,MAAM;AACnB,UAAM,WAAW,IAAI,yBAAa;AAClC,UAAM,eAAe,SAAS,MAAM;AACpC,WAAO,UAAU;AAAA,KAChB,CAAC,MAAM;AAAA;",
+  "names": []
+}
